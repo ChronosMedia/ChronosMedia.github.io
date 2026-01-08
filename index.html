@@ -1,0 +1,879 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chronos Media</title>
+  <meta name="description" content="Chronos Media — Capturing the Agapē Moments." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== Logo-inspired theme (Chronos Media) ===== */
+    :root{
+      --bg: #0B1220;
+      --bg2:#0E1A2D;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.09);
+
+      --text: #EAF0FF;
+      --muted: rgba(234,240,255,.72);
+      --line: rgba(234,240,255,.14);
+
+      --brandA:#21B5FF;
+      --brandB:#2F6BFF;
+      --brandC:#00D4FF;
+
+      --accent: var(--brandA);
+      --accent2: var(--brandB);
+      --danger:#FF2E2E;
+
+      --shadow: 0 14px 44px rgba(0,0,0,.45);
+      --radius: 20px;
+      --max: 1200px;
+      --pad: 24px;
+
+      --glass: rgba(10,20,40,.6);
+      --glass2: rgba(10,20,40,.35);
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background:
+        radial-gradient(900px 520px at 18% 12%, rgba(33,181,255,.18), transparent 58%),
+        radial-gradient(820px 520px at 78% 18%, rgba(47,107,255,.14), transparent 55%),
+        radial-gradient(1200px 700px at 50% 110%, rgba(0,212,255,.08), transparent 60%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+      color:var(--text);
+      line-height:1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    .container{
+      width: min(var(--max), calc(100% - (var(--pad) * 2)));
+      margin: 0 auto;
+    }
+
+    /* ===== Header / Nav ===== */
+    header{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(16px);
+      background: var(--glass);
+      border-bottom: 1px solid var(--line);
+      box-shadow: 0 4px 20px rgba(0,0,0,.3);
+    }
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+      padding: 16px 0;
+    }
+    
+    /* ===== Logo Improvements ===== */
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:16px;
+      transition: transform 0.2s ease;
+    }
+    .brand:hover{
+      transform: translateY(-1px);
+    }
+    
+    .logo-container {
+      width: 56px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      background: rgba(11,18,32,.8);
+      border-radius: 14px;
+      border: 1px solid rgba(33,181,255,.2);
+      box-shadow: 0 4px 16px rgba(0,0,0,.3);
+      padding: 4px;
+    }
+    
+    .logo-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: brightness(1.1) contrast(1.05);
+    }
+
+    .brand-text{ 
+      display:flex; 
+      flex-direction:column; 
+      line-height:1.2; 
+    }
+    .brand-text strong{ 
+      font-size: 18px; 
+      letter-spacing: 0.3px; 
+      font-weight: 800;
+      background: linear-gradient(135deg, #EAF0FF, #21B5FF);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .brand-text span{ 
+      font-size: 13px; 
+      color:var(--muted);
+      font-weight: 500;
+      margin-top: 2px;
+    }
+
+    nav{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      font-weight:600;
+      color:var(--muted);
+      font-size: 15px;
+    }
+    nav a{
+      padding:10px 16px;
+      border-radius: 10px;
+      transition: all 0.2s ease;
+    }
+    nav a:hover{
+      background: rgba(234,240,255,.1);
+      color: var(--text);
+    }
+
+    .cta{ display:flex; gap:12px; align-items:center; }
+
+    /* Menu toggle for mobile */
+    .menu-toggle{
+      display:none;
+      background: rgba(234,240,255,.08);
+      border: 1px solid var(--line);
+      padding:10px;
+      border-radius:10px;
+      cursor:pointer;
+      color: var(--text);
+      font-size: 20px;
+    }
+
+    @media (max-width: 768px){
+      .menu-toggle{ display:block; }
+      nav{
+        position:absolute;
+        top:100%;
+        left:0;
+        right:0;
+        background: var(--glass);
+        backdrop-filter: blur(16px);
+        flex-direction:column;
+        padding:20px;
+        border-bottom: 1px solid var(--line);
+        transform: translateY(-100%);
+        opacity:0;
+        pointer-events:none;
+        transition: all 0.3s ease;
+      }
+      nav.active{
+        transform: translateY(0);
+        opacity:1;
+        pointer-events:all;
+      }
+      nav a{ width:100%; padding:14px 16px; }
+      .brand-text strong{ font-size: 16px; }
+      .brand-text span{ font-size: 12px; }
+      .logo-container{ width: 48px; height: 48px; }
+    }
+
+    /* ===== LIVE button ===== */
+    .live-btn{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:11px 18px;
+      border-radius:999px;
+      font-weight:800;
+      font-size: 13px;
+      letter-spacing:.8px;
+      text-transform:uppercase;
+      background: linear-gradient(135deg, #FF4D4D, #D71F24);
+      color:#fff;
+      box-shadow: 0 8px 24px rgba(255,77,77,.4);
+      animation:pulse 1.8s infinite;
+      border: 1px solid rgba(255,255,255,.2);
+      white-space: nowrap;
+    }
+    .live-dot{ 
+      width:8px; 
+      height:8px; 
+      background:#fff; 
+      border-radius:50%;
+      box-shadow: 0 0 8px rgba(255,255,255,.6);
+    }
+    @keyframes pulse{
+      0%{ box-shadow:0 4px 24px rgba(255,77,77,.4), 0 0 0 0 rgba(255,77,77,.4);}
+      70%{ box-shadow:0 4px 24px rgba(255,77,77,.4), 0 0 0 12px rgba(255,77,77,0);}
+      100%{ box-shadow:0 4px 24px rgba(255,77,77,.4), 0 0 0 0 rgba(255,77,77,0);}
+    }
+    .live-btn.offline{
+      background: rgba(127,127,127,.2);
+      color: var(--muted);
+      border: 1px solid var(--line);
+      animation:none;
+      box-shadow:none;
+    }
+    .live-btn.offline .live-dot{ 
+      background: rgba(255,255,255,.5);
+      box-shadow: none;
+    }
+
+    /* ===== Buttons ===== */
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding: 12px 20px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      font-weight: 700;
+      font-size: 15px;
+      cursor:pointer;
+      user-select:none;
+      transition: all 0.2s ease;
+    }
+    .btn:hover{
+      border-color: rgba(33,181,255,.4);
+      background: rgba(33,181,255,.12);
+      transform: translateY(-1px);
+    }
+    .btn.primary{
+      border: 1px solid rgba(33,181,255,.3);
+      background: linear-gradient(135deg, rgba(33,181,255,.25), rgba(47,107,255,.2));
+      box-shadow: 0 8px 24px rgba(33,181,255,.25);
+    }
+    .btn.primary:hover{
+      background: linear-gradient(135deg, rgba(33,181,255,.35), rgba(47,107,255,.3));
+      box-shadow: 0 12px 32px rgba(33,181,255,.35);
+    }
+
+    /* ===== Main sections ===== */
+    main{
+      padding-bottom:80px;
+    }
+    section{
+      padding: 80px 0;
+    }
+    .section-title{
+      font-size: 42px;
+      font-weight: 900;
+      margin:0 0 16px;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #EAF0FF, #21B5FF);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .section-sub{
+      color:var(--muted);
+      font-size: 18px;
+      margin:0 0 40px;
+      max-width: 720px;
+      line-height: 1.7;
+    }
+
+    /* ===== Hero ===== */
+    .hero{
+      text-align:center;
+      padding: 120px 0 100px;
+    }
+    .hero h1{
+      font-size: clamp(48px, 7vw, 72px);
+      font-weight: 900;
+      margin:0 0 24px;
+      letter-spacing: -1px;
+      line-height: 1.1;
+    }
+    .hero h1 .highlight{
+      background: linear-gradient(135deg, #21B5FF, #2F6BFF, #00D4FF);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero p{
+      font-size: 20px;
+      color:var(--muted);
+      margin:0 0 40px;
+      max-width: 640px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+    .hero-actions{
+      display:flex;
+      gap:16px;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
+    @media (max-width: 640px){
+      .hero-actions{ flex-direction:column; align-items:center; }
+      .hero-actions .btn{ width: 100%; max-width: 300px; }
+    }
+
+    /* ===== Cards & Panels ===== */
+    .panel{
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding:32px;
+      backdrop-filter: blur(8px);
+    }
+    .card{
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding:28px;
+      transition: all 0.3s ease;
+    }
+    .card:hover{
+      border-color: rgba(33,181,255,.3);
+      background: var(--panel2);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(0,0,0,.3);
+    }
+
+    /* ===== Services Grid ===== */
+    .services-grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap:24px;
+      margin-top:40px;
+    }
+    .service-card{
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding:32px;
+      transition: all 0.3s ease;
+    }
+    .service-card:hover{
+      border-color: rgba(33,181,255,.3);
+      background: var(--panel2);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0,0,0,.3);
+    }
+    .service-icon{
+      font-size: 36px;
+      margin-bottom: 16px;
+    }
+    .service-card h3{
+      font-size: 22px;
+      font-weight: 800;
+      margin:0 0 12px;
+      color: var(--text);
+    }
+    .service-card p{
+      color:var(--muted);
+      margin:0;
+      line-height: 1.6;
+      font-size: 15px;
+    }
+    .side-note{
+      color:var(--muted);
+      font-size: 14px;
+      margin-top:12px;
+      font-style: italic;
+    }
+
+    /* ===== YouTube embed ===== */
+    .yt-wrap{
+      position:relative;
+      padding-bottom:56.25%;
+      height:0;
+      overflow:hidden;
+      border-radius: 16px;
+      background: rgba(0,0,0,.5);
+    }
+    .yt-wrap iframe{
+      position:absolute;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      border:0;
+      border-radius: 16px;
+    }
+
+    /* ===== About section ===== */
+    .about-grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap:24px;
+      margin-top:40px;
+    }
+    .person{
+      display:flex;
+      gap:20px;
+      align-items:flex-start;
+    }
+    .avatar{
+      width:64px;
+      height:64px;
+      border-radius:50%;
+      background: linear-gradient(135deg, rgba(33,181,255,.25), rgba(47,107,255,.2));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:900;
+      font-size:22px;
+      border: 2px solid rgba(33,181,255,.3);
+      flex-shrink:0;
+      box-shadow: 0 4px 16px rgba(33,181,255,.2);
+    }
+    .person h3{
+      font-size: 20px;
+      font-weight: 800;
+      margin:0 0 6px;
+      color: var(--text);
+    }
+    .role{
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 14px;
+      margin-bottom:10px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .bio{
+      color:var(--muted);
+      margin:0;
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    /* ===== Workflows ===== */
+    .pill{
+      display:inline-block;
+      padding:8px 16px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid var(--line);
+      border-radius:999px;
+      font-size:14px;
+      font-weight:600;
+      margin: 4px;
+      transition: all 0.2s ease;
+    }
+    .pill:hover{
+      background: rgba(33,181,255,.12);
+      border-color: rgba(33,181,255,.3);
+    }
+    .workflow-grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap:24px;
+      margin-top:32px;
+    }
+    .workflow-grid h3{
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--text);
+    }
+    .list{
+      list-style:none;
+      padding:0;
+      margin:14px 0 0;
+    }
+    .list li{
+      padding:12px 0;
+      border-bottom: 1px solid var(--line);
+      color:var(--muted);
+      line-height: 1.6;
+    }
+    .list li:last-child{ border-bottom:none; }
+    .list li b{
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    /* ===== Contact ===== */
+    .contact-wrap{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap:24px;
+    }
+    .contact-wrap h3{
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--text);
+    }
+    .contact-wrap p{
+      line-height: 1.6;
+    }
+    .contact-wrap a{
+      color: var(--accent);
+      transition: color 0.2s ease;
+    }
+    .contact-wrap a:hover{
+      color: var(--brandC);
+    }
+    .small{
+      font-size:14px;
+      color:var(--muted);
+      margin-top:12px;
+    }
+
+    /* ===== Footer ===== */
+    footer{
+      text-align:center;
+      padding:32px 0;
+      border-top: 1px solid var(--line);
+      color:var(--muted);
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="nav">
+        <a href="#" class="brand">
+          <div class="logo-container">
+            <img src="chronos-logo.svg" alt="Chronos Media Logo" />
+          </div>
+          <div class="brand-text">
+            <strong>CHRONOS MEDIA</strong>
+            <span>Capturing the Agapē Moments</span>
+          </div>
+        </a>
+
+        <button id="menuToggle" class="menu-toggle" aria-label="Menu">☰</button>
+
+        <nav id="mainNav">
+          <a href="#services">Services</a>
+          <a href="#watch">Watch</a>
+          <a href="#about">About</a>
+          <a href="#workflows">Workflows</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="cta">
+          <a id="liveBtn" class="live-btn offline" href="#watch">
+            <span class="live-dot"></span>
+            <span>Offline</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
+        <h1>
+          Professional<br>
+          <span class="highlight">Livestreaming Services</span>
+        </h1>
+        <p>
+          Bringing clarity and excellence to every stream. From Sunday services to special events, 
+          we capture moments that matter with reliability you can trust.
+        </p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn primary">Get Started</a>
+          <a href="#watch" class="btn">Watch Live</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services">
+      <div class="container">
+        <h2 class="section-title">Our Services</h2>
+        <p class="section-sub">
+          End-to-end production services designed for churches, conferences, and community events.
+        </p>
+
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-icon">📡</div>
+            <h3>Live Streaming</h3>
+            <p>
+              Multi-platform broadcasting with professional quality. Stream to YouTube, Facebook, 
+              and custom platforms simultaneously.
+            </p>
+            <div class="side-note">
+              Includes encoder setup, stream monitoring, and backup recording.
+            </div>
+          </div>
+
+          <div class="service-card">
+            <div class="service-icon">🎥</div>
+            <h3>Multi-Camera Production</h3>
+            <p>
+              Dynamic switching between cameras for engaging, professional coverage of your event.
+            </p>
+            <div class="side-note">
+              PTZ cameras, scene transitions, and operator training available.
+            </div>
+          </div>
+
+          <div class="service-card">
+            <div class="service-icon">🎚️</div>
+            <h3>Audio Integration</h3>
+            <p>
+              Crystal-clear sound mixing that balances house audio with optimal stream levels.
+            </p>
+            <div class="side-note">
+              Works with existing sound systems and provides independent stream mix.
+            </div>
+          </div>
+
+          <div class="service-card">
+            <div class="service-icon">💾</div>
+            <h3>Recording & Archives</h3>
+            <p>
+              Local backup recording and cloud archiving for every service and event.
+            </p>
+            <div class="side-note">
+              Automatic uploads, highlights creation, and long-term storage solutions.
+            </div>
+          </div>
+
+          <div class="service-card">
+            <div class="service-icon">🎨</div>
+            <h3>Graphics & Branding</h3>
+            <p>
+              Custom lower-thirds, titles, announcements, and on-screen graphics.
+            </p>
+            <div class="side-note">
+              Matches your church or organization's visual identity perfectly.
+            </div>
+          </div>
+
+          <div class="service-card">
+            <div class="service-icon">🛠️</div>
+            <h3>Full Production Support</h3>
+            <p>
+              Complete technical setup, volunteer training, and ongoing production assistance.
+            </p>
+            <div class="side-note">
+              Professional livestreaming services built for reliability and quality.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Watch -->
+    <section id="watch">
+      <div class="container">
+        <h2 class="section-title">Watch</h2>
+        <p class="section-sub">
+          When we're live, the player below will automatically load the current livestream.
+        </p>
+
+        <div class="panel">
+          <div class="yt-wrap">
+            <iframe
+              id="ytLiveFrame"
+              src="https://www.youtube.com/embed/@ChronosMediaLive/live"
+              title="Chronos Media Live"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen>
+            </iframe>
+          </div>
+          <div class="small" style="padding:16px 0 0;">
+            If offline, the player may show a placeholder until the broadcast starts.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+      <div class="container">
+        <h2 class="section-title">About Us</h2>
+        <p class="section-sub">
+          Chronos Media exists to capture and stream meaningful moments with professionalism and care.
+          From Sunday services to special events, we help make each moment clear, memorable, and shareable.
+        </p>
+
+        <div class="about-grid">
+          <div class="card">
+            <div class="person">
+              <div class="avatar">SJ</div>
+              <div>
+                <h3>Stephen Johnson</h3>
+                <div class="role">Co-Founder</div>
+                <p class="bio">
+                  Focused on smooth live productions, strong audio/visual quality, and consistent stream reliability.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="person">
+              <div class="avatar">ZC</div>
+              <div>
+                <h3>Zach Chandapillai</h3>
+                <div class="role">Co-Founder</div>
+                <p class="bio">
+                  Dedicated to creative execution, attention to detail, and ensuring every event is captured with excellence.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Workflows -->
+    <section id="workflows">
+      <div class="container">
+        <h2 class="section-title">Church & Event Workflows</h2>
+        <p class="section-sub">
+          Built for Sunday services, conferences, weddings, and community events—so the team knows exactly what's happening before, during, and after the stream.
+        </p>
+
+        <div style="margin-bottom:24px;">
+          <span class="pill">✅ Pre-service checklist</span>
+          <span class="pill">🎚️ Stream audio mix</span>
+          <span class="pill">🎥 Multi-cam switching</span>
+          <span class="pill">🛟 Backup recording</span>
+        </div>
+
+        <div class="workflow-grid">
+          <div class="panel">
+            <h3>Standard Service Flow</h3>
+            <ul class="list">
+              <li><b>Pre-check (T-45)</b>: Audio levels, camera framing, lighting, network speed test.</li>
+              <li><b>Run of show</b>: Order of service, lower-thirds cues, scripture/lyrics timing.</li>
+              <li><b>Go-live (T-5)</b>: Start stream, monitor health, confirm audio meters.</li>
+              <li><b>During service</b>: Watch mix, scene changes, record locally as backup.</li>
+              <li><b>Post</b>: Archive upload, trim start/end, create highlights (optional).</li>
+            </ul>
+          </div>
+
+          <div class="panel">
+            <h3>What We Provide</h3>
+            <ul class="list">
+              <li>Volunteer training & role assignment</li>
+              <li>Stream graphics / lower-thirds</li>
+              <li>Livestream + onsite recording</li>
+              <li>Audio integration (house + stream mix)</li>
+              <li>Backup workflows (hotspot + local record)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <div class="container">
+        <h2 class="section-title">Contact Us</h2>
+        <p class="section-sub">
+          Tell us about your event—date, location, expected audience, and what you need (livestreaming, recording, audio support, full production).
+        </p>
+
+        <div class="panel">
+          <div class="contact-wrap">
+            <div class="card">
+              <h3>Get in Touch</h3>
+              <p style="margin:0 0 20px; color: var(--muted);">
+                Email us and we'll respond as soon as possible.
+              </p>
+
+              <p style="margin:0 0 12px; font-weight:700; font-size: 16px;">
+                📧 <a href="mailto:info@chronos.media">info@chronos.media</a>
+              </p>
+
+              <p style="margin:0; font-weight:700; font-size: 16px;">
+                📞 <a href="tel:+12675350921">(267) 535-0921</a>
+              </p>
+
+              <p class="small">
+                Suggested subject: "Livestream request — [Event Name]"
+              </p>
+            </div>
+
+            <div class="card">
+              <h3>Quick Contact</h3>
+              <p style="margin:0 0 20px; color:var(--muted);">
+                Click the button below to open your email client with a pre-formatted message.
+              </p>
+              <a class="btn primary" href="mailto:info@chronos.media?subject=Livestream%20Request&body=Hi%20Chronos%20Media%20team%2C%0A%0AI'm%20interested%20in%20your%20livestreaming%20services.%0A%0AEvent%20details%3A%0A-%20Date%3A%20%0A-%20Location%3A%20%0A-%20Type%20of%20event%3A%20%0A-%20Expected%20audience%3A%20%0A-%20Services%20needed%3A%20%0A%0APlease%20let%20me%20know%20your%20availability%20and%20pricing.%0A%0AThank%20you!">
+                Send Email
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        © <span id="year"></span> Chronos Media • Capturing the Agapē Moments
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // Footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Mobile menu toggle
+    document.getElementById("menuToggle").addEventListener("click", function() {
+      document.getElementById("mainNav").classList.toggle("active");
+    });
+
+    // Close menu when clicking a link
+    document.querySelectorAll("#mainNav a").forEach(link => {
+      link.addEventListener("click", () => {
+        document.getElementById("mainNav").classList.remove("active");
+      });
+    });
+
+    // LIVE detection simulation
+    const liveBtn = document.getElementById("liveBtn");
+    function checkLiveStatus() {
+      // In production, replace with actual YouTube API check
+      const isLive = false;
+      
+      if (isLive) {
+        liveBtn.classList.remove("offline");
+        liveBtn.innerHTML = '<span class="live-dot"></span><span>Live Now</span>';
+      } else {
+        liveBtn.classList.add("offline");
+        liveBtn.innerHTML = '<span class="live-dot"></span><span>Offline</span>';
+      }
+    }
+    
+    checkLiveStatus();
+    setInterval(checkLiveStatus, 60000);
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
