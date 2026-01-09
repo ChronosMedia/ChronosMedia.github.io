@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chronos Media Banner</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #1a1a1a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        #banner {
+            width: 1200px;
+            height: 628px;
+            background: linear-gradient(135deg, #0D1B2A 0%, #1B2838 50%, #0D1B2A 100%);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+        
+        /* Animated gradient background */
+        #banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 40%, rgba(33, 181, 255, 0.15), transparent 50%),
+                        radial-gradient(circle at 70% 60%, rgba(47, 107, 255, 0.1), transparent 50%),
+                        radial-gradient(circle at 50% 50%, rgba(0, 212, 255, 0.08), transparent 60%);
+        }
+        
+        /* Logo container */
+        .logo-section {
+            position: absolute;
+            left: 80px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 2;
+        }
+        
+        .logo-box {
+            width: 280px;
+            height: 280px;
+            background: rgba(13, 27, 42, 0.9);
+            border-radius: 40px;
+            border: 2px solid rgba(33, 181, 255, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6),
+                        0 0 80px rgba(33, 181, 255, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        /* Hourglass SVG */
+        .hourglass {
+            width: 180px;
+            height: 180px;
+        }
+        
+        /* Text content */
+        .content {
+            position: absolute;
+            right: 80px;
+            top: 50%;
+            transform: translateY(-50%);
+            text-align: right;
+            z-index: 2;
+        }
+        
+        .brand-name {
+            font-family: 'Arial Black', sans-serif;
+            font-size: 82px;
+            font-weight: 900;
+            letter-spacing: 6px;
+            margin: 0;
+            background: linear-gradient(135deg, #EAF0FF, #21B5FF, #00D4FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 4px 20px rgba(33, 181, 255, 0.3);
+            line-height: 1;
+        }
+        
+        .brand-subtitle {
+            font-family: 'Arial', sans-serif;
+            font-size: 32px;
+            font-weight: 600;
+            letter-spacing: 8px;
+            color: #EAF0FF;
+            margin: 15px 0 30px 0;
+            opacity: 0.9;
+        }
+        
+        .tagline {
+            font-family: 'Arial', sans-serif;
+            font-size: 26px;
+            font-weight: 500;
+            color: rgba(234, 240, 255, 0.75);
+            margin: 0 0 25px 0;
+            letter-spacing: 1px;
+        }
+        
+        .cta {
+            display: inline-block;
+            padding: 18px 45px;
+            background: linear-gradient(135deg, rgba(33, 181, 255, 0.25), rgba(47, 107, 255, 0.2));
+            border: 2px solid rgba(33, 181, 255, 0.4);
+            border-radius: 50px;
+            color: #EAF0FF;
+            font-size: 20px;
+            font-weight: 700;
+            text-decoration: none;
+            letter-spacing: 1px;
+            box-shadow: 0 10px 30px rgba(33, 181, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        /* Decorative elements */
+        .glow-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+        }
+        
+        .orb-1 {
+            width: 400px;
+            height: 400px;
+            background: #21B5FF;
+            top: -150px;
+            right: -100px;
+        }
+        
+        .orb-2 {
+            width: 350px;
+            height: 350px;
+            background: #2F6BFF;
+            bottom: -150px;
+            left: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div id="banner">
+        <!-- Decorative glowing orbs -->
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+        
+        <!-- Logo Section -->
+        <div class="logo-section">
+            <div class="logo-box">
+                <svg class="hourglass" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="hourglassGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#21B5FF;stop-opacity:1" />
+                            <stop offset="50%" style="stop-color:#2F6BFF;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#00D4FF;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    
+                    <!-- Top triangle -->
+                    <path d="M 50 40 L 150 40 L 150 55 L 100 100 L 50 55 Z" 
+                          fill="none" 
+                          stroke="url(#hourglassGradient)" 
+                          stroke-width="12" 
+                          stroke-linejoin="miter"/>
+                    
+                    <!-- Bottom triangle -->
+                    <path d="M 50 160 L 150 160 L 150 145 L 100 100 L 50 145 Z" 
+                          fill="none" 
+                          stroke="url(#hourglassGradient)" 
+                          stroke-width="12" 
+                          stroke-linejoin="miter"/>
+                    
+                    <!-- Center circle -->
+                    <circle cx="100" cy="100" r="10" fill="url(#hourglassGradient)"/>
+                </svg>
+            </div>
+        </div>
+        
+        <!-- Text Content -->
+        <div class="content">
+            <h1 class="brand-name">CHRONOS</h1>
+            <h2 class="brand-subtitle">MEDIA</h2>
+            <p class="tagline">Capturing the Agapē Moments</p>
+            <a href="#" class="cta">Professional Livestreaming</a>
+        </div>
+    </div>
+    
+    <script>
+        // Optional: Add button to download as image
+        console.log('Banner ready! Right-click to save or use browser screenshot tools.');
+    </script>
+</body>
+</html>
