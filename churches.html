@@ -1,0 +1,893 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Serving Churches - Chronos Media</title>
+  <meta name="description" content="Dedicated to serving the Church with professional livestreaming and media services. Special 10% discount for churches." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== Theme Variables ===== */
+    :root[data-theme="dark"]{
+      --bg: #0B1220;
+      --bg2:#0E1A2D;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.09);
+      --text: #EAF0FF;
+      --muted: rgba(234,240,255,.72);
+      --line: rgba(234,240,255,.14);
+      --glass: rgba(10,20,40,.6);
+      --glass2: rgba(10,20,40,.35);
+      --glass-border: rgba(255,255,255,.1);
+    }
+
+    :root[data-theme="light"]{
+      --bg: #FFFFFF;
+      --bg2:#F5F5F5;
+      --panel: rgba(0,0,0,.04);
+      --panel2: rgba(0,0,0,.06);
+      --text: #1B2838;
+      --muted: rgba(27,40,56,.75);
+      --line: rgba(0,0,0,.12);
+      --glass: rgba(255,255,255,.8);
+      --glass2: rgba(255,255,255,.6);
+      --glass-border: rgba(0,0,0,.1);
+    }
+
+    :root{
+      --brandA:#21B5FF;
+      --brandB:#2F6BFF;
+      --brandC:#00D4FF;
+      --accent: var(--brandA);
+      --shadow: 0 14px 44px rgba(0,0,0,.45);
+      --max: 1400px;
+      --pad: 24px;
+      --gold: #FFD700;
+    }
+
+    *{ box-sizing:border-box; margin:0; padding:0; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: 'Outfit', 'Space Grotesk', system-ui, -apple-system, sans-serif;
+      background:
+        radial-gradient(1200px 800px at 20% 10%, rgba(33,181,255,.12), transparent 60%),
+        radial-gradient(1000px 700px at 80% 90%, rgba(47,107,255,.08), transparent 55%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+      color:var(--text);
+      line-height:1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    
+    .container{
+      width: min(var(--max), calc(100% - (var(--pad) * 2)));
+      margin: 0 auto;
+    }
+
+    /* ===== Theme Toggle ===== */
+    .theme-toggle {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      background: var(--glass);
+      backdrop-filter: blur(20px);
+      border: 2px solid var(--glass-border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 1000;
+      box-shadow: 0 8px 32px rgba(0,0,0,.3);
+      transition: all 0.3s ease;
+    }
+    .theme-toggle:hover {
+      transform: scale(1.1) rotate(15deg);
+      box-shadow: 0 12px 40px rgba(33,181,255,.4);
+    }
+    .theme-toggle svg {
+      width: 28px;
+      height: 28px;
+      color: var(--text);
+      transition: transform 0.3s ease;
+    }
+
+    /* ===== Header ===== */
+    header{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(24px) saturate(180%);
+      background: var(--glass);
+      border-bottom: 1px solid var(--glass-border);
+      box-shadow: 0 4px 30px rgba(0,0,0,.2);
+    }
+    
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 0;
+      position: relative;
+    }
+    
+    .back-link {
+      position: absolute;
+      left: 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: var(--panel);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 14px;
+      transition: all 0.3s ease;
+    }
+    
+    .back-link:hover {
+      background: var(--panel2);
+      color: var(--text);
+      transform: translateX(-4px);
+      border-color: rgba(33,181,255,.3);
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:20px;
+      transition: transform 0.2s ease;
+    }
+    .brand:hover{
+      transform: scale(1.02);
+    }
+    
+    .logo-container {
+      width: 100px;
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 8px 32px rgba(0,0,0,.3);
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid var(--glass-border);
+    }
+    
+    [data-theme="light"] .logo-container {
+      background: white;
+    }
+    
+    .logo-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .brand-text{ 
+      display:flex; 
+      flex-direction:column; 
+      line-height:1.2; 
+    }
+    .brand-text span{ 
+      font-size: 14px; 
+      color:var(--muted);
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+
+    /* ===== Main Content ===== */
+    main {
+      padding: 60px 0 100px;
+    }
+
+    /* ===== Hero Section ===== */
+    .hero {
+      text-align: center;
+      margin-bottom: 80px;
+      animation: fadeInUp 0.8s ease-out;
+      position: relative;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-icon {
+      font-size: 64px;
+      margin-bottom: 20px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .hero h1 {
+      font-size: clamp(48px, 6vw, 72px);
+      font-weight: 800;
+      margin-bottom: 20px;
+      letter-spacing: -1px;
+      background: linear-gradient(135deg, var(--text), var(--brandA));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: 20px;
+      color: var(--muted);
+      max-width: 700px;
+      margin: 0 auto 30px;
+      line-height: 1.7;
+    }
+
+    /* ===== Bible Verse Card ===== */
+    .verse-card {
+      background: var(--glass);
+      backdrop-filter: blur(20px) saturate(180%);
+      border: 2px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 50px 40px;
+      margin: 60px auto;
+      max-width: 900px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.3);
+      position: relative;
+      overflow: hidden;
+      animation: fadeInUp 1s ease-out;
+      animation-delay: 0.2s;
+      animation-fill-mode: both;
+    }
+
+    .verse-card::before {
+      content: '"';
+      position: absolute;
+      top: 20px;
+      left: 30px;
+      font-size: 120px;
+      font-family: Georgia, serif;
+      color: rgba(33,181,255,.1);
+      line-height: 1;
+    }
+
+    .verse-text {
+      font-size: 24px;
+      font-weight: 500;
+      line-height: 1.8;
+      color: var(--text);
+      font-style: italic;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+
+    .verse-reference {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--brandA);
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    /* ===== Discount Badge ===== */
+    .discount-section {
+      text-align: center;
+      margin: 80px 0;
+      animation: fadeInUp 1.2s ease-out;
+      animation-fill-mode: both;
+    }
+
+    .discount-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--gold), #FFA500);
+      padding: 40px 60px;
+      border-radius: 30px;
+      box-shadow: 0 20px 60px rgba(255,215,0,.4);
+      position: relative;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .discount-badge::before {
+      content: '★';
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      font-size: 40px;
+      animation: rotate 4s linear infinite;
+    }
+
+    .discount-badge::after {
+      content: '★';
+      position: absolute;
+      bottom: -10px;
+      right: -10px;
+      font-size: 40px;
+      animation: rotate 4s linear infinite reverse;
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .discount-number {
+      font-size: 72px;
+      font-weight: 900;
+      color: #1B2838;
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+
+    .discount-text {
+      font-size: 28px;
+      font-weight: 700;
+      color: #1B2838;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .discount-subtitle {
+      margin-top: 30px;
+      font-size: 18px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    /* ===== Content Sections ===== */
+    .content-section {
+      margin: 80px 0;
+      animation: fadeInUp 1s ease-out;
+      animation-fill-mode: both;
+    }
+
+    .section-title {
+      font-size: 40px;
+      font-weight: 800;
+      margin-bottom: 20px;
+      text-align: center;
+      background: linear-gradient(135deg, var(--text), var(--brandA));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .section-subtitle {
+      font-size: 18px;
+      color: var(--muted);
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 50px;
+      line-height: 1.7;
+    }
+
+    /* ===== Heart Grid ===== */
+    .heart-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .heart-card {
+      background: var(--glass);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 35px;
+      transition: all 0.3s ease;
+    }
+
+    .heart-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 45px rgba(0,0,0,.3);
+      border-color: rgba(33,181,255,.4);
+    }
+
+    .heart-icon {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+
+    .heart-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+
+    .heart-text {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* ===== CTA Section ===== */
+    .cta-section {
+      text-align: center;
+      margin: 80px 0;
+      padding: 60px 40px;
+      background: var(--glass);
+      backdrop-filter: blur(20px);
+      border: 2px solid var(--glass-border);
+      border-radius: 30px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.3);
+    }
+
+    .cta-title {
+      font-size: 36px;
+      font-weight: 800;
+      margin-bottom: 20px;
+      color: var(--text);
+    }
+
+    .cta-text {
+      font-size: 18px;
+      color: var(--muted);
+      margin-bottom: 40px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 16px 40px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 16px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--brandA), var(--brandB));
+      color: white;
+      box-shadow: 0 8px 24px rgba(33,181,255,.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(33,181,255,.6);
+    }
+
+    .btn-secondary {
+      background: var(--panel);
+      border: 2px solid var(--glass-border);
+      color: var(--text);
+    }
+
+    .btn-secondary:hover {
+      background: var(--panel2);
+      border-color: rgba(33,181,255,.4);
+      transform: translateY(-2px);
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 768px) {
+      .logo-container {
+        width: 80px;
+        height: 80px;
+      }
+      
+      .back-link {
+        position: relative;
+        margin-bottom: 20px;
+      }
+      
+      .header-content {
+        flex-direction: column;
+        gap: 20px;
+      }
+      
+      .hero h1 {
+        font-size: 40px;
+      }
+
+      .verse-card {
+        padding: 40px 25px;
+      }
+
+      .verse-text {
+        font-size: 20px;
+      }
+
+      .discount-badge {
+        padding: 30px 40px;
+      }
+
+      .discount-number {
+        font-size: 56px;
+      }
+
+      .discount-text {
+        font-size: 22px;
+      }
+
+      .heart-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Theme Toggle Button -->
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+    <svg id="sunIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: none;">
+      <circle cx="12" cy="12" r="5"/>
+      <line x1="12" y1="1" x2="12" y2="3"/>
+      <line x1="12" y1="21" x2="12" y2="23"/>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+      <line x1="1" y1="12" x2="3" y2="12"/>
+      <line x1="21" y1="12" x2="23" y2="12"/>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+    </svg>
+    <svg id="moonIcon" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+    </svg>
+  </button>
+
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <a href="index.html" class="back-link">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+          Back to Home
+        </a>
+        
+        <a href="index.html" class="brand">
+          <div class="logo-container">
+            <img id="logoImg" src="chronos-logo-dark.svg" alt="Chronos Media" />
+          </div>
+          <div class="brand-text">
+            <span>Capturing the Agapē Moments</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <!-- Hero Section -->
+      <div class="hero">
+        <div class="hero-icon">⛪</div>
+        <h1>Serving the Church</h1>
+        <p>
+          Our heart is to equip and empower churches to extend their reach beyond physical walls. 
+          We believe technology should serve the Gospel, making it easier for congregations to 
+          worship together and share God's love with the world.
+        </p>
+      </div>
+
+      <!-- Bible Verse -->
+      <div class="verse-card">
+        <div class="verse-text">
+          And let us consider how we may spur one another on toward love and good deeds, 
+          not giving up meeting together, as some are in the habit of doing, but encouraging 
+          one another—and all the more as you see the Day approaching.
+        </div>
+        <div class="verse-reference">Hebrews 10:24-25 NIV</div>
+      </div>
+
+      <!-- Discount Badge -->
+      <div class="discount-section">
+        <div class="discount-badge">
+          <div class="discount-number">10%</div>
+          <div class="discount-text">Church Discount</div>
+        </div>
+        <p class="discount-subtitle">
+          We're committed to making professional livestreaming accessible to every church, 
+          regardless of size or budget.
+        </p>
+      </div>
+
+      <!-- Why We Serve Churches -->
+      <div class="content-section">
+        <h2 class="section-title">Why We Serve Churches</h2>
+        <p class="section-subtitle">
+          The Church is the bride of Christ, and we're honored to support its mission 
+          to make disciples of all nations.
+        </p>
+
+        <div class="heart-grid">
+          <div class="heart-card">
+            <div class="heart-icon">🙏</div>
+            <h3 class="heart-title">Ministry-Minded</h3>
+            <p class="heart-text">
+              We understand the unique needs of church services—from worship to teaching to special events. 
+              Our team approaches every service with reverence and care.
+            </p>
+          </div>
+
+          <div class="heart-card">
+            <div class="heart-icon">💝</div>
+            <h3 class="heart-title">Kingdom-Focused</h3>
+            <p class="heart-text">
+              Our goal isn't just great video quality—it's helping churches fulfill the Great Commission. 
+              Every stream is an opportunity to reach souls for Christ.
+            </p>
+          </div>
+
+          <div class="heart-card">
+            <div class="heart-icon">🤝</div>
+            <h3 class="heart-title">Partnership Approach</h3>
+            <p class="heart-text">
+              We're not just vendors—we're partners in ministry. We work closely with your team, 
+              providing training and ongoing support to help your church thrive.
+            </p>
+          </div>
+
+          <div class="heart-card">
+            <div class="heart-icon">📖</div>
+            <h3 class="heart-title">Biblical Excellence</h3>
+            <p class="heart-text">
+              "Whatever you do, work at it with all your heart, as working for the Lord." (Col 3:23) 
+              We bring our best to honor God and serve His Church.
+            </p>
+          </div>
+
+          <div class="heart-card">
+            <div class="heart-icon">🌍</div>
+            <h3 class="heart-title">Expanding Reach</h3>
+            <p class="heart-text">
+              Help your members who can't attend in person, reach shut-ins, and extend your influence 
+              to people searching for truth online.
+            </p>
+          </div>
+
+          <div class="heart-card">
+            <div class="heart-icon">⏰</div>
+            <h3 class="heart-title">Reliable & Faithful</h3>
+            <p class="heart-text">
+              Sunday mornings matter. We show up on time, prepared, and ready to ensure your service 
+              streams smoothly without any distractions.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- What We Offer Churches -->
+      <div class="content-section">
+        <h2 class="section-title">What We Offer</h2>
+        <p class="section-subtitle">
+          Comprehensive livestreaming solutions designed specifically for church services and events.
+        </p>
+
+        <div class="heart-grid">
+          <div class="heart-card">
+            <div class="heart-icon">📹</div>
+            <h3 class="heart-title">Sunday Service Streaming</h3>
+            <p class="heart-text">
+              Multi-camera setups, professional switching, high-quality audio mixing, 
+              and reliable streaming to YouTube, Facebook, or your website.
+            </p>
+          </div>
+
+          <div class="heart-card">
+            <div class="heart-icon">🎓</div>
+            <h3 class="heart-title">Volunteer Training</h3>
+            <p class="heart-text">
+              Empower your tech team with comprehensive training on equipment, 
+              software, and best practices for livestreaming excellence.
+            </p>
+          </div>
+
+          <div class="heart-card">
+            <div class="heart-icon">🎨</div>
+            <h3 class="heart-title">Custom Graphics</h3>
+            <p class="heart-text">
+              Lower-thirds, announcements, sermon titles, and branded overlays 
+              that match your church's visual identity.
+            </p>
+          </div>
+
+          <div class="heart-card">
+            <div class="heart-icon">💿</div>
+            <h3 class="heart-title">Service Recording</h3>
+            <p class="heart-text">
+              Every service backed up locally and in the cloud. Perfect for creating 
+              sermon archives or sharing clips on social media.
+            </p>
+          </div>
+
+          <div class="heart-card">
+            <div class="heart-icon">🎤</div>
+            <h3 class="heart-title">Audio Integration</h3>
+            <p class="heart-text">
+              Seamless connection with your existing sound system for crystal-clear 
+              audio that doesn't interfere with your in-person experience.
+            </p>
+          </div>
+
+          <div class="heart-card">
+            <div class="heart-icon">📱</div>
+            <h3 class="heart-title">Mobile Solutions</h3>
+            <p class="heart-text">
+              Portable setups for special events, baptisms, outdoor services, 
+              or streaming from multiple locations.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA Section -->
+      <div class="cta-section">
+        <h2 class="cta-title">Let's Partner Together</h2>
+        <p class="cta-text">
+          Ready to extend your church's reach? Contact us today to discuss your needs 
+          and learn more about our 10% church discount.
+        </p>
+        <div class="cta-buttons">
+          <a href="mailto:info@chronosmedia.to?subject=Church%20Services%20Inquiry&body=Hi%20Chronos%20Media%2C%0A%0AOur%20church%20is%20interested%20in%20your%20livestreaming%20services.%0A%0AChurch%20Name%3A%20%0ALocation%3A%20%0AAverage%20Attendance%3A%20%0AServices%20Needed%3A%20%0A%0APlease%20contact%20us%20to%20discuss%20pricing%20and%20the%2010%25%20church%20discount.%0A%0AThank%20you!" class="btn btn-primary">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+            Get Your Church Quote
+          </a>
+          <a href="tel:2675350921" class="btn btn-secondary">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+            Call Us: (267) 535-0921
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer style="text-align:center; padding:40px 0 32px; border-top: 1px solid var(--glass-border); color:var(--muted); font-size: 14px; margin-top: 60px;">
+    <div class="container">
+      <!-- Social Media Icons -->
+      <div style="text-align: center; margin-bottom: 30px;">
+        <h3 style="color: var(--text); font-size: 20px; font-weight: 700; margin-bottom: 20px;">Connect With Us</h3>
+        <div style="display: flex; justify-content: center; gap: 20px; margin-top: 20px; flex-wrap: wrap;">
+          <!-- Facebook -->
+          <a href="https://www.facebook.com/ChronosMediaLive" target="_blank" rel="noopener noreferrer" 
+             style="display: flex; flex-direction: column; align-items: center; gap: 8px; transition: transform 0.2s ease; text-decoration: none;"
+             onmouseover="this.style.transform='translateY(-4px)'" 
+             onmouseout="this.style.transform='translateY(0)'">
+            <div style="width: 60px; height: 60px; border-radius: 50%; background: #1877F2; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 20px rgba(0,0,0,.25);">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="white">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </div>
+          </a>
+
+          <!-- YouTube -->
+          <a href="https://www.youtube.com/@ChronosMediaLive" target="_blank" rel="noopener noreferrer"
+             style="display: flex; flex-direction: column; align-items: center; gap: 8px; transition: transform 0.2s ease; text-decoration: none;"
+             onmouseover="this.style.transform='translateY(-4px)'" 
+             onmouseout="this.style.transform='translateY(0)'">
+            <div style="width: 60px; height: 60px; border-radius: 50%; background: #FF0000; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 20px rgba(0,0,0,.25);">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="white">
+                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+              </svg>
+            </div>
+          </a>
+
+          <!-- Instagram -->
+          <a href="https://www.instagram.com/chronosmedialive/" target="_blank" rel="noopener noreferrer"
+             style="display: flex; flex-direction: column; align-items: center; gap: 8px; transition: transform 0.2s ease; text-decoration: none;"
+             onmouseover="this.style.transform='translateY(-4px)'" 
+             onmouseout="this.style.transform='translateY(0)'">
+            <div style="width: 60px; height: 60px; border-radius: 50%; background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 20px rgba(0,0,0,.25);">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="white">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </div>
+          </a>
+
+          <!-- WhatsApp -->
+          <a href="https://api.whatsapp.com/send?phone=12675350921" target="_blank" rel="noopener noreferrer"
+             style="display: flex; flex-direction: column; align-items: center; gap: 8px; transition: transform 0.2s ease; text-decoration: none;"
+             onmouseover="this.style.transform='translateY(-4px)'" 
+             onmouseout="this.style.transform='translateY(0)'">
+            <div style="width: 60px; height: 60px; border-radius: 50%; background: #25D366; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 20px rgba(0,0,0,.25);">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="white">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+              </svg>
+            </div>
+          </a>
+        </div>
+      </div>
+      
+      <div style="border-top: 1px solid var(--glass-border); padding-top: 20px;">
+        © 2026 Chronous Media Live LLC • Capturing the Agapē Moments
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Theme Toggle
+    const themeToggle = document.getElementById("themeToggle");
+    const html = document.documentElement;
+    const sunIcon = document.getElementById("sunIcon");
+    const moonIcon = document.getElementById("moonIcon");
+    const logoImg = document.getElementById("logoImg");
+
+    const savedTheme = localStorage.getItem("theme") || "dark";
+    html.setAttribute("data-theme", savedTheme);
+    updateThemeIcons(savedTheme);
+    updateLogo(savedTheme);
+
+    themeToggle.addEventListener("click", () => {
+      const currentTheme = html.getAttribute("data-theme");
+      const newTheme = currentTheme === "dark" ? "light" : "dark";
+      
+      html.setAttribute("data-theme", newTheme);
+      localStorage.setItem("theme", newTheme);
+      updateThemeIcons(newTheme);
+      updateLogo(newTheme);
+    });
+
+    function updateThemeIcons(theme) {
+      if (theme === "dark") {
+        moonIcon.style.display = "block";
+        sunIcon.style.display = "none";
+      } else {
+        moonIcon.style.display = "none";
+        sunIcon.style.display = "block";
+      }
+    }
+
+    function updateLogo(theme) {
+      if (logoImg) {
+        logoImg.src = theme === "dark" ? "chronos-logo-dark.svg" : "chronos-logo-light.svg";
+      }
+    }
+  </script>
+</body>
+</html>
