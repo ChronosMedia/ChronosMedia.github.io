@@ -526,6 +526,87 @@
     .hidden {
       display: none;
     }
+
+    /* ===== Buttons ===== */
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding: 12px 20px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      font-weight: 700;
+      font-size: 15px;
+      cursor:pointer;
+      user-select:none;
+      transition: all 0.2s ease;
+    }
+    .btn:hover{
+      border-color: rgba(33,181,255,.4);
+      background: rgba(33,181,255,.12);
+      transform: translateY(-1px);
+    }
+    .btn.primary{
+      border: 1px solid rgba(33,181,255,.3);
+      background: linear-gradient(135deg, rgba(33,181,255,.25), rgba(47,107,255,.2));
+      box-shadow: 0 8px 24px rgba(33,181,255,.25);
+    }
+    .btn.primary:hover{
+      background: linear-gradient(135deg, rgba(33,181,255,.35), rgba(47,107,255,.3));
+      box-shadow: 0 12px 32px rgba(33,181,255,.35);
+    }
+
+    /* ===== Panel and Card Styles ===== */
+    .panel{
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding:32px;
+      backdrop-filter: blur(8px);
+    }
+    .card{
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding:28px;
+      transition: all 0.3s ease;
+    }
+    .card:hover{
+      border-color: rgba(33,181,255,.3);
+      background: var(--panel2);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(0,0,0,.3);
+    }
+
+    /* ===== Contact Section ===== */
+    .contact-wrap{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap:24px;
+    }
+    .contact-wrap h3{
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--text);
+    }
+    .contact-wrap p{
+      line-height: 1.6;
+    }
+    .contact-wrap a{
+      color: var(--accent);
+      transition: color 0.2s ease;
+    }
+    .contact-wrap a:hover{
+      color: var(--brandC);
+    }
+    .small{
+      font-size:14px;
+      color:var(--muted);
+      margin-top:12px;
+    }
   </style>
 </head>
 <body>
@@ -1016,6 +1097,49 @@
       </div>
 
     </div>
+
+    <!-- Contact Section -->
+    <section id="contact" style="padding: 80px 0;">
+      <div class="container">
+        <h2 class="section-title">Contact Us</h2>
+        <p class="section-sub">
+          Interested in professional event photography? Tell us about your event—date, location, type, and what you need.
+        </p>
+
+        <div class="panel">
+          <div class="contact-wrap">
+            <div class="card">
+              <h3>Get in Touch</h3>
+              <p style="margin:0 0 20px; color: var(--muted);">
+                Email us and we'll respond as soon as possible.
+              </p>
+
+              <p style="margin:0 0 12px; font-weight:700; font-size: 16px;">
+                📧 <a href="mailto:info@chronosmedia.to" onclick="gtag('event', 'click', {'event_category': 'Contact', 'event_label': 'Email Click - Photos Page'});">info@chronosmedia.to</a>
+              </p>
+
+              <p style="margin:0; font-weight:700; font-size: 16px;">
+                📞 <a href="tel:+12675350921" onclick="gtag('event', 'click', {'event_category': 'Contact', 'event_label': 'Phone Click - Photos Page'});">(267) 535-0921</a>
+              </p>
+
+              <p class="small">
+                Suggested subject: "Photography request — [Event Name]"
+              </p>
+            </div>
+
+            <div class="card">
+              <h3>Quick Contact</h3>
+              <p style="margin:0 0 20px; color:var(--muted);">
+                Click the button below to open your email client with a pre-formatted message.
+              </p>
+              <a class="btn primary" href="mailto:info@chronosmedia.to?subject=Photography%20Request&body=Hi%20Chronos%20Media%20team%2C%0A%0AI'm%20interested%20in%20your%20photography%20services.%0A%0AEvent%20details%3A%0A-%20Date%3A%20%0A-%20Location%3A%20%0A-%20Type%20of%20event%3A%20%0A-%20Expected%20attendance%3A%20%0A-%20Photography%20needs%3A%20%0A%0APlease%20let%20me%20know%20your%20availability%20and%20pricing.%0A%0AThank%20you!" onclick="gtag('event', 'click', {'event_category': 'Contact', 'event_label': 'Send Email Button - Photos Page'});">
+                Send Email
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer style="text-align:center; padding:40px 0 32px; border-top: 1px solid var(--glass-border); color:var(--muted); font-size: 14px; margin-top: 60px;">
