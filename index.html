@@ -1,6 +1,15 @@
 <!doctype html>
 <html lang="en" data-theme="dark">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-T2NNWKW3B4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-T2NNWKW3B4');
+  </script>
+  
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Chronos Media</title>
@@ -796,7 +805,7 @@
             <div class="person">
               <div class="avatar">SJ</div>
               <div>
-                <h3>Stephen Johnson</h3>
+                <h3>Steve Johnson</h3>
                 <div class="role">Co-Founder</div>
                 <p class="bio">
                   Focused on smooth live productions, strong audio/visual quality, and consistent stream reliability.
@@ -809,7 +818,7 @@
             <div class="person">
               <div class="avatar">ZC</div>
               <div>
-                <h3>Zach Chandapillai</h3>
+                <h3>Zachary Chandapillai</h3>
                 <div class="role">Co-Founder</div>
                 <p class="bio">
                   Dedicated to creative execution, attention to detail, and ensuring every event is captured with excellence.
@@ -880,11 +889,11 @@
               </p>
 
               <p style="margin:0 0 12px; font-weight:700; font-size: 16px;">
-                📧 <a href="mailto:info@chronosmedia.to">info@chronosmedia.to</a>
+                📧 <a href="mailto:info@chronosmedia.to" onclick="gtag('event', 'click', {'event_category': 'Contact', 'event_label': 'Email Click'});">info@chronosmedia.to</a>
               </p>
 
               <p style="margin:0; font-weight:700; font-size: 16px;">
-                📞 <a href="tel:+12675350921">(267) 535-0921</a>
+                📞 <a href="tel:+12675350921" onclick="gtag('event', 'click', {'event_category': 'Contact', 'event_label': 'Phone Click'});">(267) 535-0921</a>
               </p>
 
               <p class="small">
@@ -897,7 +906,7 @@
               <p style="margin:0 0 20px; color:var(--muted);">
                 Click the button below to open your email client with a pre-formatted message.
               </p>
-              <a class="btn primary" href="mailto:info@chronosmedia.to?subject=Livestream%20Request&body=Hi%20Chronos%20Media%20team%2C%0A%0AI'm%20interested%20in%20your%20livestreaming%20services.%0A%0AEvent%20details%3A%0A-%20Date%3A%20%0A-%20Location%3A%20%0A-%20Type%20of%20event%3A%20%0A-%20Expected%20audience%3A%20%0A-%20Services%20needed%3A%20%0A%0APlease%20let%20me%20know%20your%20availability%20and%20pricing.%0A%0AThank%20you!">
+              <a class="btn primary" href="mailto:info@chronosmedia.to?subject=Livestream%20Request&body=Hi%20Chronos%20Media%20team%2C%0A%0AI'm%20interested%20in%20your%20livestreaming%20services.%0A%0AEvent%20details%3A%0A-%20Date%3A%20%0A-%20Location%3A%20%0A-%20Type%20of%20event%3A%20%0A-%20Expected%20audience%3A%20%0A-%20Services%20needed%3A%20%0A%0APlease%20let%20me%20know%20your%20availability%20and%20pricing.%0A%0AThank%20you!" onclick="gtag('event', 'click', {'event_category': 'Contact', 'event_label': 'Send Email Button'});">
                 Send Email
               </a>
             </div>
@@ -970,65 +979,89 @@
   </main>
 
   <script>
-    // Logo switching for theme toggle
-    const logoImg = document.getElementById("logoImg");
-    // Theme Toggle - FIXED AND WORKING
-    const themeToggle = document.getElementById("themeToggle");
-    const html = document.documentElement;
-    const sunIcon = document.getElementById("sunIcon");
-    const moonIcon = document.getElementById("moonIcon");
+    // Wait for DOM to be fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
+      // Logo switching for theme toggle
+      const logoImg = document.getElementById("logoImg");
+      // Theme Toggle - FIXED AND WORKING
+      const themeToggle = document.getElementById("themeToggle");
+      const html = document.documentElement;
+      const sunIcon = document.getElementById("sunIcon");
+      const moonIcon = document.getElementById("moonIcon");
 
-    // Load saved theme or default to dark
-    const savedTheme = localStorage.getItem("theme") || "dark";
-    html.setAttribute("data-theme", savedTheme);
-    updateThemeIcons(savedTheme);
-    updateLogo(savedTheme);
+      // Load saved theme or default to dark
+      const savedTheme = localStorage.getItem("theme") || "dark";
+      html.setAttribute("data-theme", savedTheme);
+      updateThemeIcons(savedTheme);
+      updateLogo(savedTheme);
 
-    themeToggle.addEventListener("click", () => {
-      const currentTheme = html.getAttribute("data-theme");
-      const newTheme = currentTheme === "dark" ? "light" : "dark";
-      
-      html.setAttribute("data-theme", newTheme);
-      localStorage.setItem("theme", newTheme);
-      updateThemeIcons(newTheme);
-      updateLogo(newTheme);
-    });
-
-    function updateThemeIcons(theme) {
-      if (theme === "dark") {
-        moonIcon.style.display = "block";
-        sunIcon.style.display = "none";
-      } else {
-        moonIcon.style.display = "none";
-        sunIcon.style.display = "block";
+      if (themeToggle) {
+        themeToggle.addEventListener("click", () => {
+          const currentTheme = html.getAttribute("data-theme");
+          const newTheme = currentTheme === "dark" ? "light" : "dark";
+          
+          html.setAttribute("data-theme", newTheme);
+          localStorage.setItem("theme", newTheme);
+          updateThemeIcons(newTheme);
+          updateLogo(newTheme);
+        });
       }
-    }
 
-    function updateLogo(theme) {
-      if (logoImg) {
-        logoImg.src = theme === "dark" ? "chronos-logo-dark.svg" : "chronos-logo-light.svg";
+      function updateThemeIcons(theme) {
+        if (sunIcon && moonIcon) {
+          if (theme === "dark") {
+            moonIcon.style.display = "block";
+            sunIcon.style.display = "none";
+          } else {
+            moonIcon.style.display = "none";
+            sunIcon.style.display = "block";
+          }
+        }
       }
-    }
 
-    // Mobile menu toggle
-    document.getElementById("menuToggle").addEventListener("click", function() {
-      document.getElementById("mainNav").classList.toggle("active");
-    });
+      function updateLogo(theme) {
+        if (logoImg) {
+          logoImg.src = theme === "dark" ? "chronos-logo-dark.svg" : "chronos-logo-light.svg";
+        }
+      }
 
-    // Close menu when clicking a link
-    document.querySelectorAll("#mainNav a").forEach(link => {
-      link.addEventListener("click", () => {
-        document.getElementById("mainNav").classList.remove("active");
-      });
-    });
-
-    // LIVE detection simulation
-    const liveBtn = document.getElementById("liveBtn");
-    function checkLiveStatus() {
-      // In production, replace with actual YouTube API check
-      const isLive = false;
+      // Mobile menu toggle
+      const menuToggle = document.getElementById("menuToggle");
+      const mainNav = document.getElementById("mainNav");
       
-      if (isLive) {
-        liveBtn.classList.remove("offline");
-        liveBtn.innerHTML = '<span class="live-dot"></span><span>Live Now</span>';
-      } e
+      if (menuToggle && mainNav) {
+        menuToggle.addEventListener("click", function() {
+          mainNav.classList.toggle("active");
+        });
+
+        // Close menu when clicking a link
+        document.querySelectorAll("#mainNav a").forEach(link => {
+          link.addEventListener("click", () => {
+            mainNav.classList.remove("active");
+          });
+        });
+      }
+
+      // LIVE detection simulation
+      const liveBtn = document.getElementById("liveBtn");
+      if (liveBtn) {
+        function checkLiveStatus() {
+          // In production, replace with actual YouTube API check
+          const isLive = false;
+          
+          if (isLive) {
+            liveBtn.classList.remove("offline");
+            liveBtn.innerHTML = '<span class="live-dot"></span><span>Live Now</span>';
+          } else {
+            liveBtn.classList.add("offline");
+            liveBtn.innerHTML = '<span class="live-dot"></span><span>Offline</span>';
+          }
+        }
+        
+        checkLiveStatus();
+        setInterval(checkLiveStatus, 60000); // Check every minute
+      }
+    });
+  </script>
+</body>
+</html>

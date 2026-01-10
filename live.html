@@ -1,6 +1,15 @@
 <!doctype html>
 <html lang="en" data-theme="dark">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-T2NNWKW3B4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-T2NNWKW3B4');
+  </script>
+  
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Live - Chronos Media</title>
@@ -835,126 +844,188 @@
   </footer>
 
   <script>
-    // Theme Toggle
-    const themeToggle = document.getElementById("themeToggle");
-    const html = document.documentElement;
-    const sunIcon = document.getElementById("sunIcon");
-    const moonIcon = document.getElementById("moonIcon");
-    const logoImg = document.getElementById("logoImg");
+    // Wait for DOM to be fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
+      // Theme Toggle
+      const themeToggle = document.getElementById("themeToggle");
+      const html = document.documentElement;
+      const sunIcon = document.getElementById("sunIcon");
+      const moonIcon = document.getElementById("moonIcon");
+      const logoImg = document.getElementById("logoImg");
 
-    const savedTheme = localStorage.getItem("theme") || "dark";
-    html.setAttribute("data-theme", savedTheme);
-    updateThemeIcons(savedTheme);
-    updateLogo(savedTheme);
+      const savedTheme = localStorage.getItem("theme") || "dark";
+      html.setAttribute("data-theme", savedTheme);
+      updateThemeIcons(savedTheme);
+      updateLogo(savedTheme);
 
-    themeToggle.addEventListener("click", () => {
-      const currentTheme = html.getAttribute("data-theme");
-      const newTheme = currentTheme === "dark" ? "light" : "dark";
+      if (themeToggle) {
+        themeToggle.addEventListener("click", () => {
+          const currentTheme = html.getAttribute("data-theme");
+          const newTheme = currentTheme === "dark" ? "light" : "dark";
+          
+          html.setAttribute("data-theme", newTheme);
+          localStorage.setItem("theme", newTheme);
+          updateThemeIcons(newTheme);
+          updateLogo(newTheme);
+        });
+      }
+
+      function updateThemeIcons(theme) {
+        if (sunIcon && moonIcon) {
+          if (theme === "dark") {
+            moonIcon.style.display = "block";
+            sunIcon.style.display = "none";
+          } else {
+            moonIcon.style.display = "none";
+            sunIcon.style.display = "block";
+          }
+        }
+      }
+
+      function updateLogo(theme) {
+        if (logoImg) {
+          if (theme === "dark") {
+            logoImg.src = "chronos-logo-dark.svg";
+          } else {
+            logoImg.src = "chronos-logo-light.svg";
+          }
+        }
+      }
+
+      // Live Status Detection
+      const liveStatus = document.getElementById("liveStatus");
+      if (liveStatus) {
+        function checkLiveStatus() {
+          const isLive = false; // Change to true when actually live
+          
+          if (isLive) {
+            liveStatus.classList.remove("offline");
+            liveStatus.innerHTML = '<span class="live-dot"></span><span>Live Now</span>';
+          } else {
+            liveStatus.classList.add("offline");
+            liveStatus.innerHTML = '<span class="live-dot"></span><span>Offline</span>';
+          }
+        }
+        
+        checkLiveStatus();
+        setInterval(checkLiveStatus, 60000);
+      }
+
+      // Carousel Navigation with Touch Support
+      const track = document.getElementById("carouselTrack");
+      const prevBtn = document.getElementById("prevBtn");
+      const nextBtn = document.getElementById("nextBtn");
       
-      html.setAttribute("data-theme", newTheme);
-      localStorage.setItem("theme", newTheme);
-      updateThemeIcons(newTheme);
-      updateLogo(newTheme);
-    });
-
-    function updateThemeIcons(theme) {
-      if (theme === "dark") {
-        moonIcon.style.display = "block";
-        sunIcon.style.display = "none";
-      } else {
-        moonIcon.style.display = "none";
-        sunIcon.style.display = "block";
-      }
-    }
-
-    function updateLogo(theme) {
-      if (theme === "dark") {
-        logoImg.src = "chronos-logo-dark.svg";
-      } else {
-        logoImg.src = "chronos-logo-light.svg";
-      }
-    }
-
-    // Live Status Detection
-    const liveStatus = document.getElementById("liveStatus");
-    function checkLiveStatus() {
-      const isLive = false; // Change to true when actually live
+      let currentIndex = 0;
+      const cards = document.querySelectorAll(".archive-card");
+      const totalCards = cards.length;
       
-      if (isLive) {
-        liveStatus.classList.remove("offline");
-        liveStatus.innerHTML = '<span class="live-dot"></span><span>Live Now</span>';
-      } else {
-        liveStatus.classList.add("offline");
-        liveStatus.innerHTML = '<span class="live-dot"></span><span>Offline</span>';
-      }
-    }
-    
-    checkLiveStatus();
-    setInterval(checkLiveStatus, 60000);
-
-    // Carousel Navigation
-    const track = document.getElementById("carouselTrack");
-    const prevBtn = document.getElementById("prevBtn");
-    const nextBtn = document.getElementById("nextBtn");
-    
-    let currentIndex = 0;
-    const cards = document.querySelectorAll(".archive-card");
-    const totalCards = cards.length;
-    
-    function getCardsPerView() {
-      if (window.innerWidth < 768) return 1;
-      if (window.innerWidth < 1024) return 2;
-      return 3;
-    }
-    
-    function updateCarousel() {
-      const cardsPerView = getCardsPerView();
-      const cardWidth = cards[0].offsetWidth;
-      const gap = 24;
-      const offset = currentIndex * (cardWidth + gap);
+      // Touch/Swipe variables
+      let touchStartX = 0;
+      let touchEndX = 0;
+      let isDragging = false;
       
-      track.style.transform = `translateX(-${offset}px)`;
+      function getCardsPerView() {
+        if (window.innerWidth < 768) return 1;
+        if (window.innerWidth < 1024) return 2;
+        return 3;
+      }
       
-      // Update button states
-      prevBtn.disabled = currentIndex === 0;
-      nextBtn.disabled = currentIndex >= totalCards - cardsPerView;
-    }
-    
-    prevBtn.addEventListener("click", () => {
-      if (currentIndex > 0) {
-        currentIndex--;
-        updateCarousel();
+      function updateCarousel() {
+        const cardsPerView = getCardsPerView();
+        const cardWidth = cards[0].offsetWidth;
+        const gap = 24;
+        const offset = currentIndex * (cardWidth + gap);
+        
+        track.style.transform = `translateX(-${offset}px)`;
+        
+        // Update button states
+        if (prevBtn && nextBtn) {
+          prevBtn.disabled = currentIndex === 0;
+          nextBtn.disabled = currentIndex >= totalCards - cardsPerView;
+        }
       }
-    });
-    
-    nextBtn.addEventListener("click", () => {
-      const cardsPerView = getCardsPerView();
-      if (currentIndex < totalCards - cardsPerView) {
-        currentIndex++;
-        updateCarousel();
+      
+      if (prevBtn) {
+        prevBtn.addEventListener("click", () => {
+          if (currentIndex > 0) {
+            currentIndex--;
+            updateCarousel();
+          }
+        });
       }
-    });
-    
-    // Update on window resize
-    let resizeTimer;
-    window.addEventListener("resize", () => {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(() => {
-        currentIndex = 0;
-        updateCarousel();
-      }, 250);
-    });
-    
-    // Initialize
-    updateCarousel();
+      
+      if (nextBtn) {
+        nextBtn.addEventListener("click", () => {
+          const cardsPerView = getCardsPerView();
+          if (currentIndex < totalCards - cardsPerView) {
+            currentIndex++;
+            updateCarousel();
+          }
+        });
+      }
+      
+      // Touch/Swipe Support for Mobile
+      if (track) {
+        track.addEventListener('touchstart', (e) => {
+          touchStartX = e.changedTouches[0].screenX;
+          isDragging = true;
+        }, { passive: true });
+        
+        track.addEventListener('touchmove', (e) => {
+          if (!isDragging) return;
+          touchEndX = e.changedTouches[0].screenX;
+        }, { passive: true });
+        
+        track.addEventListener('touchend', () => {
+          if (!isDragging) return;
+          isDragging = false;
+          
+          const swipeThreshold = 50; // Minimum distance for swipe
+          const diff = touchStartX - touchEndX;
+          
+          if (Math.abs(diff) > swipeThreshold) {
+            const cardsPerView = getCardsPerView();
+            
+            if (diff > 0 && currentIndex < totalCards - cardsPerView) {
+              // Swiped left - go to next
+              currentIndex++;
+              updateCarousel();
+            } else if (diff < 0 && currentIndex > 0) {
+              // Swiped right - go to previous
+              currentIndex--;
+              updateCarousel();
+            }
+          }
+          
+          touchStartX = 0;
+          touchEndX = 0;
+        });
+      }
+      
+      // Update on window resize
+      let resizeTimer;
+      window.addEventListener("resize", () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+          currentIndex = 0;
+          updateCarousel();
+        }, 250);
+      });
+      
+      // Initialize
+      updateCarousel();
 
-    // Keyboard navigation
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "ArrowLeft" && !prevBtn.disabled) {
-        prevBtn.click();
-      } else if (e.key === "ArrowRight" && !nextBtn.disabled) {
-        nextBtn.click();
-      }
+      // Keyboard navigation
+      document.addEventListener("keydown", (e) => {
+        if (prevBtn && nextBtn) {
+          if (e.key === "ArrowLeft" && !prevBtn.disabled) {
+            prevBtn.click();
+          } else if (e.key === "ArrowRight" && !nextBtn.disabled) {
+            nextBtn.click();
+          }
+        }
+      });
     });
   </script>
 </body>
