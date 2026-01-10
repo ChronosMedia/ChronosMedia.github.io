@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Onboarding - Chronos Media</title>
+  
+  <!-- jsPDF for PDF generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  
+  <style>
+    :root[data-theme="dark"]{
+      --bg: #0B1220;
+      --text: #EAF0FF;
+      --panel: rgba(255,255,255,.06);
+      --line: rgba(234,240,255,.14);
+      --accent: #21B5FF;
+    }
+    :root[data-theme="light"]{
+      --bg: #FFFFFF;
+      --text: #1B2838;
+      --panel: rgba(0,0,0,.04);
+      --line: rgba(0,0,0,.12);
+      --accent: #21B5FF;
+    }
+    
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 20px;
+    }
+    
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    h1 {
+      color: var(--accent);
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+    
+    input[type="text"],
+    input[type="email"],
+    input[type="date"] {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      color: var(--text);
+      font-size: 16px;
+    }
+    
+    .checkbox-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 10px;
+      background: var(--panel);
+      border-radius: 8px;
+    }
+    
+    .checkbox-group label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: normal;
+      cursor: pointer;
+    }
+    
+    .checkbox-group input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+    }
+    
+    #signatureCanvas {
+      width: 100%;
+      height: 150px;
+      border: 2px solid var(--accent);
+      border-radius: 8px;
+      background: var(--panel);
+      cursor: crosshair;
+      touch-action: none;
+    }
+    
+    button {
+      padding: 14px 24px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      margin: 5px;
+    }
+    
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+    }
+    
+    .btn-secondary {
+      background: #666;
+      color: white;
+    }
+    
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 10px 20px;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    
+    .alert {
+      padding: 15px;
+      border-radius: 8px;
+      margin: 20px 0;
+      display: none;
+    }
+    
+    .alert.success {
+      background: rgba(0,212,255,0.2);
+      border: 1px solid var(--accent);
+    }
+    
+    .alert.error {
+      background: rgba(255,0,0,0.2);
+      border: 1px solid #ff0000;
+    }
+  </style>
+</head>
+<body>
+  <button class="theme-toggle" id="themeBtn">Toggle Theme</button>
+  
+  <div class="container">
+    <h1>Chronos Media - Onboarding Form</h1>
+    
+    <div id="alertBox" class="alert"></div>
+    
+    <form id="onboardingForm">
+      <div class="form-group">
+        <label for="fullName">Full Name *</label>
+        <input type="text" id="fullName" required>
+      </div>
+      
+      <div class="form-group">
+        <label>Select Role(s) *</label>
+        <div class="checkbox-group">
+          <label>
+            <input type="checkbox" name="roles" value="Live Team">
+            Live Team (Streaming & Broadcast)
+          </label>
+          <label>
+            <input type="checkbox" name="roles" value="Photo Team">
+            Photo Team (Photography)
+          </label>
+          <label>
+            <input type="checkbox" name="roles" value="Audio Team">
+            Audio Team (Live Sound & Recording)
+          </label>
+          <label>
+            <input type="checkbox" name="roles" value="Church Team">
+            Church Team (Worship & Ministry)
+          </label>
+          <label>
+            <input type="checkbox" name="roles" value="Other">
+            Other
+          </label>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="email">Email *</label>
+        <input type="email" id="email" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="date">Date *</label>
+        <input type="date" id="date" required>
+      </div>
+      
+      <div class="form-group">
+        <label>Signature * (Draw below)</label>
+        <canvas id="signatureCanvas" width="700" height="150"></canvas>
+        <button type="button" class="btn-secondary" id="clearBtn">Clear Signature</button>
+      </div>
+      
+      <button type="submit" class="btn-primary">📄 Submit & Generate PDF</button>
+    </form>
+  </div>
+
+  <script>
+    // Theme toggle
+    const html = document.documentElement;
+    const themeBtn = document.getElementById('themeBtn');
+    
+    themeBtn.addEventListener('click', () => {
+      const current = html.getAttribute('data-theme');
+      html.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
+    });
+    
+    // Set today's date
+    document.getElementById('date').value = new Date().toISOString().split('T')[0];
+    
+    // Signature pad
+    const canvas = document.getElementById('signatureCanvas');
+    const ctx = canvas.getContext('2d');
+    let drawing = false;
+    
+    function clearSig() {
+      ctx.fillStyle = getComputedStyle(document.body).getPropertyValue('--panel');
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
+    
+    clearSig();
+    
+    function getScaledCoordinates(e, rect) {
+      const scaleX = canvas.width / rect.width;
+      const scaleY = canvas.height / rect.height;
+      
+      let clientX, clientY;
+      if (e.touches) {
+        clientX = e.touches[0].clientX;
+        clientY = e.touches[0].clientY;
+      } else {
+        clientX = e.clientX;
+        clientY = e.clientY;
+      }
+      
+      return {
+        x: (clientX - rect.left) * scaleX,
+        y: (clientY - rect.top) * scaleY
+      };
+    }
+    
+    function startDraw(e) {
+      drawing = true;
+      const rect = canvas.getBoundingClientRect();
+      const coords = getScaledCoordinates(e, rect);
+      ctx.beginPath();
+      ctx.moveTo(coords.x, coords.y);
+    }
+    
+    function draw(e) {
+      if (!drawing) return;
+      e.preventDefault();
+      const rect = canvas.getBoundingClientRect();
+      const coords = getScaledCoordinates(e, rect);
+      ctx.strokeStyle = '#000000'; // Always black for PDF
+      ctx.lineWidth = 2;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      ctx.lineTo(coords.x, coords.y);
+      ctx.stroke();
+    }
+    
+    function stopDraw(e) {
+      if (e) e.preventDefault();
+      drawing = false;
+    }
+    
+    canvas.addEventListener('mousedown', startDraw);
+    canvas.addEventListener('mousemove', draw);
+    canvas.addEventListener('mouseup', stopDraw);
+    canvas.addEventListener('mouseleave', stopDraw);
+    canvas.addEventListener('touchstart', function(e) { e.preventDefault(); startDraw(e); });
+    canvas.addEventListener('touchmove', function(e) { e.preventDefault(); draw(e); });
+    canvas.addEventListener('touchend', function(e) { e.preventDefault(); stopDraw(e); });
+    
+    document.getElementById('clearBtn').addEventListener('click', function(e) {
+      e.preventDefault();
+      clearSig();
+    });
+    
+    // Form submission
+    document.getElementById('onboardingForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const alertBox = document.getElementById('alertBox');
+      
+      try {
+        // Get roles
+        const roleBoxes = document.querySelectorAll('input[name="roles"]:checked');
+        if (roleBoxes.length === 0) {
+          alertBox.textContent = '⚠️ Please select at least one role';
+          alertBox.className = 'alert error';
+          alertBox.style.display = 'block';
+          return;
+        }
+        
+        const roles = Array.from(roleBoxes).map(cb => cb.value);
+        const name = document.getElementById('fullName').value;
+        const email = document.getElementById('email').value;
+        const date = document.getElementById('date').value;
+        const signature = canvas.toDataURL();
+        
+        // Generate PDF
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF();
+        
+        pdf.setFontSize(20);
+        pdf.text('Chronos Media - Onboarding', 20, 20);
+        
+        pdf.setFontSize(12);
+        pdf.text(`Name: ${name}`, 20, 40);
+        pdf.text(`Roles: ${roles.join(', ')}`, 20, 50);
+        pdf.text(`Email: ${email}`, 20, 60);
+        pdf.text(`Date: ${date}`, 20, 70);
+        
+        pdf.text('Signature:', 20, 85);
+        pdf.addImage(signature, 'PNG', 20, 90, 100, 30);
+        
+        const filename = `Chronos_Onboarding_${name.replace(/\s+/g, '_')}_${date}.pdf`;
+        pdf.save(filename);
+        
+        // Success message
+        alertBox.textContent = '✅ PDF generated successfully! Check your downloads folder.';
+        alertBox.className = 'alert success';
+        alertBox.style.display = 'block';
+        
+        // Open email
+        const subject = `Onboarding Form - ${name}`;
+        const body = `Name: ${name}\nRoles: ${roles.join(', ')}\nEmail: ${email}\nDate: ${date}\n\nPDF: ${filename}`;
+        setTimeout(() => {
+          window.location.href = `mailto:media@chronosmedia.to?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        }, 1000);
+        
+      } catch (error) {
+        alertBox.textContent = '❌ Error: ' + error.message;
+        alertBox.className = 'alert error';
+        alertBox.style.display = 'block';
+        console.error('Error:', error);
+      }
+    });
+  </script>
+</body>
+</html>
