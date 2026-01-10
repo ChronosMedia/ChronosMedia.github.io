@@ -1,0 +1,564 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-T2NNWKW3B4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-T2NNWKW3B4');
+  </script>
+  
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contractor Agreement - Chronos Media</title>
+  <meta name="description" content="Chronos Media Independent Contractor Agreement" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== Theme Variables ===== */
+    :root[data-theme="dark"]{
+      --bg: #0B1220;
+      --bg2:#0E1A2D;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.09);
+      --text: #EAF0FF;
+      --muted: rgba(234,240,255,.72);
+      --line: rgba(234,240,255,.14);
+      --glass: rgba(10,20,40,.6);
+      --glass2: rgba(10,20,40,.35);
+      --logo-bg: rgba(11,18,32,.8);
+      --logo-border: rgba(33,181,255,.25);
+    }
+
+    :root[data-theme="light"]{
+      --bg: #FFFFFF;
+      --bg2:#F5F5F5;
+      --panel: rgba(0,0,0,.04);
+      --panel2: rgba(0,0,0,.06);
+      --text: #1B2838;
+      --muted: rgba(27,40,56,.75);
+      --line: rgba(0,0,0,.12);
+      --glass: rgba(255,255,255,.9);
+      --glass2: rgba(255,255,255,.7);
+      --logo-bg: rgba(255,255,255,.95);
+      --logo-border: rgba(33,181,255,.3);
+    }
+
+    :root{
+      --brandA:#21B5FF;
+      --brandB:#2F6BFF;
+      --brandC:#00D4FF;
+      --accent: var(--brandA);
+      --accent2: var(--brandB);
+      --danger:#FF2E2E;
+      --shadow: 0 14px 44px rgba(0,0,0,.45);
+      --radius: 20px;
+      --max: 1200px;
+      --pad: 24px;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background:
+        radial-gradient(900px 520px at 18% 12%, rgba(33,181,255,.18), transparent 58%),
+        radial-gradient(820px 520px at 78% 18%, rgba(47,107,255,.14), transparent 55%),
+        radial-gradient(1200px 700px at 50% 110%, rgba(0,212,255,.08), transparent 60%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+      color:var(--text);
+      line-height:1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    
+    /* ===== Theme Toggle ===== */
+    .theme-toggle {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      background: var(--logo-bg);
+      border: 2px solid var(--logo-border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 1000;
+      box-shadow: 0 8px 24px rgba(0,0,0,.3);
+      transition: all 0.3s ease;
+    }
+    .theme-toggle:hover {
+      transform: scale(1.1);
+      box-shadow: 0 12px 32px rgba(33,181,255,.4);
+    }
+    .theme-toggle svg {
+      width: 28px;
+      height: 28px;
+      fill: var(--text);
+    }
+    
+    .container{
+      width: min(var(--max), calc(100% - (var(--pad) * 2)));
+      margin: 0 auto;
+    }
+
+    /* ===== Header / Nav ===== */
+    header{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(16px);
+      background: var(--glass);
+      border-bottom: 1px solid var(--line);
+      box-shadow: 0 4px 20px rgba(0,0,0,.3);
+    }
+    
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 0;
+      position: relative;
+      min-height: 60px;
+    }
+    
+    .back-link {
+      position: absolute;
+      left: 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text);
+      font-weight: 600;
+      font-size: 14px;
+      transition: all 0.2s ease;
+    }
+    
+    .back-link:hover {
+      color: var(--accent);
+      transform: translateX(-4px);
+    }
+    
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:20px;
+      transition: transform 0.2s ease;
+    }
+    
+    .logo-container {
+      width: 100px;
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 8px 24px rgba(0,0,0,.4);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+    
+    [data-theme="light"] .logo-container {
+      background: white;
+    }
+    
+    .logo-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .brand-text{ 
+      display:flex; 
+      flex-direction:column; 
+      line-height:1.2; 
+    }
+    .brand-text span{ 
+      font-size: 14px; 
+      color:var(--muted);
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+
+    /* ===== Main Content ===== */
+    main{
+      padding: 60px 0 100px;
+    }
+
+    .card{
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding:32px;
+      margin:24px 0;
+      backdrop-filter: blur(8px);
+    }
+
+    .callout {
+      border-left: 4px solid var(--accent);
+      background: linear-gradient(135deg, rgba(33,181,255,.15), rgba(47,107,255,.1));
+      padding: 20px 24px;
+      border-radius: 16px;
+      margin: 32px 0;
+    }
+
+    h1 {
+      font-size: 32px;
+      font-weight: 900;
+      margin: 0 0 16px;
+      background: linear-gradient(135deg, #EAF0FF, #21B5FF);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    h2 {
+      font-size: 24px;
+      font-weight: 700;
+      margin: 32px 0 16px;
+      color: var(--accent);
+    }
+
+    h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin: 24px 0 12px;
+      color: var(--text);
+    }
+
+    ul {
+      margin: 12px 0 0 24px;
+      line-height: 1.8;
+    }
+
+    ul li {
+      margin-bottom: 8px;
+    }
+
+    /* ===== Form Styles ===== */
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group input[type="tel"],
+    .form-group input[type="date"] {
+      width: 100%;
+      padding: 12px 16px;
+      background: var(--panel2);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      color: var(--text);
+      font-size: 15px;
+      font-family: inherit;
+      transition: all 0.2s ease;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(33,181,255,.1);
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 16px;
+    }
+
+    /* ===== Buttons ===== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 24px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      font-weight: 700;
+      font-size: 15px;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      border-color: rgba(33,181,255,.4);
+      background: rgba(33,181,255,.12);
+      transform: translateY(-1px);
+    }
+
+    .btn.primary {
+      border: 1px solid rgba(33,181,255,.3);
+      background: linear-gradient(135deg, rgba(33,181,255,.25), rgba(47,107,255,.2));
+      box-shadow: 0 8px 24px rgba(33,181,255,.25);
+    }
+
+    .btn.primary:hover {
+      background: linear-gradient(135deg, rgba(33,181,255,.35), rgba(47,107,255,.3));
+      box-shadow: 0 12px 32px rgba(33,181,255,.35);
+    }
+
+    .btn.secondary {
+      background: var(--panel);
+    }
+
+    .success-message {
+      background: linear-gradient(135deg, rgba(0,212,255,.15), rgba(33,181,255,.1));
+      border: 1px solid rgba(0,212,255,.3);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-top: 20px;
+      display: none;
+      color: var(--text);
+    }
+
+    .success-message.show {
+      display: block;
+    }
+
+    /* ===== Footer ===== */
+    footer {
+      text-align: center;
+      padding: 40px 0 32px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 60px;
+    }
+
+    @media (max-width: 768px) {
+      .logo-container {
+        width: 80px;
+        height: 80px;
+      }
+      h1 {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Theme Toggle Button -->
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+    <svg id="sunIcon" viewBox="0 0 24 24" style="display: none;">
+      <path d="M12 17.5C14.7614 17.5 17 15.2614 17 12.5C17 9.73858 14.7614 7.5 12 7.5C9.23858 7.5 7 9.73858 7 12.5C7 15.2614 9.23858 17.5 12 17.5Z"/>
+      <path d="M12 1.5V4.5M12 20.5V23.5M20.5 12H23.5M0.5 12H3.5M18 6L16 8M8 16L6 18M18 18L16 16M8 8L6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    <svg id="moonIcon" viewBox="0 0 24 24">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+    </svg>
+  </button>
+
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <a href="index.html" class="back-link">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+          Back to Home
+        </a>
+        
+        <a href="index.html" class="brand">
+          <div class="logo-container">
+            <img id="logoImg" src="chronos-logo-dark.svg" alt="Chronos Media"/>
+          </div>
+          <div class="brand-text">
+            <span>Capturing the Agapē Moments</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <h1>Independent Contractor Agreement</h1>
+      
+      <div class="card callout">
+        <b>📋 Complete Your Contractor Information</b><br/>
+        After submitting this form, you'll be directed to complete the <a href="onboarding.html" style="color: var(--accent); font-weight: 600;">onboarding process</a>.
+      </div>
+
+      <div class="card">
+        <h2>Agreement Details</h2>
+        <p><strong>Company:</strong> Chronos Media Live LLC (EIN: 41-3482391)<br/>
+        1058 Domino Lane, Warminster, PA 18974<br/>
+        Represented by Stephen Johnson</p>
+        
+        <form id="contractorForm">
+          <h3>Contractor Information</h3>
+          
+          <div class="form-group">
+            <label for="effective_date">Effective Date *</label>
+            <input type="date" id="effective_date" name="effective_date" required>
+          </div>
+
+          <div class="form-group">
+            <label for="contractor_name">Full Name *</label>
+            <input type="text" id="contractor_name" name="contractor_name" required placeholder="Enter your full name">
+          </div>
+
+          <div class="form-group">
+            <label for="contractor_address">Address *</label>
+            <input type="text" id="contractor_address" name="contractor_address" required placeholder="Street address, City, State ZIP">
+          </div>
+
+          <div class="row">
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Phone *</label>
+              <input type="tel" id="phone" name="phone" required placeholder="(###) ###-####">
+            </div>
+          </div>
+
+          <h3>Key Terms</h3>
+          <ul>
+            <li><strong>Hourly Rate:</strong> $20.00 per hour for approved services</li>
+            <li><strong>Daily Cap:</strong> Shall not exceed $100.00 per calendar day</li>
+            <li><strong>Payment Frequency:</strong> Monthly on or before the 30th day (for the prior month), subject to receipt of client payment</li>
+            <li><strong>Tax Treatment:</strong> Company will issue the applicable IRS tax form(s) required by law</li>
+            <li><strong>Confidentiality & IP:</strong> Client information is confidential; work product belongs to the Company unless otherwise agreed</li>
+            <li><strong>Independent Contractor:</strong> Contractor is responsible for all taxes, insurance, licenses, and permits</li>
+          </ul>
+
+          <div class="card callout" style="margin-top: 24px;">
+            <strong>⚖️ Important Notice</strong><br/>
+            By submitting this form, you acknowledge that you have read and understood the terms of the Independent Contractor Agreement. The full agreement document is available for download and will be provided for signature.
+          </div>
+
+          <div style="margin-top: 32px; display: flex; gap: 12px; flex-wrap: wrap;">
+            <button type="submit" class="btn primary">
+              ✓ Submit & Continue to Onboarding
+            </button>
+            <a href="onboarding.html" class="btn secondary">
+              Skip to Onboarding
+            </a>
+          </div>
+
+          <div id="successMessage" class="success-message">
+            ✅ Information submitted successfully! Redirecting to onboarding...
+          </div>
+        </form>
+      </div>
+
+      <div class="card">
+        <h2>Download Agreement</h2>
+        <p>Download the complete Independent Contractor Agreement document:</p>
+        <a href="Chronos_Media_Independent_Contractor_Agreement_COMPLETE_FILLABLE_v3.pdf" class="btn primary" style="margin-top: 16px;" download>
+          📄 Download PDF Agreement
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p style="margin: 0;">© 2026 Chronos Media Live LLC • Capturing the Agapē Moments</p>
+      <p style="margin: 8px 0 0; font-size: 12px;">
+        Questions? Contact us at <a href="mailto:info@chronosmedia.to" style="color: var(--accent);">info@chronosmedia.to</a> or <a href="tel:+12675350921" style="color: var(--accent);">(267) 535-0921</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // Theme Toggle
+    const html = document.documentElement;
+    const themeToggle = document.getElementById('themeToggle');
+    const sunIcon = document.getElementById('sunIcon');
+    const moonIcon = document.getElementById('moonIcon');
+    const logoImg = document.getElementById('logoImg');
+    
+    if (themeToggle) {
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      html.setAttribute('data-theme', savedTheme);
+      updateThemeIcons(savedTheme);
+      
+      themeToggle.addEventListener('click', () => {
+        const current = html.getAttribute('data-theme');
+        const newTheme = current === 'dark' ? 'light' : 'dark';
+        html.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateThemeIcons(newTheme);
+      });
+    }
+    
+    function updateThemeIcons(theme) {
+      if (sunIcon && moonIcon) {
+        if (theme === 'dark') {
+          moonIcon.style.display = 'block';
+          sunIcon.style.display = 'none';
+        } else {
+          moonIcon.style.display = 'none';
+          sunIcon.style.display = 'block';
+        }
+      }
+      if (logoImg) {
+        logoImg.src = theme === 'dark' ? 'chronos-logo-dark.svg' : 'chronos-logo-light.svg';
+      }
+    }
+    
+    // Set today's date
+    document.getElementById('effective_date').value = new Date().toISOString().split('T')[0];
+    
+    // Form submission
+    document.getElementById('contractorForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const successMsg = document.getElementById('successMessage');
+      
+      // Track in Google Analytics
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'form_submit', {
+          'event_category': 'Contractor',
+          'event_label': 'Contractor Form Submission'
+        });
+      }
+      
+      // Get form data
+      const formData = {
+        effective_date: document.getElementById('effective_date').value,
+        contractor_name: document.getElementById('contractor_name').value,
+        contractor_address: document.getElementById('contractor_address').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value
+      };
+      
+      console.log('Contractor form submitted:', formData);
+      
+      // Show success message
+      successMsg.classList.add('show');
+      
+      // Redirect to onboarding after 2 seconds
+      setTimeout(() => {
+        window.location.href = 'onboarding.html';
+      }, 2000);
+    });
+  </script>
+</body>
+</html>
