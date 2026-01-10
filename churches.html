@@ -587,12 +587,20 @@
   <header>
     <div class="container">
       <div class="header-content">
-        <a href="index.html" class="back-link">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M19 12H5M12 19l-7-7 7-7"/>
-          </svg>
-          Back to Home
-        </a>
+        <div style="display: flex; gap: 20px; align-items: center;">
+          <a href="index.html" class="back-link">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+            Back to Home
+          </a>
+          <a href="index.html#payment" class="back-link" style="gap: 8px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+            </svg>
+            Payment
+          </a>
+        </div>
         
         <a href="index.html" class="brand">
           <div class="logo-container">
@@ -778,7 +786,7 @@
           and learn more about our 10% church discount.
         </p>
         <div class="cta-buttons">
-          <a href="mailto:info@chronosmedia.to?subject=Church%20Services%20Inquiry&body=Hi%20Chronos%20Media%2C%0A%0AOur%20church%20is%20interested%20in%20your%20livestreaming%20services.%0A%0AChurch%20Name%3A%20%0ALocation%3A%20%0AAverage%20Attendance%3A%20%0AServices%20Needed%3A%20%0A%0APlease%20contact%20us%20to%20discuss%20pricing%20and%20the%2010%25%20church%20discount.%0A%0AThank%20you!" class="btn btn-primary">
+          <a href="/cdn-cgi/l/email-protection#731a1d151c33101b011c1d1c001e16171a125d071c4c000611191610074e301b0601101b564143201601051a1016005641433a1d02061a010a55111c170a4e3b1a564143301b011c1d1c005641433e16171a125641305643325643323c0601564143101b0601101b5641431a005641431a1d07160116000716175641431a1d5641430a1c06015641431f1a051600070116121e1a1d14564143001601051a1016005d564332564332301b0601101b5641433d121e165640325641435643323f1c1012071a1c1d56403256414356433232051601121416564143320707161d17121d1016564032564143564332201601051a1016005641433d1616171617564032564143564332564332231f16120016564143101c1d071210075641430600564143071c564143171a001006000056414303011a101a1d14564143121d17564143071b165641434243564146564143101b0601101b564143171a00101c061d075d564332564332271b121d185641430a1c0652" class="btn btn-primary">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
               <polyline points="22,6 12,13 2,6"/>
@@ -859,7 +867,7 @@
     </div>
   </footer>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     document.addEventListener('DOMContentLoaded', function() {
       // Theme Toggle
       const themeToggle = document.getElementById("themeToggle");
@@ -886,23 +894,4 @@
       }
 
       function updateThemeIcons(theme) {
-        if (sunIcon && moonIcon) {
-          if (theme === "dark") {
-            moonIcon.style.display = "block";
-            sunIcon.style.display = "none";
-          } else {
-            moonIcon.style.display = "none";
-            sunIcon.style.display = "block";
-          }
-        }
-      }
-
-      function updateLogo(theme) {
-        if (logoImg) {
-          logoImg.src = theme === "dark" ? "chronos-logo-dark.svg" : "chronos-logo-light.svg";
-        }
-      }
-    });
-  </script>
-</body>
-</html>
+      

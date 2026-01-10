@@ -624,12 +624,20 @@
   <header>
     <div class="container">
       <div class="header-content">
-        <a href="index.html" class="back-link">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M19 12H5M12 19l-7-7 7-7"/>
-          </svg>
-          Back to Home
-        </a>
+        <div style="display: flex; gap: 20px; align-items: center;">
+          <a href="index.html" class="back-link">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+            Back to Home
+          </a>
+          <a href="index.html#payment" class="back-link" style="gap: 8px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+            </svg>
+            Payment
+          </a>
+        </div>
         
         <a href="index.html" class="brand">
           <div class="logo-container">
@@ -1115,7 +1123,7 @@
               </p>
 
               <p style="margin:0 0 12px; font-weight:700; font-size: 16px;">
-                📧 <a href="mailto:info@chronosmedia.to" onclick="gtag('event', 'click', {'event_category': 'Contact', 'event_label': 'Email Click - Photos Page'});">info@chronosmedia.to</a>
+                📧 <a href="/cdn-cgi/l/email-protection#157c7b737a55767d677a7b7a667870717c743b617a" onclick="gtag('event', 'click', {'event_category': 'Contact', 'event_label': 'Email Click - Photos Page'});"><span class="__cf_email__" data-cfemail="3b52555d547b58534954555448565e5f525a154f54">[email&#160;protected]</span></a>
               </p>
 
               <p style="margin:0; font-weight:700; font-size: 16px;">
@@ -1132,7 +1140,7 @@
               <p style="margin:0 0 20px; color:var(--muted);">
                 Click the button below to open your email client with a pre-formatted message.
               </p>
-              <a class="btn primary" href="mailto:info@chronosmedia.to?subject=Photography%20Request&body=Hi%20Chronos%20Media%20team%2C%0A%0AI'm%20interested%20in%20your%20photography%20services.%0A%0AEvent%20details%3A%0A-%20Date%3A%20%0A-%20Location%3A%20%0A-%20Type%20of%20event%3A%20%0A-%20Expected%20attendance%3A%20%0A-%20Photography%20needs%3A%20%0A%0APlease%20let%20me%20know%20your%20availability%20and%20pricing.%0A%0AThank%20you!" onclick="gtag('event', 'click', {'event_category': 'Contact', 'event_label': 'Send Email Button - Photos Page'});">
+              <a class="btn primary" href="/cdn-cgi/l/email-protection#fe97909891be9d968c9190918d939b9a979fd08a91c18d8b9c949b9d8ac3ae96918a91998c9f8e9687dbccceac9b8f8b9b8d8ad89c919a87c3b697dbcccebd968c9190918ddbccceb39b9a979fdbccce8a9b9f93dbccbddbcebfdbcebfb7d993dbccce97908a9b8c9b8d8a9b9adbccce9790dbccce87918b8cdbccce8e96918a91998c9f8e9687dbccce8d9b8c88979d9b8dd0dbcebfdbcebfbb889b908adbccce9a9b8a9f97928ddbcdbfdbcebfd3dbccceba9f8a9bdbcdbfdbcccedbcebfd3dbccceb2919d9f8a979190dbcdbfdbcccedbcebfd3dbccceaa878e9bdbccce9198dbccce9b889b908adbcdbfdbcccedbcebfd3dbcccebb868e9b9d8a9b9adbccce9f8a8a9b909a9f909d9bdbcdbfdbcccedbcebfd3dbccceae96918a91998c9f8e9687dbccce909b9b9a8ddbcdbfdbcccedbcebfdbcebfae929b9f8d9bdbccce929b8adbccce939bdbccce95909189dbccce87918b8cdbccce9f889f97929f9c9792978a87dbccce9f909adbccce8e8c979d979099d0dbcebfdbcebfaa969f9095dbccce87918bdf" onclick="gtag('event', 'click', {'event_category': 'Contact', 'event_label': 'Send Email Button - Photos Page'});">
                 Send Email
               </a>
             </div>
@@ -1204,7 +1212,7 @@
     </div>
   </footer>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     document.addEventListener('DOMContentLoaded', function() {
       // Theme Toggle
       const themeToggle = document.getElementById("themeToggle");
@@ -1224,30 +1232,4 @@
           const newTheme = currentTheme === "dark" ? "light" : "dark";
           
           html.setAttribute("data-theme", newTheme);
-          localStorage.setItem("theme", newTheme);
-          updateThemeIcons(newTheme);
-          updateLogo(newTheme);
-        });
-      }
-
-      function updateThemeIcons(theme) {
-        if (sunIcon && moonIcon) {
-          if (theme === "dark") {
-            moonIcon.style.display = "block";
-            sunIcon.style.display = "none";
-          } else {
-            moonIcon.style.display = "none";
-            sunIcon.style.display = "block";
-          }
-        }
-      }
-
-      function updateLogo(theme) {
-        if (logoImg) {
-          logoImg.src = theme === "dark" ? "chronos-logo-dark.svg" : "chronos-logo-light.svg";
-        }
-      }
-    });
-  </script>
-</body>
-</html>
+          localStorage.setItem

@@ -586,12 +586,20 @@
   <header>
     <div class="container">
       <div class="header-content">
-        <a href="index.html" class="back-link">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M19 12H5M12 19l-7-7 7-7"/>
-          </svg>
-          Back to Home
-        </a>
+        <div style="display: flex; gap: 20px; align-items: center;">
+          <a href="index.html" class="back-link">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+            Back to Home
+          </a>
+          <a href="index.html#payment" class="back-link" style="gap: 8px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+            </svg>
+            Payment
+          </a>
+        </div>
         
         <a href="index.html" class="brand">
           <div class="logo-container">
@@ -867,7 +875,7 @@
           Contact us for a free consultation and quote.
         </p>
         <div class="cta-buttons">
-          <a href="mailto:info@chronosmedia.to?subject=Audio%20Services%20Inquiry&body=Hi%20Chronos%20Media%2C%0A%0AI'm%20interested%20in%20audio%20services%3A%0A%0AService%20Needed%3A%20%5B%20%5D%20Production%20Setup%20%5B%20%5D%20Online%20Mixing%20%5B%20%5D%20Equipment%20Recommendations%0A%0AVenue%20Type%3A%20%0ASeating%20Capacity%3A%20%0ACurrent%20Equipment%3A%20%0ABudget%20Range%3A%20%0A%0APlease%20contact%20me%20to%20discuss%20further.%0A%0AThank%20you!" class="btn btn-primary">
+          <a href="/cdn-cgi/l/email-protection#7b12151d143b18130914151408161e1f121a550f1444080e19111e180f463a0e1f12145e494b281e090d12181e085e494b32150a0e1209025d19141f024633125e494b381309141514085e494b361e1f121a5e49385e4b3a5e4b3a325c165e494b12150f1e091e080f1e1f5e494b12155e494b1a0e1f12145e494b081e090d12181e085e483a5e4b3a5e4b3a281e090d12181e5e494b351e1e1f1e1f5e483a5e494b5e4e395e494b5e4e3f5e494b2b09141f0e180f1214155e494b281e0f0e0b5e494b5e4e395e494b5e4e3f5e494b34151712151e5e494b36120312151c5e494b5e4e395e494b5e4e3f5e494b3e0a0e120b161e150f5e494b291e181416161e151f1a0f121415085e4b3a5e4b3a2d1e150e1e5e494b2f020b1e5e483a5e494b5e4b3a281e1a0f12151c5e494b381a0b1a18120f025e483a5e494b5e4b3a380e09091e150f5e494b3e0a0e120b161e150f5e483a5e494b5e4b3a390e1f1c1e0f5e494b291a151c1e5e483a5e494b5e4b3a5e4b3a2b171e1a081e5e494b1814150f1a180f5e494b161e5e494b0f145e494b1f1208180e08085e494b1d0e090f131e09555e4b3a5e4b3a2f131a15105e494b02140e5a" class="btn btn-primary">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
               <polyline points="22,6 12,13 2,6"/>
@@ -948,7 +956,7 @@
     </div>
   </footer>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     document.addEventListener('DOMContentLoaded', function() {
       // Theme Toggle
       const themeToggle = document.getElementById("themeToggle");
@@ -971,27 +979,4 @@
           localStorage.setItem("theme", newTheme);
           updateThemeIcons(newTheme);
           updateLogo(newTheme);
-        });
-      }
-
-      function updateThemeIcons(theme) {
-        if (sunIcon && moonIcon) {
-          if (theme === "dark") {
-            moonIcon.style.display = "block";
-            sunIcon.style.display = "none";
-          } else {
-            moonIcon.style.display = "none";
-            sunIcon.style.display = "block";
-          }
-        }
-      }
-
-      function updateLogo(theme) {
-        if (logoImg) {
-          logoImg.src = theme === "dark" ? "chronos-logo-dark.svg" : "chronos-logo-light.svg";
-        }
-      }
-    });
-  </script>
-</body>
-</html>
+ 
