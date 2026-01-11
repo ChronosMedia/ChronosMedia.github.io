@@ -1,1136 +1,2324 @@
-<!doctype html>
-<html lang="en" data-theme="dark">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-T2NNWKW3B4"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-T2NNWKW3B4');
-  </script>
-  
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Chronos Media</title>
-  <meta name="description" content="Chronos Media — Capturing the Agapē Moments." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-
-  <style>
-    /* ===== Theme Variables ===== */
-    :root[data-theme="dark"]{
-      --bg: #0B1220;
-      --bg2:#0E1A2D;
-      --panel: rgba(255,255,255,.06);
-      --panel2: rgba(255,255,255,.09);
-      --text: #EAF0FF;
-      --muted: rgba(234,240,255,.72);
-      --line: rgba(234,240,255,.14);
-      --glass: rgba(10,20,40,.6);
-      --glass2: rgba(10,20,40,.35);
-      --logo-bg: rgba(11,18,32,.8);
-      --logo-border: rgba(33,181,255,.25);
-    }
-
-    :root[data-theme="light"]{
-      --bg: #FFFFFF;
-      --bg2:#F5F5F5;
-      --panel: rgba(0,0,0,.04);
-      --panel2: rgba(0,0,0,.06);
-      --text: #1B2838;
-      --muted: rgba(27,40,56,.75);
-      --line: rgba(0,0,0,.12);
-      --glass: rgba(255,255,255,.9);
-      --glass2: rgba(255,255,255,.7);
-      --logo-bg: rgba(255,255,255,.95);
-      --logo-border: rgba(33,181,255,.3);
-    }
-
-    :root{
-      --brandA:#21B5FF;
-      --brandB:#2F6BFF;
-      --brandC:#00D4FF;
-      --accent: var(--brandA);
-      --accent2: var(--brandB);
-      --danger:#FF2E2E;
-      --shadow: 0 14px 44px rgba(0,0,0,.45);
-      --radius: 20px;
-      --max: 1200px;
-      --pad: 24px;
-    }
-
-    *{ box-sizing:border-box; }
-    html,body{ height:100%; }
-    body{
-      margin:0;
-      font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      background:
-        radial-gradient(900px 520px at 18% 12%, rgba(33,181,255,.18), transparent 58%),
-        radial-gradient(820px 520px at 78% 18%, rgba(47,107,255,.14), transparent 55%),
-        radial-gradient(1200px 700px at 50% 110%, rgba(0,212,255,.08), transparent 60%),
-        linear-gradient(180deg, var(--bg), var(--bg2));
-      color:var(--text);
-      line-height:1.6;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    a{ color:inherit; text-decoration:none; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">
+    <meta name="description" content="Harvest Realty LLC - Premier real estate services in Pennsylvania and New Jersey. Specializing in Philadelphia, Bucks, and Montgomery Counties.">
+    <meta name="keywords" content="real estate, Pennsylvania, New Jersey, Philadelphia, Bucks County, Montgomery County, homes for sale, property rentals, house buying">
+    <title>Harvest Realty LLC - Premier Real Estate in PA & NJ</title>
     
-    /* ===== Theme Toggle ===== */
-    .theme-toggle {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      width: 60px;
-      height: 60px;
-      background: var(--logo-bg);
-      border: 2px solid var(--logo-border);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      z-index: 1000;
-      box-shadow: 0 8px 24px rgba(0,0,0,.3);
-      transition: all 0.3s ease;
-    }
-    .theme-toggle:hover {
-      transform: scale(1.1);
-      box-shadow: 0 12px 32px rgba(33,181,255,.4);
-    }
-    .theme-toggle svg {
-      width: 28px;
-      height: 28px;
-      fill: var(--text);
-    }
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    /* White background for light mode logo */
-    [data-theme="light"] .logo-container {
-      background: white;
-    }
-    .container{
-      width: min(var(--max), calc(100% - (var(--pad) * 2)));
-      margin: 0 auto;
-    }
-
-    /* ===== Header / Nav ===== */
-    header{
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      backdrop-filter: blur(16px);
-      background: var(--glass);
-      border-bottom: 1px solid var(--line);
-      box-shadow: 0 4px 20px rgba(0,0,0,.3);
-    }
-    .nav{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:32px;
-      padding: 20px 0;
-    }
+    <!-- Cal.com widget -->
+    <link href="https://cal.com/embed.css" rel="stylesheet">
+    <script src="https://cal.com/embed.js" type="text/javascript" async></script>
     
-    /* ===== Expanded Logo ===== */
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:20px;
-      transition: transform 0.2s ease;
-    }
-    .brand:hover{
-      transform: translateY(-2px);
-    }
-    
-    .logo-container {
-      width: 140px;
-      height: 140px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      box-shadow: 0 8px 24px rgba(0,0,0,.4);
-      border-radius: 20px;
-      overflow: hidden;
-    }
-    
-    .logo-container img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .brand-text{ 
-      display:flex; 
-      flex-direction:column; 
-      line-height:1.2; 
-    }
-    .brand-text span{ 
-      font-size: 16px; 
-      color:var(--muted);
-      font-weight: 500;
-      letter-spacing: 0.5px;
-    }
-
-    /* Navigation on right side */
-    .nav-wrapper{
-      display: flex;
-      align-items: center;
-      gap: 24px;
-    }
-
-    nav{
-      display:flex;
-      align-items:center;
-      gap:8px;
-      font-weight:600;
-      color:var(--muted);
-      font-size: 15px;
-    }
-    nav a{
-      padding:12px 18px;
-      border-radius: 10px;
-      transition: all 0.2s ease;
-    }
-    nav a:hover{
-      background: rgba(234,240,255,.1);
-      color: var(--text);
-    }
-
-    .cta{ display:flex; gap:12px; align-items:center; }
-
-    /* Menu toggle for mobile */
-    .menu-toggle{
-      display:none;
-      background: linear-gradient(135deg, rgba(33,181,255,.2), rgba(47,107,255,.15));
-      border: 2px solid rgba(33,181,255,.4);
-      padding:12px;
-      border-radius:12px;
-      cursor:pointer;
-      color: var(--text);
-      font-size: 22px;
-      box-shadow: 0 4px 12px rgba(33,181,255,.2);
-      transition: all 0.2s ease;
-    }
-    
-    .menu-toggle:hover {
-      background: linear-gradient(135deg, rgba(33,181,255,.3), rgba(47,107,255,.25));
-      box-shadow: 0 6px 16px rgba(33,181,255,.3);
-    }
-    
-    [data-theme="light"] .menu-toggle {
-      background: linear-gradient(135deg, rgba(33,181,255,.15), rgba(47,107,255,.1));
-      border-color: rgba(33,181,255,.5);
-    }
-
-    @media (max-width: 968px){
-      .nav{
-        flex-wrap: wrap;
-      }
-      .brand{
-        width: 100%;
-        justify-content: center;
-      }
-      .nav-wrapper{
-        width: 100%;
-        justify-content: center;
-      }
-      nav{
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-    }
-
-    @media (max-width: 768px){
-      .menu-toggle{ display:block; }
-      .nav{
-        position: relative;
-        padding: 16px 0;
-      }
-      .logo-container{
-        width: 100px;
-        height: 100px;
-      }
-      .brand{
-        gap: 16px;
-      }
-      .brand-text span{
-        font-size: 13px;
-      }
-      nav{
-        position:absolute;
-        top:100%;
-        left:0;
-        right:0;
-        background: var(--glass);
-        backdrop-filter: blur(16px);
-        flex-direction:column;
-        padding:20px;
-        border-bottom: 1px solid var(--line);
-        transform: translateY(-100%);
-        opacity:0;
-        pointer-events:none;
-        transition: all 0.3s ease;
-        margin-top: 20px;
-      }
-      nav.active{
-        transform: translateY(0);
-        opacity:1;
-        pointer-events:all;
-      }
-      nav a{ width:100%; padding:14px 16px; text-align: center; }
-    }
-
-    /* ===== LIVE button ===== */
-    .live-btn{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding:11px 18px;
-      border-radius:999px;
-      font-weight:800;
-      font-size: 13px;
-      letter-spacing:.8px;
-      text-transform:uppercase;
-      background: linear-gradient(135deg, #FF4D4D, #D71F24);
-      color:#fff;
-      box-shadow: 0 8px 24px rgba(255,77,77,.4);
-      animation:pulse 1.8s infinite;
-      border: 1px solid rgba(255,255,255,.2);
-      white-space: nowrap;
-    }
-    .live-dot{ 
-      width:8px; 
-      height:8px; 
-      background:#fff; 
-      border-radius:50%;
-      box-shadow: 0 0 8px rgba(255,255,255,.6);
-    }
-    @keyframes pulse{
-      0%{ box-shadow:0 4px 24px rgba(255,77,77,.4), 0 0 0 0 rgba(255,77,77,.4);}
-      70%{ box-shadow:0 4px 24px rgba(255,77,77,.4), 0 0 0 12px rgba(255,77,77,0);}
-      100%{ box-shadow:0 4px 24px rgba(255,77,77,.4), 0 0 0 0 rgba(255,77,77,0);}
-    }
-    .live-btn.offline{
-      background: rgba(127,127,127,.2);
-      color: var(--muted);
-      border: 1px solid var(--line);
-      animation:none;
-      box-shadow:none;
-    }
-    .live-btn.offline .live-dot{ 
-      background: rgba(255,255,255,.5);
-      box-shadow: none;
-    }
-
-    /* ===== Buttons ===== */
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      padding: 12px 20px;
-      border-radius: 12px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.06);
-      color: var(--text);
-      font-weight: 700;
-      font-size: 15px;
-      cursor:pointer;
-      user-select:none;
-      transition: all 0.2s ease;
-    }
-    .btn:hover{
-      border-color: rgba(33,181,255,.4);
-      background: rgba(33,181,255,.12);
-      transform: translateY(-1px);
-    }
-    .btn.primary{
-      border: 1px solid rgba(33,181,255,.3);
-      background: linear-gradient(135deg, rgba(33,181,255,.25), rgba(47,107,255,.2));
-      box-shadow: 0 8px 24px rgba(33,181,255,.25);
-    }
-    .btn.primary:hover{
-      background: linear-gradient(135deg, rgba(33,181,255,.35), rgba(47,107,255,.3));
-      box-shadow: 0 12px 32px rgba(33,181,255,.35);
-    }
-
-    /* ===== Main sections ===== */
-    main{
-      padding-bottom:80px;
-    }
-    section{
-      padding: 80px 0;
-    }
-    .section-title{
-      font-size: 42px;
-      font-weight: 900;
-      margin:0 0 16px;
-      letter-spacing: -0.5px;
-      background: linear-gradient(135deg, #EAF0FF, #21B5FF);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .section-sub{
-      color:var(--muted);
-      font-size: 18px;
-      margin:0 0 40px;
-      max-width: 720px;
-      line-height: 1.7;
-    }
-
-    /* ===== Hero ===== */
-    .hero{
-      text-align:center;
-      padding: 120px 0 100px;
-    }
-    .hero h1{
-      font-size: clamp(48px, 7vw, 72px);
-      font-weight: 900;
-      margin:0 0 24px;
-      letter-spacing: -1px;
-      line-height: 1.1;
-    }
-    .hero h1 .highlight{
-      background: linear-gradient(135deg, #21B5FF, #2F6BFF, #00D4FF);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .hero p{
-      font-size: 20px;
-      color:var(--muted);
-      margin:0 0 40px;
-      max-width: 640px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.6;
-    }
-    .hero-actions{
-      display:flex;
-      gap:16px;
-      justify-content:center;
-      flex-wrap:wrap;
-    }
-    @media (max-width: 640px){
-      .hero-actions{ flex-direction:column; align-items:center; }
-      .hero-actions .btn{ width: 100%; max-width: 300px; }
-    }
-
-    /* ===== Cards & Panels ===== */
-    .panel{
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding:32px;
-      backdrop-filter: blur(8px);
-    }
-    .card{
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding:28px;
-      transition: all 0.3s ease;
-    }
-    .card:hover{
-      border-color: rgba(33,181,255,.3);
-      background: var(--panel2);
-      transform: translateY(-2px);
-      box-shadow: 0 12px 32px rgba(0,0,0,.3);
-    }
-
-    /* ===== Services Grid ===== */
-    .services-grid{
-      display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap:24px;
-      margin-top:40px;
-    }
-    .service-card{
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding:32px;
-      transition: all 0.3s ease;
-    }
-    .service-card:hover{
-      border-color: rgba(33,181,255,.3);
-      background: var(--panel2);
-      transform: translateY(-4px);
-      box-shadow: 0 16px 40px rgba(0,0,0,.3);
-    }
-    .service-icon{
-      font-size: 36px;
-      margin-bottom: 16px;
-    }
-    .service-card h3{
-      font-size: 22px;
-      font-weight: 800;
-      margin:0 0 12px;
-      color: var(--text);
-    }
-    .service-card p{
-      color:var(--muted);
-      margin:0;
-      line-height: 1.6;
-      font-size: 15px;
-    }
-    .side-note{
-      color:var(--muted);
-      font-size: 14px;
-      margin-top:12px;
-      font-style: italic;
-    }
-
-    /* ===== YouTube embed ===== */
-    .yt-wrap{
-      position:relative;
-      padding-bottom:56.25%;
-      height:0;
-      overflow:hidden;
-      border-radius: 16px;
-      background: rgba(0,0,0,.5);
-    }
-    .yt-wrap iframe{
-      position:absolute;
-      top:0;
-      left:0;
-      width:100%;
-      height:100%;
-      border:0;
-      border-radius: 16px;
-    }
-
-    /* ===== About section ===== */
-    .about-grid{
-      display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap:24px;
-      margin-top:40px;
-    }
-    .person{
-      display:flex;
-      gap:20px;
-      align-items:flex-start;
-    }
-    .avatar{
-      width:64px;
-      height:64px;
-      border-radius:50%;
-      background: linear-gradient(135deg, rgba(33,181,255,.25), rgba(47,107,255,.2));
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-weight:900;
-      font-size:22px;
-      border: 2px solid rgba(33,181,255,.3);
-      flex-shrink:0;
-      box-shadow: 0 4px 16px rgba(33,181,255,.2);
-    }
-    .person h3{
-      font-size: 20px;
-      font-weight: 800;
-      margin:0 0 6px;
-      color: var(--text);
-    }
-    .role{
-      color: var(--accent);
-      font-weight: 700;
-      font-size: 14px;
-      margin-bottom:10px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-    .bio{
-      color:var(--muted);
-      margin:0;
-      line-height: 1.6;
-      font-size: 15px;
-    }
-
-    /* ===== Workflows ===== */
-    .pill{
-      display:inline-block;
-      padding:8px 16px;
-      background: rgba(255,255,255,.06);
-      border: 1px solid var(--line);
-      border-radius:999px;
-      font-size:14px;
-      font-weight:600;
-      margin: 4px;
-      transition: all 0.2s ease;
-    }
-    .pill:hover{
-      background: rgba(33,181,255,.12);
-      border-color: rgba(33,181,255,.3);
-    }
-    .workflow-grid{
-      display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap:24px;
-      margin-top:32px;
-    }
-    .workflow-grid h3{
-      font-size: 20px;
-      font-weight: 800;
-      color: var(--text);
-    }
-    .list{
-      list-style:none;
-      padding:0;
-      margin:14px 0 0;
-    }
-    .list li{
-      padding:12px 0;
-      border-bottom: 1px solid var(--line);
-      color:var(--muted);
-      line-height: 1.6;
-    }
-    .list li:last-child{ border-bottom:none; }
-    .list li b{
-      color: var(--text);
-      font-weight: 700;
-    }
-
-    /* ===== Contact ===== */
-    .contact-wrap{
-      display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap:24px;
-    }
-    .contact-wrap h3{
-      font-size: 20px;
-      font-weight: 800;
-      color: var(--text);
-    }
-    .contact-wrap p{
-      line-height: 1.6;
-    }
-    .contact-wrap a{
-      color: var(--accent);
-      transition: color 0.2s ease;
-    }
-    .contact-wrap a:hover{
-      color: var(--brandC);
-    }
-    .small{
-      font-size:14px;
-      color:var(--muted);
-      margin-top:12px;
-    }
-
-    /* ===== Footer ===== */
-    footer{
-      text-align:center;
-      padding:32px 0;
-      border-top: 1px solid var(--line);
-      color:var(--muted);
-      font-size: 14px;
-    }
-  </style>
+    <style>
+        :root {
+            --burgundy: #8B2E2E;
+            --burgundy-dark: #6B1E1E;
+            --burgundy-light: #A84040;
+            --gold: #D4AF37;
+            --gold-dark: #B8941F;
+            --cream: #F5F1E8;
+            --cream-dark: #E8E0D0;
+            --charcoal: #2C2C2C;
+            --white: #FFFFFF;
+            --shadow: rgba(139, 46, 46, 0.15);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--charcoal);
+            background-color: var(--cream);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+        
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(245,241,232,0.95) 100%);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px var(--shadow);
+            transition: all 0.3s ease;
+        }
+        
+        header.scrolled {
+            background: rgba(255,255,255,0.98);
+            box-shadow: 0 2px 30px var(--shadow);
+        }
+        
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 3rem;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .logo-container img {
+            height: 60px;
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo-container:hover img {
+            transform: scale(1.05);
+        }
+        
+        .logo-text h1 {
+            font-size: 1.8rem;
+            color: var(--burgundy);
+            margin-bottom: 0.2rem;
+        }
+        
+        .logo-text p {
+            font-size: 0.85rem;
+            color: var(--gold-dark);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--charcoal);
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--burgundy);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .tenant-link {
+            background: var(--cream-dark);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-weight: 500;
+            color: var(--burgundy) !important;
+            text-align: center;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .tenant-link:hover {
+            background: var(--burgundy) !important;
+            color: var(--white) !important;
+        }
+        
+        .tenant-link::after {
+            display: none !important;
+        }
+        
+        .payment-link {
+            background: #2E7D32;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-weight: 500;
+            color: var(--white) !important;
+            text-align: center;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .payment-link:hover {
+            background: #1B5E20 !important;
+            color: var(--white) !important;
+        }
+        
+        .payment-link::after {
+            display: none !important;
+        }
+        
+        .cta-button {
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%);
+            color: var(--white) !important;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(139, 46, 46, 0.3);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .cta-button:hover {
+            background: var(--white);
+            color: var(--burgundy) !important;
+            border-color: var(--burgundy);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 46, 46, 0.4);
+        }
+        
+        /* Hero Section */
+        .hero {
+            margin-top: 100px;
+            height: 85vh;
+            background: linear-gradient(135deg, rgba(139, 46, 46, 0.95) 0%, rgba(107, 30, 30, 0.9) 100%),
+                        url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=2073') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 0.8; }
+        }
+        
+        .hero-content {
+            text-align: center;
+            color: var(--white);
+            z-index: 1;
+            max-width: 900px;
+            padding: 0 2rem;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero h2 {
+            font-size: 4.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            text-shadow: 2px 4px 20px rgba(0,0,0,0.3);
+            animation: fadeInUp 1s ease-out 0.2s backwards;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+            opacity: 0.95;
+            animation: fadeInUp 1s ease-out 0.4s backwards;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            animation: fadeInUp 1s ease-out 0.6s backwards;
+        }
+        
+        .btn-primary, .btn-secondary {
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            font-size: 1.05rem;
+            border: 2px solid transparent;
+        }
+        
+        .btn-primary {
+            background: var(--gold);
+            color: var(--charcoal);
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.4);
+        }
+        
+        .btn-primary:hover {
+            background: var(--gold-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(212, 175, 55, 0.6);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border-color: var(--white);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--white);
+            color: var(--burgundy);
+            transform: translateY(-3px);
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 6rem 3rem;
+            background: var(--white);
+            position: relative;
+        }
+        
+        .services::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 150px;
+            background: linear-gradient(180deg, var(--cream) 0%, var(--white) 100%);
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .section-tag {
+            font-size: 0.9rem;
+            color: var(--gold-dark);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .section-header h2 {
+            font-size: 3.5rem;
+            color: var(--burgundy);
+            margin-bottom: 1rem;
+        }
+        
+        .section-header p {
+            font-size: 1.15rem;
+            color: var(--charcoal);
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.85;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+        
+        .service-card {
+            background: var(--cream);
+            padding: 3rem 2.5rem;
+            border-radius: 20px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid transparent;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--burgundy) 0%, var(--gold) 100%);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px var(--shadow);
+            border-color: var(--gold);
+        }
+        
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+        
+        .service-card:hover .service-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+        
+        .service-card h3 {
+            font-size: 1.8rem;
+            color: var(--burgundy);
+            margin-bottom: 1rem;
+        }
+        
+        .service-card p {
+            font-size: 1rem;
+            color: var(--charcoal);
+            opacity: 0.85;
+            line-height: 1.8;
+        }
+        
+        /* Property Search */
+        .property-search {
+            padding: 6rem 3rem;
+            background: linear-gradient(135deg, var(--burgundy-dark) 0%, var(--burgundy) 100%);
+            color: var(--white);
+        }
+        
+        .search-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .search-box {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            margin-top: 3rem;
+        }
+        
+        .search-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-group label {
+            color: var(--charcoal);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+        
+        .form-group select,
+        .form-group input {
+            padding: 1rem;
+            border: 2px solid var(--cream-dark);
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: 'Montserrat', sans-serif;
+            transition: all 0.3s ease;
+            background: var(--white);
+        }
+        
+        .form-group select:focus,
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--burgundy);
+        }
+        
+        .search-button {
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%);
+            color: var(--white);
+            padding: 1rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(139, 46, 46, 0.4);
+        }
+        
+        .search-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(139, 46, 46, 0.6);
+        }
+        
+        /* Featured Properties */
+        .featured-properties {
+            padding: 6rem 3rem;
+            background: var(--cream);
+        }
+        
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            max-width: 1300px;
+            margin: 3rem auto 0;
+        }
+        
+        .property-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px var(--shadow);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .property-status {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            z-index: 10;
+            backdrop-filter: blur(10px);
+        }
+        
+        .status-active {
+            background: rgba(76, 175, 80, 0.9);
+            color: var(--white);
+        }
+        
+        .status-pending {
+            background: rgba(255, 193, 7, 0.9);
+            color: var(--charcoal);
+        }
+        
+        .status-sold {
+            background: rgba(139, 46, 46, 0.9);
+            color: var(--white);
+        }
+        
+        .property-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px var(--shadow);
+        }
+        
+        .property-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        
+        .property-card:hover .property-image {
+            transform: scale(1.1);
+        }
+        
+        .property-info {
+            padding: 2rem;
+        }
+        
+        .property-price {
+            font-size: 2rem;
+            color: var(--burgundy);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            font-family: 'Cormorant Garamond', serif;
+        }
+        
+        .property-title {
+            font-size: 1.3rem;
+            color: var(--charcoal);
+            margin-bottom: 0.8rem;
+        }
+        
+        .property-location {
+            color: var(--gold-dark);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+        
+        .property-features {
+            display: flex;
+            gap: 1.5rem;
+            padding-top: 1rem;
+            border-top: 2px solid var(--cream);
+            color: var(--charcoal);
+            font-size: 0.95rem;
+        }
+        
+        .property-features span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        /* Team Section */
+        .team {
+            padding: 6rem 3rem;
+            background: var(--white);
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1.5rem;
+            max-width: 1400px;
+            margin: 3rem auto 0;
+        }
+        
+        .agent-card {
+            background: var(--cream);
+            padding: 1.5rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.4s ease;
+            border: 2px solid transparent;
+        }
+        
+        .agent-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px var(--shadow);
+            border-color: var(--gold);
+        }
+        
+        .agent-role {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%);
+            color: var(--white);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+        
+        .agent-card h3 {
+            font-size: 1.3rem;
+            color: var(--burgundy);
+            margin-bottom: 1rem;
+        }
+        
+        .agent-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            text-align: left;
+        }
+        
+        .agent-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+        }
+        
+        .agent-contact-item span:first-child {
+            color: var(--burgundy);
+            font-size: 1rem;
+        }
+        
+        .agent-contact-item a {
+            color: var(--charcoal);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .agent-contact-item a:hover {
+            color: var(--burgundy);
+        }
+        
+        /* About Section */
+        .about {
+            padding: 6rem 3rem;
+            background: var(--cream);
+        }
+        
+        .about-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .about-text h2 {
+            font-size: 3rem;
+            color: var(--burgundy);
+            margin-bottom: 1.5rem;
+        }
+        
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+            color: var(--charcoal);
+            opacity: 0.9;
+        }
+        
+        .about-address {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+            border-left: 4px solid var(--burgundy);
+        }
+        
+        .about-address strong {
+            color: var(--burgundy);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .stat {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--white);
+            border-radius: 15px;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            color: var(--burgundy);
+            font-weight: 700;
+            font-family: 'Cormorant Garamond', serif;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            color: var(--charcoal);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        
+        .about-image {
+            position: relative;
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px var(--shadow);
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 6rem 3rem;
+            background: var(--white);
+        }
+        
+        .contact-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+        
+        .contact-card-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .contact-card {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px var(--shadow);
+            width: 100%;
+            max-width: 500px;
+        }
+        
+        .contact-card h3 {
+            font-size: 2rem;
+            color: var(--burgundy);
+            margin-bottom: 0.5rem;
+        }
+        
+        .contact-card > p {
+            color: var(--charcoal);
+            opacity: 0.7;
+            margin-bottom: 2rem;
+        }
+        
+        .contact-card-button {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            background: var(--cream);
+            border-radius: 15px;
+            text-decoration: none;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .contact-card-button:hover {
+            background: var(--white);
+            border-color: var(--burgundy);
+            transform: translateX(5px);
+            box-shadow: 0 5px 20px var(--shadow);
+        }
+        
+        .contact-card-icon {
+            font-size: 2rem;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .contact-card-text {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+        
+        .contact-card-text strong {
+            font-size: 1.2rem;
+            color: var(--burgundy);
+            font-weight: 600;
+        }
+        
+        .contact-card-text span {
+            font-size: 1rem;
+            color: var(--charcoal);
+            opacity: 0.8;
+        }
+        
+        .contact-info h3 {
+            font-size: 2.5rem;
+            color: var(--burgundy);
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-info p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: var(--charcoal);
+            opacity: 0.85;
+        }
+        
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            font-size: 1.05rem;
+        }
+        
+        .contact-item a {
+            color: var(--burgundy);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-item a:hover {
+            color: var(--gold-dark);
+            text-decoration: underline;
+        }
+        
+        .contact-item-icon {
+            background: var(--burgundy);
+            color: var(--white);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--charcoal);
+            color: var(--white);
+            padding: 3rem 3rem 1.5rem;
+        }
+        
+        .footer-content {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h4 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--gold);
+        }
+        
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            line-height: 2;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-section a:hover {
+            color: var(--gold);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .modal-content {
+            background-color: var(--white);
+            margin: 3% auto;
+            padding: 2.5rem;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 1000px;
+            animation: slideDown 0.4s ease;
+        }
+        
+        @keyframes slideDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .close {
+            color: var(--charcoal);
+            float: right;
+            font-size: 2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .close:hover {
+            color: var(--burgundy);
+        }
+        
+        .cal-booking-btn:hover {
+            background: var(--white);
+            border-color: var(--burgundy);
+            transform: translateX(5px);
+            box-shadow: 0 5px 20px var(--shadow);
+        }
+        
+        /* Scroll Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--burgundy);
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero h2 { font-size: 3.5rem; }
+            .section-header h2 { font-size: 2.8rem; }
+            .about-content { 
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .contact-container { 
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .contact-card {
+                padding: 2rem;
+            }
+            
+            .contact-card-button {
+                padding: 1.2rem;
+            }
+            
+            .contact-card-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+            .about-image img {
+                height: 400px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: row;
+                justify-content: space-between;
+                padding: 1rem 1.5rem;
+            }
+            
+            .logo-container img {
+                height: 50px;
+            }
+            
+            .logo-text h1 {
+                font-size: 1.4rem;
+            }
+            
+            .logo-text p {
+                font-size: 0.7rem;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: 0 4px 20px var(--shadow);
+                gap: 1.5rem;
+                z-index: 999;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links a {
+                font-size: 1.1rem;
+                padding: 0.5rem 0;
+                text-align: center;
+            }
+            
+            .cta-button {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .hero {
+                height: auto;
+                padding: 4rem 1.5rem;
+                margin-top: 80px;
+                min-height: 60vh;
+            }
+            
+            .hero h2 {
+                font-size: 2.2rem;
+                margin-bottom: 1rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+                margin-bottom: 2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .services,
+            .featured-properties,
+            .team,
+            .about,
+            .contact {
+                padding: 4rem 1.5rem;
+            }
+            
+            .section-header h2 {
+                font-size: 2rem;
+            }
+            
+            .section-header p {
+                font-size: 1rem;
+            }
+            
+            .services-grid,
+            .properties-grid,
+            .team-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .service-card,
+            .agent-card {
+                padding: 2rem 1.5rem;
+            }
+            
+            .property-search {
+                padding: 4rem 1.5rem;
+            }
+            
+            .search-box {
+                padding: 1.5rem;
+            }
+            
+            .search-form {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .about-text h2 {
+                font-size: 2.2rem;
+            }
+            
+            .about-text p {
+                font-size: 1rem;
+            }
+            
+            .about-image img {
+                height: 300px;
+            }
+            
+            .about-stats {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .stat {
+                padding: 1rem;
+            }
+            
+            .stat-number {
+                font-size: 2.5rem;
+            }
+            
+            .contact-info h3 {
+                font-size: 2rem;
+            }
+            
+            .contact-item {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+            
+            .contact-form {
+                padding: 1.5rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+            
+            .modal-content {
+                margin: 10% auto;
+                padding: 1.5rem;
+                width: 95%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo-text h1 {
+                font-size: 1.2rem;
+            }
+            
+            .logo-text p {
+                font-size: 0.65rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 0.95rem;
+            }
+            
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+            
+            .service-card h3,
+            .agent-card h3 {
+                font-size: 1.5rem;
+            }
+            
+            .property-card {
+                min-width: 280px;
+            }
+            
+            .property-image {
+                height: 200px;
+            }
+            
+            .property-info {
+                padding: 1.5rem;
+            }
+            
+            .property-price {
+                font-size: 1.6rem;
+            }
+            
+            .property-title {
+                font-size: 1.1rem;
+            }
+            
+            .about-stats {
+                gap: 1rem;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+            
+            .contact-item-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1.1rem;
+            }
+        }
+        
+        /* Floating Payment Button */
+        .floating-payment-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #2E7D32 0%, #1B5E20 100%);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            box-shadow: 0 4px 20px rgba(46, 125, 50, 0.4);
+            z-index: 999;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .floating-payment-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(46, 125, 50, 0.5);
+            background: linear-gradient(135deg, #388E3C 0%, #2E7D32 100%);
+        }
+        
+        @media (max-width: 768px) {
+            .floating-payment-btn {
+                bottom: 20px;
+                right: 20px;
+                padding: 0.8rem 1.2rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <!-- Theme Toggle Button -->
-  <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-    <svg id="sunIcon" viewBox="0 0 24 24" style="display: none;">
-      <path d="M12 17.5C14.7614 17.5 17 15.2614 17 12.5C17 9.73858 14.7614 7.5 12 7.5C9.23858 7.5 7 9.73858 7 12.5C7 15.2614 9.23858 17.5 12 17.5Z"/>
-      <path d="M12 1.5V3.5M12 21.5V23.5M4.22 4.72L5.64 6.14M18.36 18.86L19.78 20.28M1.5 12.5H3.5M20.5 12.5H22.5M4.22 20.28L5.64 18.86M18.36 6.14L19.78 4.72"/>
-    </svg>
-    <svg id="moonIcon" viewBox="0 0 24 24">
-      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-    </svg>
-  </button>
+    <!-- Header & Navigation -->
+    <header id="header">
+        <nav>
+            <div class="logo-container">
+                <img src="hrg-logo.png" alt="Harvest Realty LLC Logo">
+                <div class="logo-text">
+                    <h1>Harvest Realty LLC</h1>
+                    <p>PA & NJ Experts</p>
+                </div>
+            </div>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+                ☰
+            </button>
+            <div class="nav-links" id="navLinks">
+                <a href="#home">Home</a>
+                <a href="#services">Services</a>
+                <a href="#properties">Properties</a>
+                <a href="#team">Our Team</a>
+                <a href="partners.html">Partners</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+                <a href="tenants.html" class="tenant-link">Are you a Tenant?</a>
+                <a href="#" class="cta-button" onclick="openModal('schedule-modal')">Schedule Consultation</a>
+            </div>
+        </nav>
+    </header>
 
-  <header>
-    <div class="container">
-      <div class="nav">
-        <a href="#" class="brand">
-          <div class="logo-container">
-            <img id="logoImg" src="chronos-logo-dark.svg" alt="Chronos Media" />
-          </div>
-          <div class="brand-text">
-            <span>Capturing the Agapē Moments</span>
-          </div>
-        </a>
-
-        <div class="nav-wrapper">
-          <button id="menuToggle" class="menu-toggle" aria-label="Menu">☰</button>
-
-          <nav id="mainNav">
-            <a href="#services">Services</a>
-            <a href="#watch">Watch</a>
-            <a href="#about">About</a>
-            <a href="#workflows">Workflows</a>
-            <a href="#payment">Payment</a>
-            <a href="#contact">Contact</a>
-          </nav>
-
-          <div class="cta">
-            <a id="liveBtn" class="live-btn offline" href="#watch">
-              <span class="live-dot"></span>
-              <span>Offline</span>
-            </a>
-          </div>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h2>Find Your Perfect Home</h2>
+            <p class="hero-subtitle">Serving Philadelphia, Bucks, and Montgomery Counties</p>
+            <div class="hero-buttons">
+                <a href="#properties" class="btn-primary">Browse Properties</a>
+                <a href="#contact" class="btn-secondary">Get In Touch</a>
+            </div>
         </div>
-      </div>
-    </div>
-  </header>
-
-  <main>
-    <!-- Hero -->
-    <section class="hero">
-      <div class="container">
-        <h1>
-          Professional<br>
-          <span class="highlight">Livestreaming Services</span>
-        </h1>
-        <p>
-          Bringing clarity and excellence to every stream. From Sunday services to special events, 
-          we capture moments that matter with reliability you can trust.
-        </p>
-        <div class="hero-actions">
-          <a href="#contact" class="btn primary">Get Started</a>
-          <a href="#watch" class="btn">Watch Live</a>
-        </div>
-      </div>
     </section>
 
-    <!-- Services -->
-    <section id="services">
-      <div class="container">
-        <h2 class="section-title">Our Services</h2>
-        <p class="section-sub">
-          End-to-end production services designed for churches, conferences, and community events.
-        </p>
-
+    <!-- Services Section -->
+    <section class="services fade-in" id="services">
+        <div class="section-header">
+            <div class="section-tag">What We Offer</div>
+            <h2>Our Services</h2>
+            <p>Comprehensive real estate solutions tailored to your needs</p>
+        </div>
         <div class="services-grid">
-          <div class="service-card">
-            <div class="service-icon">📡</div>
-            <h3>Live Streaming</h3>
-            <p>
-              Professional YouTube livestreaming with reliable quality. We handle the technical details 
-              so you can focus on your event.
-            </p>
-            <div class="side-note">
-              Includes encoder setup, stream monitoring, and backup recording.
+            <div class="service-card">
+                <div class="service-icon">🏡</div>
+                <h3>Home Buying</h3>
+                <p>Expert guidance through every step of your home purchase journey. We help you find the perfect property that matches your lifestyle and budget.</p>
             </div>
-          </div>
-
-          <div class="service-card">
-            <div class="service-icon">📱</div>
-            <h3>Mobile Production Setup</h3>
-            <p>
-              Flexible, portable streaming solutions that adapt to any venue. Quick setup and teardown 
-              for events of all sizes.
-            </p>
-            <div class="side-note">
-              Professional mobile equipment designed for church and event environments.
+            <div class="service-card">
+                <div class="service-icon">💼</div>
+                <h3>Home Selling</h3>
+                <p>We provide expert guidance in maximizing your home's value with strategic marketing and skilled negotiation. We guide you through a smooth, stress-free process—receiving a strong offer with a profitable closing.</p>
             </div>
-          </div>
-
-          <div class="service-card">
-            <div class="service-icon">🎓</div>
-            <h3>Church Training</h3>
-            <p>
-              Comprehensive training programs to equip your team with livestreaming skills and best practices.
-            </p>
-            <div class="side-note">
-              Hands-on training for volunteers and staff to run professional streams independently.
+            <div class="service-card">
+                <div class="service-icon">🔑</div>
+                <h3>Rental Homes</h3>
+                <p>Find excellent and well maintained rental homes among our available properties. We manage the entire process from listing to lease signing, we will be with you all the way to the end of your stay.</p>
             </div>
-          </div>
-
-          <div class="service-card">
-            <div class="service-icon">🎚️</div>
-            <h3>Audio Integration</h3>
-            <p>
-              Crystal-clear sound mixing that balances house audio with optimal stream levels.
-            </p>
-            <div class="side-note">
-              Works with existing sound systems and provides independent stream mix.
+            <div class="service-card">
+                <div class="service-icon">🏖️</div>
+                <h3>Vacation Homes</h3>
+                <p>Find excellent and well maintained vacation homes among our available properties. We manage the entire process from lease signing all the way to end of your stay.</p>
             </div>
-          </div>
-
-          <div class="service-card">
-            <div class="service-icon">💾</div>
-            <h3>Recording & Archives</h3>
-            <p>
-              Local backup recording and cloud archiving for every service and event.
-            </p>
-            <div class="side-note">
-              Automatic uploads and long-term storage solutions for your content.
+            <div class="service-card">
+                <div class="service-icon">📊</div>
+                <h3>Property Management</h3>
+                <p>Thorough property management services to safeguard your assets and enhance returns. We protect your investment and maximize returns.</p>
             </div>
-          </div>
-
-          <div class="service-card">
-            <div class="service-icon">🎨</div>
-            <h3>Graphics & Branding</h3>
-            <p>
-              Custom lower-thirds, titles, announcements, and on-screen graphics.
-            </p>
-            <div class="side-note">
-              Matches your church or organization's visual identity perfectly.
+            <div class="service-card">
+                <div class="service-icon">🤝</div>
+                <h3>Consultation</h3>
+                <p>Extensive real estate guidance to ensure informed investment decisions. Detailed market analysis and property appraisals to assist in making wise real estate choices. Personalized real estate advice for investors aiming for intelligent property investments.</p>
             </div>
-          </div>
         </div>
-      </div>
     </section>
 
-    <!-- Watch -->
-    <section id="watch">
-      <div class="container">
-        <h2 class="section-title">Watch</h2>
-        <p class="section-sub">
-          When we're live, the player below will automatically load the current livestream.
-        </p>
-
-        <div class="panel">
-          <div class="yt-wrap">
-            <iframe
-              id="ytLiveFrame"
-              src="https://www.youtube.com/embed/@ChronosMediaLive/live"
-              title="Chronos Media Live"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen>
-            </iframe>
-          </div>
-          <div class="small" style="padding:16px 0 0;">
-            If offline, the player may show a placeholder until the broadcast starts.
-          </div>
+    <!-- Property Search Section -->
+    <section class="property-search">
+        <div class="search-container">
+            <div class="section-header">
+                <div class="section-tag" style="color: var(--gold);">Find Your Dream Home</div>
+                <h2 style="color: var(--white);">Property Search</h2>
+                <p style="color: rgba(255,255,255,0.9);">Search properties in Philadelphia, Bucks, and Montgomery Counties</p>
+            </div>
+            <div class="search-box">
+                <form class="search-form" id="propertySearchForm">
+                    <div class="form-group">
+                        <label>Property Type</label>
+                        <select name="type">
+                            <option value="">All Types</option>
+                            <option value="house">House</option>
+                            <option value="apartment">Apartment</option>
+                            <option value="condo">Condo</option>
+                            <option value="commercial">Commercial</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Location</label>
+                        <select name="location">
+                            <option value="">All Locations</option>
+                            <option value="philadelphia">Philadelphia, PA</option>
+                            <option value="delaware">Delaware County, PA</option>
+                            <option value="bucks">Bucks County, PA</option>
+                            <option value="montgomery">Montgomery County, PA</option>
+                            <option value="new-jersey">New Jersey</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Min Price</label>
+                        <input type="number" name="minPrice" placeholder="$0">
+                    </div>
+                    <div class="form-group">
+                        <label>Max Price</label>
+                        <input type="number" name="maxPrice" placeholder="No limit">
+                    </div>
+                    <div class="form-group">
+                        <label>Bedrooms</label>
+                        <select name="bedrooms">
+                            <option value="">Any</option>
+                            <option value="1">1+</option>
+                            <option value="2">2+</option>
+                            <option value="3">3+</option>
+                            <option value="4">4+</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Bathrooms</label>
+                        <select name="bathrooms">
+                            <option value="">Any</option>
+                            <option value="1">1+</option>
+                            <option value="2">2+</option>
+                            <option value="3">3+</option>
+                        </select>
+                    </div>
+                </form>
+                <button class="search-button" onclick="searchProperties()">Search Properties</button>
+            </div>
         </div>
-      </div>
     </section>
 
-    <!-- About -->
-    <section id="about">
-      <div class="container">
-        <h2 class="section-title">About Us</h2>
-        <p class="section-sub">
-          Chronos Media exists to capture and stream meaningful moments with professionalism and care.
-          From Sunday services to special events, we help make each moment clear, memorable, and shareable.
-        </p>
-
-        <div class="about-grid">
-          <div class="card">
-            <div class="person">
-              <div class="avatar">SJ</div>
-              <div>
-                <h3>Steve Johnson</h3>
-                <div class="role">Co-Founder</div>
-                <p class="bio">
-                  Focused on smooth live productions, strong audio/visual quality, and consistent stream reliability.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="person">
-              <div class="avatar">ZC</div>
-              <div>
-                <h3>Zachary Chandapillai</h3>
-                <div class="role">Co-Founder</div>
-                <p class="bio">
-                  Dedicated to creative execution, attention to detail, and ensuring every event is captured with excellence.
-                </p>
-              </div>
-            </div>
-          </div>
+    <!-- Featured Properties Section -->
+    <section class="featured-properties fade-in" id="properties">
+        <div class="section-header">
+            <div class="section-tag">Our Portfolio</div>
+            <h2>Featured Properties</h2>
+            <p>Explore our current listings and recently sold properties in Philadelphia</p>
         </div>
-      </div>
+        <div class="properties-grid" id="propertiesGrid">
+            <!-- Properties will be loaded dynamically -->
+        </div>
     </section>
 
-    <!-- Workflows -->
-    <section id="workflows">
-      <div class="container">
-        <h2 class="section-title">Church & Event Workflows</h2>
-        <p class="section-sub">
-          Built for Sunday services, conferences, weddings, and community events—so the team knows exactly what's happening before, during, and after the stream.
-        </p>
-
-        <div style="margin-bottom:24px;">
-          <span class="pill">✅ Pre-service checklist</span>
-          <span class="pill">🎚️ Stream audio mix</span>
-          <span class="pill">📱 Mobile setup</span>
-          <span class="pill">🛟 Backup recording</span>
+    <!-- Team Section -->
+    <section class="team fade-in" id="team">
+        <div class="section-header">
+            <div class="section-tag">Meet Our Team</div>
+            <h2>Expert Real Estate Professionals</h2>
+            <p>Dedicated agents ready to help you find your perfect property</p>
         </div>
-
-        <div class="workflow-grid">
-          <div class="panel">
-            <h3>Standard Service Flow</h3>
-            <ul class="list">
-              <li><b>Pre-check (T-45)</b>: Audio levels, camera framing, lighting, network speed test.</li>
-              <li><b>Run of show</b>: Order of service, lower-thirds cues, scripture/lyrics timing.</li>
-              <li><b>Go-live (T-5)</b>: Start YouTube stream, monitor health, confirm audio meters.</li>
-              <li><b>During service</b>: Watch mix, scene changes, record locally as backup.</li>
-              <li><b>Post</b>: Archive upload, trim start/end for final edit.</li>
-            </ul>
-          </div>
-
-          <div class="panel">
-            <h3>What We Provide</h3>
-            <ul class="list">
-              <li>Professional mobile streaming equipment</li>
-              <li>Stream graphics / lower-thirds</li>
-              <li>YouTube livestream + onsite recording</li>
-              <li>Audio integration (house + stream mix)</li>
-              <li>Backup workflows (hotspot + local record)</li>
-              <li>Training for church volunteers and staff</li>
-            </ul>
-          </div>
+        <div class="team-grid">
+            <div class="agent-card">
+                <span class="agent-role">BROKER/OWNER</span>
+                <h3><a href="p.abraham.html" style="color: inherit; text-decoration: none;">Prasad Abraham</a></h3>
+                <div class="agent-contact">
+                    <div class="agent-contact-item">
+                        <span>📞</span>
+                        <a href="tel:215-519-4096">215-519-4096</a>
+                    </div>
+                    <div class="agent-contact-item">
+                        <span>📧</span>
+                        <a href="mailto:prasad@harvestrealty.llc">prasad@harvestrealty.llc</a>
+                    </div>
+                    <div class="agent-contact-item">
+                        <span>📍</span>
+                        <span>2481 Napfle Ave, Philadelphia, PA</span>
+                    </div>
+                </div>
+            </div>
+            <div class="agent-card">
+                <span class="agent-role">SALES AGENT - PA</span>
+                <h3><a href="j.abraham.html" style="color: inherit; text-decoration: none;">Jacob Abraham</a></h3>
+                <div class="agent-contact">
+                    <div class="agent-contact-item">
+                        <span>📞</span>
+                        <a href="tel:215-519-8916">215-519-8916</a>
+                    </div>
+                    <div class="agent-contact-item">
+                        <span>📧</span>
+                        <a href="mailto:jacob@harvestrealty.llc">jacob@harvestrealty.llc</a>
+                    </div>
+                    <div class="agent-contact-item">
+                        <span>📍</span>
+                        <span>2481 Napfle Ave, Philadelphia, PA</span>
+                    </div>
+                </div>
+            </div>
+            <div class="agent-card">
+                <span class="agent-role">SALES AGENT - PA</span>
+                <h3><a href="d.daniel.html" style="color: inherit; text-decoration: none;">Dyson Daniel</a></h3>
+                <div class="agent-contact">
+                    <div class="agent-contact-item">
+                        <span>📞</span>
+                        <a href="tel:267-290-0963">(267) 290-0963</a>
+                    </div>
+                    <div class="agent-contact-item">
+                        <span>📧</span>
+                        <a href="mailto:dyson@harvestrealty.llc">dyson@harvestrealty.llc</a>
+                    </div>
+                    <div class="agent-contact-item">
+                        <span>📍</span>
+                        <span>2481 Napfle Ave, Philadelphia, PA</span>
+                    </div>
+                </div>
+            </div>
+            <div class="agent-card">
+                <span class="agent-role">SALES AGENT</span>
+                <h3><a href="a.khan.html" style="color: inherit; text-decoration: none;">Abdullah Khan</a></h3>
+                <div class="agent-contact">
+                    <div class="agent-contact-item">
+                        <span>📞</span>
+                        <a href="tel:857-226-3031">857-226-3031</a>
+                    </div>
+                    <div class="agent-contact-item">
+                        <span>📧</span>
+                        <a href="mailto:abdullah@harvestrealty.llc">abdullah@harvestrealty.llc</a>
+                    </div>
+                    <div class="agent-contact-item">
+                        <span>📍</span>
+                        <span>2481 Napfle Ave, Philadelphia, PA</span>
+                    </div>
+                </div>
+            </div>
+            <div class="agent-card">
+                <span class="agent-role">SALES AGENT</span>
+                <h3><a href="t.thomas.html" style="color: inherit; text-decoration: none;">Thomas Thomas</a></h3>
+                <div class="agent-contact">
+                    <div class="agent-contact-item">
+                        <span>📞</span>
+                        <a href="tel:215-519-3101">215-519-3101</a>
+                    </div>
+                    <div class="agent-contact-item">
+                        <span>📧</span>
+                        <a href="mailto:thomas@harvestrealty.llc">thomas@harvestrealty.llc</a>
+                    </div>
+                    <div class="agent-contact-item">
+                        <span>📍</span>
+                        <span>2481 Napfle Ave, Philadelphia, PA</span>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </section>
 
-    <!-- Payment -->
-    <section id="payment">
-      <div class="container">
-        <h2 class="section-title">Payment Options</h2>
-        <p class="section-sub">
-          Quick and secure payment options for your convenience
-        </p>
-
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; margin-top: 48px;">
-          <!-- PayPal -->
-          <div class="card" style="text-align: center; padding: 40px;">
-            <div style="width: 80px; height: 80px; margin: 0 auto 24px; background: linear-gradient(135deg, #0070BA, #1546A0); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 24px rgba(0,112,186,.3);">
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="white">
-                <path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.023.143-.047.288-.077.437-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106zm14.146-14.42a3.35 3.35 0 0 0-.607-.541c-.013.076-.026.175-.041.254-.93 4.778-4.005 7.201-9.138 7.201h-2.19a.563.563 0 0 0-.556.479l-1.187 7.527h-.506l-.24 1.516a.56.56 0 0 0 .554.647h3.882c.46 0 .85-.334.922-.788.06-.26.76-4.852.997-6.326.076-.456.466-.788.922-.788h.58c3.76 0 6.705-1.528 7.565-5.946.285-1.42.025-2.607-.805-3.435z"/>
-              </svg>
+    <!-- About Section -->
+    <section class="about fade-in" id="about">
+        <div class="about-content">
+            <div class="about-text">
+                <h2>About Harvest Realty LLC</h2>
+                <p>For over a decade, Harvest Realty LLC has been the trusted name in real estate across Pennsylvania and New Jersey. Our commitment to excellence and faith-based service has helped thousands of families find their dream homes.</p>
+                <p>We combine local market expertise with innovative technology to provide unparalleled service to our clients. Whether you're buying, selling, or renting, our experienced team is dedicated to making your real estate journey smooth and successful.</p>
+                <div class="about-address">
+                    <strong>📍 Office Location</strong>
+                    2481 Napfle Ave<br>
+                    Philadelphia, PA 19152<br>
+                    <br>
+                    <strong>📞 Main Office</strong>
+                    267-900-8011
+                </div>
+                <div class="about-stats">
+                    <div class="stat">
+                        <span class="stat-number">10+</span>
+                        <span class="stat-label">Properties Sold</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">98%</span>
+                        <span class="stat-label">Client Satisfaction</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">15+</span>
+                        <span class="stat-label">Years Experience</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">3</span>
+                        <span class="stat-label">Active Listings</span>
+                    </div>
+                </div>
             </div>
-            <h3 style="margin-bottom: 16px; font-size: 24px;">PayPal</h3>
-            <p style="color: var(--muted); margin-bottom: 24px;">Fast and secure payments with PayPal</p>
-            <a href="https://www.paypal.com/ncp/payment/949ANP6KRAFYG" 
-               target="_blank" 
-               rel="noopener noreferrer"
-               class="btn primary" 
-               style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 14px 32px; text-decoration: none; border-radius: 12px; background: linear-gradient(135deg, rgba(33,181,255,.25), rgba(47,107,255,.2)); border: 1px solid rgba(33,181,255,.3); box-shadow: 0 8px 24px rgba(33,181,255,.25); font-weight: 700; transition: all 0.2s ease;">
-              Pay with PayPal
-            </a>
-          </div>
-
-          <!-- Venmo -->
-          <div class="card" style="text-align: center; padding: 40px;">
-            <div style="width: 80px; height: 80px; margin: 0 auto 24px; overflow: hidden; border-radius: 50%; box-shadow: 0 8px 24px rgba(0,140,255,.3);">
-              <img src="venmo-logo.png" alt="Venmo" style="width: 100%; height: 100%; object-fit: cover;">
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1973" alt="Harvest Realty Team">
             </div>
-            <h3 style="margin-bottom: 16px; font-size: 24px;">Venmo</h3>
-            <p style="color: var(--muted); margin-bottom: 24px;">Quick mobile payments with Venmo</p>
-            <a href="https://venmo.com/code?user_id=4506604401591918820&created=1768042925.044273&printed=1" 
-               target="_blank" 
-               rel="noopener noreferrer"
-               class="btn primary" 
-               style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 14px 32px; text-decoration: none; border-radius: 12px; background: linear-gradient(135deg, rgba(33,181,255,.25), rgba(47,107,255,.2)); border: 1px solid rgba(33,181,255,.3); box-shadow: 0 8px 24px rgba(33,181,255,.25); font-weight: 700; transition: all 0.2s ease;">
-              Pay with Venmo
-            </a>
-          </div>
         </div>
-
-        <div style="text-align: center; margin-top: 48px; padding: 24px; background: var(--panel); border: 1px solid var(--line); border-radius: 16px;">
-          <p style="color: var(--muted); margin: 0;">
-            <strong>Need help?</strong> Contact us at <a href="mailto:info@chronosmedia.to" style="color: var(--accent);">info@chronosmedia.to</a> or call <a href="tel:+12675350921" style="color: var(--accent);">(267) 535-0921</a>
-          </p>
-        </div>
-      </div>
     </section>
 
-    <!-- Contact -->
-    <section id="contact">
-      <div class="container">
-        <h2 class="section-title">Contact Us</h2>
-        <p class="section-sub">
-          Tell us about your event—date, location, expected audience, and what you need (livestreaming, recording, audio support, full production).
-        </p>
-
-        <div class="panel">
-          <div class="contact-wrap">
-            <div class="card">
-              <h3>Get in Touch</h3>
-              <p style="margin:0 0 20px; color: var(--muted);">
-                Email us and we'll respond as soon as possible.
-              </p>
-
-              <p style="margin:0 0 12px; font-weight:700; font-size: 16px;">
-                📧 <a href="mailto:info@chronosmedia.to" onclick="gtag('event', 'click', {'event_category': 'Contact', 'event_label': 'Email Click'});">info@chronosmedia.to</a>
-              </p>
-
-              <p style="margin:0; font-weight:700; font-size: 16px;">
-                📞 <a href="tel:+12675350921" onclick="gtag('event', 'click', {'event_category': 'Contact', 'event_label': 'Phone Click'});">(267) 535-0921</a>
-              </p>
-
-              <p class="small">
-                Suggested subject: "Livestream request — [Event Name]"
-              </p>
-            </div>
-
-            <div class="card">
-              <h3>Quick Contact</h3>
-              <p style="margin:0 0 20px; color:var(--muted);">
-                Click the button below to open your email client with a pre-formatted message.
-              </p>
-              <a class="btn primary" href="/cdn-cgi/l/email-protection#b3daddd5dcf3d0dbc1dcdddcc0ded6d7dad29dc7dc8cc0c6d1d9d6d0c78effdac5d6c0c7c1d6d2de968183e1d6c2c6d6c0c795d1dcd7ca8efbda968183f0dbc1dcdddcc0968183fed6d7dad2968183c7d6d2de9681f09683f29683f2fa94de968183daddc7d6c1d6c0c7d6d7968183dadd968183cadcc6c1968183dfdac5d6c0c7c1d6d2dedaddd4968183c0d6c1c5dad0d6c09d9683f29683f2f6c5d6ddc7968183d7d6c7d2dadfc09680f29683f29e968183f7d2c7d69680f29681839683f29e968183ffdcd0d2c7dadcdd9680f29681839683f29e968183e7cac3d6968183dcd5968183d6c5d6ddc79680f29681839683f29e968183f6cbc3d6d0c7d6d7968183d2c6d7dad6ddd0d69680f29681839683f29e968183e0d6c1c5dad0d6c0968183ddd6d6d7d6d79680f29681839683f29683f2e3dfd6d2c0d6968183dfd6c7968183ded6968183d8dddcc4968183cadcc6c1968183d2c5d2dadfd2d1dadfdac7ca968183d2ddd7968183c3c1dad0daddd49d9683f29683f2e7dbd2ddd8968183cadcc692" onclick="gtag('event', 'click', {'event_category': 'Contact', 'event_label': 'Send Email Button'});">
-                Send Email
-              </a>
-            </div>
-          </div>
+    <!-- Contact Section -->
+    <section class="contact fade-in" id="contact">
+        <div class="section-header">
+            <div class="section-tag">Get In Touch</div>
+            <h2>Contact Us</h2>
+            <p>Ready to start your real estate journey? We're here to help</p>
         </div>
-      </div>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Let's Connect</h3>
+                <p>Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <div class="contact-item-icon">📍</div>
+                        <div>
+                            <strong>Service Areas</strong><br>
+                            Pennsylvania & New Jersey
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-item-icon">🕐</div>
+                        <div>
+                            <strong>Office Hours</strong><br>
+                            Monday-Saturday: By Appointment<br>
+                            Sunday: By Appointment (Available after 1pm)
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contact Card -->
+            <div class="contact-card-wrapper">
+                <div class="contact-card">
+                    <h3>Get In Touch</h3>
+                    <p>Reach out to us directly</p>
+                    
+                    <a href="mailto:contact@harvestrealty.llc?subject=Real%20Estate%20Inquiry&body=Hello%20Harvest%20Realty%20Team%2C%0A%0AI%20am%20interested%20in%3A%0A%0A%5B%20%5D%20Buying%20a%20Home%0A%5B%20%5D%20Selling%20a%20Home%0A%5B%20%5D%20Rental%20Properties%0A%5B%20%5D%20Property%20Management%0A%5B%20%5D%20Other%20Services%0A%0APlease%20contact%20me%20at%20your%20earliest%20convenience.%0A%0AName%3A%20%0APhone%3A%20%0APreferred%20Contact%20Method%3A%20%0A%0AAdditional%20Details%3A%0A%0A%0AThank%20you!" class="contact-card-button">
+                        <span class="contact-card-icon">📧</span>
+                        <div class="contact-card-text">
+                            <strong>Email Us</strong>
+                            <span>contact@harvestrealty.llc</span>
+                        </div>
+                    </a>
+                    
+                    <a href="sms:2155194096" class="contact-card-button">
+                        <span class="contact-card-icon">💬</span>
+                        <div class="contact-card-text">
+                            <strong>Text Us</strong>
+                            <span>215-519-4096</span>
+                        </div>
+                    </a>
+                    
+                    <a href="tel:2155194096" class="contact-card-button">
+                        <span class="contact-card-icon">📞</span>
+                        <div class="contact-card-text">
+                            <strong>Call Us</strong>
+                            <span>215-519-4096</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
     </section>
 
+    <!-- Footer -->
     <footer>
-      <div class="container">
-        <!-- Social Media Icons -->
-        <div style="text-align: center; margin-bottom: 30px;">
-          <h3 style="color: var(--text); font-size: 20px; font-weight: 700; margin-bottom: 20px;">Connect With Us</h3>
-          <div style="display: flex; justify-content: center; gap: 20px; margin-top: 20px; flex-wrap: wrap;">
-            <!-- Facebook -->
-            <a href="https://www.facebook.com/ChronosMediaLive" target="_blank" rel="noopener noreferrer" 
-               style="display: flex; flex-direction: column; align-items: center; gap: 8px; transition: transform 0.2s ease; text-decoration: none;"
-               onmouseover="this.style.transform='translateY(-4px)'" 
-               onmouseout="this.style.transform='translateY(0)'">
-              <div style="width: 60px; height: 60px; border-radius: 50%; background: #1877F2; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 20px rgba(0,0,0,.25);">
-                <svg width="30" height="30" viewBox="0 0 24 24" fill="white">
-                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                </svg>
-              </div>
-            </a>
-
-            <!-- YouTube -->
-            <a href="https://www.youtube.com/@ChronosMediaLive" target="_blank" rel="noopener noreferrer"
-               style="display: flex; flex-direction: column; align-items: center; gap: 8px; transition: transform 0.2s ease; text-decoration: none;"
-               onmouseover="this.style.transform='translateY(-4px)'" 
-               onmouseout="this.style.transform='translateY(0)'">
-              <div style="width: 60px; height: 60px; border-radius: 50%; background: #FF0000; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 20px rgba(0,0,0,.25);">
-                <svg width="30" height="30" viewBox="0 0 24 24" fill="white">
-                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                </svg>
-              </div>
-            </a>
-
-            <!-- Instagram -->
-            <a href="https://www.instagram.com/chronosmedialive/" target="_blank" rel="noopener noreferrer"
-               style="display: flex; flex-direction: column; align-items: center; gap: 8px; transition: transform 0.2s ease; text-decoration: none;"
-               onmouseover="this.style.transform='translateY(-4px)'" 
-               onmouseout="this.style.transform='translateY(0)'">
-              <div style="width: 60px; height: 60px; border-radius: 50%; background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 20px rgba(0,0,0,.25);">
-                <svg width="30" height="30" viewBox="0 0 24 24" fill="white">
-                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                </svg>
-              </div>
-            </a>
-
-            <!-- WhatsApp -->
-            <a href="https://api.whatsapp.com/send?phone=12675350921" target="_blank" rel="noopener noreferrer"
-               style="display: flex; flex-direction: column; align-items: center; gap: 8px; transition: transform 0.2s ease; text-decoration: none;"
-               onmouseover="this.style.transform='translateY(-4px)'" 
-               onmouseout="this.style.transform='translateY(0)'">
-              <div style="width: 60px; height: 60px; border-radius: 50%; background: #25D366; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 20px rgba(0,0,0,.25);">
-                <svg width="30" height="30" viewBox="0 0 24 24" fill="white">
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-                </svg>
-              </div>
-            </a>
-          </div>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Harvest Realty LLC</h4>
+                <p>Your trusted partner in finding the perfect property. Serving Pennsylvania and New Jersey with excellence.</p>
+                <p style="margin-top: 1rem;">
+                    <strong>Main Office:</strong> 267-900-8011<br>
+                    2481 Napfle Ave, Philadelphia, PA 19152
+                </p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <p><a href="#home">Home</a></p>
+                <p><a href="#services">Services</a></p>
+                <p><a href="#properties">Properties</a></p>
+                <p><a href="#team">Our Team</a></p>
+                <p><a href="#about">About Us</a></p>
+            </div>
+            <div class="footer-section">
+                <h4>Our Agents</h4>
+                <p><strong>Prasad Abraham</strong> - Broker/Owner<br>215-519-4096</p>
+                <p><strong>Jacob Abraham</strong> - Sales Agent<br>215-519-8916</p>
+                <p><strong>Dyson Daniel</strong> - Sales Agent<br>(267) 290-0963</p>
+                <p><strong>Abdullah Khan</strong> - Sales Agent<br>857-226-3031</p>
+                <p><strong>Thomas Thomas</strong> - Sales Agent<br>215-519-3101</p>
+            </div>
+            <div class="footer-section">
+                <h4>Service Areas</h4>
+                <p>Philadelphia County, PA</p>
+                <p>Bucks County, PA</p>
+                <p>Montgomery County, PA</p>
+                <p>New Jersey</p>
+            </div>
         </div>
-        
-        <div style="border-top: 1px solid var(--line); padding-top: 20px;">
-          © 2026 Chronous Media Live LLC • Capturing the Agapē Moments
+        <div class="footer-bottom">
+            <p>&copy; 2026 Harvest Realty LLC. All rights reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Use</a></p>
         </div>
-      </div>
     </footer>
-  </main>
 
-  <script>
-    // Wait for DOM to be fully loaded
-    document.addEventListener('DOMContentLoaded', function() {
-      // Logo switching for theme toggle
-      const logoImg = document.getElementById("logoImg");
-      // Theme Toggle - FIXED AND WORKING
-      const themeToggle = document.getElementById("themeToggle");
-      const html = document.documentElement;
-      const sunIcon = document.getElementById("sunIcon");
-      const moonIcon = document.getElementById("moonIcon");
+    <!-- Schedule Modal -->
+    <div id="schedule-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('schedule-modal')">&times;</span>
+            <h2 style="color: var(--burgundy); margin-bottom: 1rem;">Schedule an Appointment</h2>
+            <p style="margin-bottom: 1.5rem;">Choose the type of appointment that best fits your needs:</p>
+            <div style="display: flex; flex-direction: column; gap: 1rem;">
+                <a href="https://cal.com/harvestrealtyllc/propertyshowing" target="_blank" class="cal-booking-btn" style="display: flex; align-items: center; gap: 1rem; padding: 1.5rem; background: var(--cream); border-radius: 15px; text-decoration: none; border: 2px solid transparent; transition: all 0.3s ease;">
+                    <span style="font-size: 2rem;">🏠</span>
+                    <div>
+                        <strong style="color: var(--burgundy); font-size: 1.1rem;">Property Showing</strong>
+                        <p style="color: var(--charcoal); margin: 0; font-size: 0.9rem;">30 minutes - Tour a property</p>
+                    </div>
+                </a>
+                <a href="https://cal.com/harvestrealtyllc/buyerconsultation" target="_blank" class="cal-booking-btn" style="display: flex; align-items: center; gap: 1rem; padding: 1.5rem; background: var(--cream); border-radius: 15px; text-decoration: none; border: 2px solid transparent; transition: all 0.3s ease;">
+                    <span style="font-size: 2rem;">🔑</span>
+                    <div>
+                        <strong style="color: var(--burgundy); font-size: 1.1rem;">Buyer Consultation</strong>
+                        <p style="color: var(--charcoal); margin: 0; font-size: 0.9rem;">1 hour - Phone call or in-person meeting</p>
+                    </div>
+                </a>
+                <a href="https://cal.com/harvestrealtyllc/seller-consultation" target="_blank" class="cal-booking-btn" style="display: flex; align-items: center; gap: 1rem; padding: 1.5rem; background: var(--cream); border-radius: 15px; text-decoration: none; border: 2px solid transparent; transition: all 0.3s ease;">
+                    <span style="font-size: 2rem;">💰</span>
+                    <div>
+                        <strong style="color: var(--burgundy); font-size: 1.1rem;">Seller Consultation</strong>
+                        <p style="color: var(--charcoal); margin: 0; font-size: 0.9rem;">1 hour - Phone call or in-person meeting</p>
+                    </div>
+                </a>
+            </div>
+            <p style="margin-top: 1.5rem; text-align: center; color: var(--charcoal); opacity: 0.7; font-size: 0.9rem;">
+                Or visit <a href="https://cal.com/harvestrealtyllc" target="_blank" style="color: var(--burgundy);">cal.com/harvestrealtyllc</a> to see all available times
+            </p>
+        </div>
+    </div>
 
-      // Load saved theme or default to dark
-      const savedTheme = localStorage.getItem("theme") || "dark";
-      html.setAttribute("data-theme", savedTheme);
-      updateThemeIcons(savedTheme);
-      updateLogo(savedTheme);
+    <!-- Property Detail Modal -->
+    <div id="property-modal" class="modal">
+        <div class="modal-content" style="max-width: 500px;">
+            <span class="close" onclick="closeModal('property-modal')">&times;</span>
+            <div id="property-modal-content">
+                <!-- Content will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
 
-      if (themeToggle) {
-        themeToggle.addEventListener("click", () => {
-          const currentTheme = html.getAttribute("data-theme");
-          const newTheme = currentTheme === "dark" ? "light" : "dark";
-          
-          html.setAttribute("data-theme", newTheme);
-          localStorage.setItem("theme", newTheme);
-          updateThemeIcons(newTheme);
-          updateLogo(newTheme);
-        });
-      }
-
-      function updateThemeIcons(theme) {
-        if (sunIcon && moonIcon) {
-          if (theme === "dark") {
-            moonIcon.style.display = "block";
-            sunIcon.style.display = "none";
-          } else {
-            moonIcon.style.display = "none";
-            sunIcon.style.display = "block";
-          }
-        }
-      }
-
-      function updateLogo(theme) {
-        if (logoImg) {
-          logoImg.src = theme === "dark" ? "chronos-logo-dark.svg" : "chronos-logo-light.svg";
-        }
-      }
-
-      // Mobile menu toggle
-      const menuToggle = document.getElementById("menuToggle");
-      const mainNav = document.getElementById("mainNav");
-      
-      if (menuToggle && mainNav) {
-        menuToggle.addEventListener("click", function() {
-          mainNav.classList.toggle("active");
-        });
-
-        // Close menu when clicking a link
-        document.querySelectorAll("#mainNav a").forEach(link => {
-          link.addEventListener("click", function() {
-            mainNav.classList.remove("active");
-          });
-        });
-      }
-
-      // Live status check
-      const liveBtn = document.getElementById("liveBtn");
-      
-      function checkLiveStatus() {
-        fetch("https://www.youtube.com/channel/UCYnzUJwSwYQdZBBFx4sKhDQ/live")
-          .then(() => {
-            if (liveBtn) {
-              liveBtn.classList.remove("offline");
-              liveBtn.classList.add("live");
-              liveBtn.querySelector("span:last-child").textContent = "Live Now";
+    <script>
+        // Real property data from MLS with actual listing photos
+        const properties = [
+            // Active Listings
+            {
+                title: "Land on N 5th St",
+                price: "$125,000",
+                location: "2456 N 5th St, Philadelphia, PA",
+                mls: "PAPH2527048",
+                beds: null,
+                baths: null,
+                type: "Land",
+                status: "Active",
+                image: "photos/2456-n-5th-st.jpg"
+            },
+            // Under Contract
+            {
+                title: "Duplex on E Tabor Rd",
+                price: "$244,900",
+                location: "565 E Tabor Rd, Philadelphia, PA",
+                mls: "PAPH2514428",
+                beds: null,
+                baths: null,
+                type: "Duplex",
+                status: "Under Contract",
+                image: "photos/565-e-tabor-rd.jpg"
+            },
+            {
+                title: "Home on Whitaker Ave",
+                price: "$259,900",
+                location: "7524 Whitaker Ave, Philadelphia, PA",
+                mls: "PAPH2518910",
+                beds: 3,
+                baths: 1,
+                type: "Residential",
+                status: "Under Contract",
+                image: "photos/7524-whitaker-ave.jpg"
+            },
+            // Recently Sold
+            {
+                title: "Duplex on Foster St",
+                price: "$256,000",
+                location: "515 Foster St, Philadelphia, PA",
+                mls: "PAPH2315284",
+                beds: null,
+                baths: null,
+                type: "Duplex",
+                status: "Sold",
+                image: "photos/515-foster-st.jpg"
+            },
+            {
+                title: "Home on Frontenac St",
+                price: "$310,000",
+                location: "8604 Frontenac St, Philadelphia, PA",
+                mls: "PAPH2348768",
+                beds: 3,
+                baths: 2,
+                type: "Residential",
+                status: "Sold",
+                image: "photos/8604-frontenac-st.jpg"
+            },
+            {
+                title: "Home on Lindsay St",
+                price: "$317,500",
+                location: "11011 Lindsay St, Philadelphia, PA",
+                mls: "PAPH2306862",
+                beds: 4,
+                baths: 1,
+                type: "Residential",
+                status: "Sold",
+                image: "photos/11011-lindsay-st.jpg"
+            },
+            {
+                title: "Home on Hendrix St",
+                price: "$325,000",
+                location: "664 Hendrix St, Philadelphia, PA",
+                mls: "PAPH2381180",
+                beds: 3,
+                baths: 1,
+                type: "Residential",
+                status: "Sold",
+                image: "photos/664-hendrix-st.jpg"
+            },
+            {
+                title: "Duplex on Langdon St",
+                price: "$462,500",
+                location: "8016 Langdon St, Philadelphia, PA",
+                mls: "PAPH2362214",
+                beds: null,
+                baths: null,
+                type: "Duplex",
+                status: "Sold",
+                image: "photos/8016-langdon-st.jpg"
+            },
+            {
+                title: "Home on Lockart Rd",
+                price: "$514,000",
+                location: "11991 Lockart Rd, Philadelphia, PA",
+                mls: "PAPH2375898",
+                beds: 4,
+                baths: 2,
+                type: "Residential",
+                status: "Sold",
+                image: "photos/11991-lockart-rd.jpg"
+            },
+            {
+                title: "Home on Kismet Rd",
+                price: "$569,000",
+                location: "586 Kismet Rd, Philadelphia, PA",
+                mls: "PAPH2465970",
+                beds: 5,
+                baths: 3,
+                type: "Residential",
+                status: "Sold",
+                image: "photos/586-kismet-rd.jpg"
+            },
+            {
+                title: "Home on Myrtle Ave",
+                price: "$605,000",
+                location: "315 Myrtle Ave, Morton, PA",
+                mls: "PADE2069112",
+                beds: 4,
+                baths: 3,
+                type: "Residential",
+                status: "Sold",
+                image: "photos/315-myrtle-ave.jpg"
+            },
+            // Rentals
+            {
+                title: "Office on Napfle St",
+                price: "$895/mo",
+                location: "2485 Napfle St, Philadelphia, PA",
+                mls: "PAPH2520522",
+                beds: null,
+                baths: null,
+                type: "Office",
+                status: "Sold",
+                image: "photos/2485-napfle-st.jpg"
+            },
+            {
+                title: "Home on Densmore Rd",
+                price: "$2,300/mo",
+                location: "419 Densmore Rd, Philadelphia, PA",
+                mls: "PAPH2533022",
+                beds: 3,
+                baths: 2,
+                type: "Rental",
+                status: "Sold",
+                image: "photos/419-densmore-rd.jpg"
+            },
+            {
+                title: "Home on Bustleton Ave",
+                price: "$3,000/mo",
+                location: "11059 Bustleton Ave, Philadelphia, PA",
+                mls: "PAPH2534602",
+                beds: 3,
+                baths: 3,
+                type: "Rental",
+                status: "Sold",
+                image: "photos/11059-bustleton-ave.jpg"
             }
-          })
-          .catch(() => {
-            if (liveBtn) {
-              liveBtn.classList.add("offline");
-              liveBtn.classList.remove("live");
-              liveBtn.querySelector("span:last-child").textContent = "Offline";
+        ];
+
+        // Load properties
+        function loadProperties() {
+            const grid = document.getElementById('propertiesGrid');
+            if (!grid) return;
+            
+            grid.innerHTML = '';
+            
+            properties.forEach(property => {
+                const card = document.createElement('div');
+                card.className = 'property-card';
+                
+                // Status badge HTML
+                let statusBadge = '';
+                if (property.status === 'Active') {
+                    statusBadge = '<span class="property-status status-active">Active</span>';
+                } else if (property.status === 'Under Contract') {
+                    statusBadge = '<span class="property-status status-pending">Under Contract</span>';
+                } else if (property.status === 'Sold') {
+                    statusBadge = '<span class="property-status status-sold">Sold</span>';
+                }
+                
+                // Features HTML (only show if beds/baths exist)
+                let featuresHTML = '';
+                if (property.beds || property.baths) {
+                    featuresHTML = `
+                        <div class="property-features">
+                            ${property.beds ? `<span>🛏️ ${property.beds} Beds</span>` : ''}
+                            ${property.baths ? `<span>🚿 ${property.baths} Baths</span>` : ''}
+                        </div>
+                    `;
+                } else if (property.type) {
+                    featuresHTML = `
+                        <div class="property-features">
+                            <span>📋 ${property.type}</span>
+                        </div>
+                    `;
+                }
+                
+                card.innerHTML = `
+                    ${statusBadge}
+                    <img src="${property.image}" alt="${property.title}" class="property-image" loading="lazy">
+                    <div class="property-info">
+                        <div class="property-price">${property.price}</div>
+                        <h3 class="property-title">${property.title}</h3>
+                        <div class="property-location">📍 ${property.location}</div>
+                        ${featuresHTML}
+                    </div>
+                `;
+                card.onclick = () => openPropertyModal(property);
+                grid.appendChild(card);
+            });
+        }
+
+        // Open property detail modal
+        function openPropertyModal(property) {
+            const addressForSearch = encodeURIComponent(property.location);
+            const modalContent = document.getElementById('property-modal-content');
+            
+            let featuresText = '';
+            if (property.beds && property.baths) {
+                featuresText = `<p style="color: var(--charcoal); margin: 0.5rem 0;">🛏️ ${property.beds} Beds &nbsp; 🚿 ${property.baths} Baths</p>`;
+            } else if (property.type) {
+                featuresText = `<p style="color: var(--charcoal); margin: 0.5rem 0;">📋 ${property.type}</p>`;
             }
-          });
-      }
-      
-      checkLiveStatus();
-      setInterval(checkLiveStatus, 60000);
-    });
-  </script>
+            
+            modalContent.innerHTML = `
+                <img src="${property.image}" alt="${property.title}" style="width: 100%; height: 200px; object-fit: cover; border-radius: 15px; margin-bottom: 1rem;">
+                <h2 style="color: var(--burgundy); margin-bottom: 0.5rem; font-size: 1.5rem;">${property.title}</h2>
+                <p style="color: var(--burgundy); font-size: 1.5rem; font-weight: 700; margin: 0.5rem 0;">${property.price}</p>
+                <p style="color: var(--charcoal); margin: 0.5rem 0;">📍 ${property.location}</p>
+                ${featuresText}
+                <p style="color: var(--charcoal); opacity: 0.7; font-size: 0.85rem; margin: 0.5rem 0;">MLS# ${property.mls}</p>
+                
+                <hr style="border: none; border-top: 1px solid var(--cream-dark); margin: 1.5rem 0;">
+                
+                <p style="color: var(--charcoal); font-weight: 600; margin-bottom: 1rem;">View this listing on:</p>
+                <div style="display: flex; justify-content: center; margin-bottom: 1.5rem;">
+                    <a href="https://www.zillow.com/homes/${addressForSearch}_rb/" target="_blank" title="Zillow" style="display: flex; align-items: center; justify-content: center; width: 60px; height: 60px; border-radius: 50%; text-decoration: none; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.15); overflow: hidden;">
+                        <img src="photos/zillow-logo.png" alt="Zillow" style="width: 100%; height: 100%; object-fit: cover;">
+                    </a>
+                </div>
+                
+                <a href="https://cal.com/harvestrealtyllc/propertyshowing" target="_blank" style="display: block; width: 100%; padding: 1rem; background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%); color: white; text-align: center; text-decoration: none; border-radius: 50px; font-weight: 600; transition: all 0.3s ease;">
+                    📅 Schedule a Showing
+                </a>
+            `;
+            
+            openModal('property-modal');
+        }
+
+        // Modal functions
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Close modal on outside click
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Search properties
+        function searchProperties() {
+            const form = document.getElementById('propertySearchForm');
+            if (!form) return;
+            
+            const formData = new FormData(form);
+            const propertyType = formData.get('type') || '';
+            const location = formData.get('location') || '';
+            const minPrice = parseFloat(formData.get('minPrice')) || 0;
+            const maxPrice = parseFloat(formData.get('maxPrice')) || Infinity;
+            const bedrooms = parseInt(formData.get('bedrooms')) || 0;
+            const bathrooms = parseInt(formData.get('bathrooms')) || 0;
+            
+            // Filter properties based on search criteria
+            let filteredProperties = properties.filter(property => {
+                // Property type filter
+                if (propertyType) {
+                    const typeMap = {
+                        'house': ['Residential'],
+                        'apartment': ['Duplex', 'Multi-Family', 'Rental'],
+                        'condo': ['Condo'],
+                        'commercial': ['Office', 'Commercial', 'Land']
+                    };
+                    const matchingTypes = typeMap[propertyType] || [];
+                    if (!matchingTypes.some(t => property.type?.includes(t))) {
+                        return false;
+                    }
+                }
+                
+                // Location filter
+                if (location) {
+                    const locationLower = property.location.toLowerCase();
+                    if (location === 'philadelphia' && !locationLower.includes('philadelphia')) {
+                        return false;
+                    }
+                    if (location === 'delaware' && !locationLower.includes('morton') && !locationLower.includes('delaware')) {
+                        return false;
+                    }
+                    if (location === 'bucks' && !locationLower.includes('bucks')) {
+                        return false;
+                    }
+                    if (location === 'montgomery' && !locationLower.includes('montgomery')) {
+                        return false;
+                    }
+                    if (location === 'new-jersey' && !locationLower.includes('nj') && !locationLower.includes('new jersey')) {
+                        return false;
+                    }
+                }
+                
+                // Price filter
+                const priceStr = property.price.replace(/[$,\/mo]/g, '');
+                const price = parseFloat(priceStr) || 0;
+                
+                if (minPrice > 0 && price < minPrice) {
+                    return false;
+                }
+                if (maxPrice < Infinity && price > maxPrice) {
+                    return false;
+                }
+                
+                // Bedrooms filter
+                if (bedrooms > 0 && (!property.beds || property.beds < bedrooms)) {
+                    return false;
+                }
+                
+                // Bathrooms filter
+                if (bathrooms > 0 && (!property.baths || property.baths < bathrooms)) {
+                    return false;
+                }
+                
+                return true;
+            });
+            
+            // Update the properties grid with filtered results
+            const grid = document.getElementById('propertiesGrid');
+            if (!grid) return;
+            
+            grid.innerHTML = '';
+            
+            if (filteredProperties.length === 0) {
+                grid.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
+                        <h3 style="color: var(--burgundy); margin-bottom: 1rem;">No properties found</h3>
+                        <p style="color: var(--charcoal); opacity: 0.7;">Try adjusting your search criteria</p>
+                        <button onclick="resetSearch()" style="margin-top: 1rem; padding: 0.75rem 1.5rem; background: var(--burgundy); color: white; border: none; border-radius: 50px; cursor: pointer; font-weight: 600;">Show All Properties</button>
+                    </div>
+                `;
+            } else {
+                filteredProperties.forEach(property => {
+                    const card = document.createElement('div');
+                    card.className = 'property-card';
+                    
+                    let statusBadge = '';
+                    if (property.status === 'Active') {
+                        statusBadge = '<span class="property-status status-active">Active</span>';
+                    } else if (property.status === 'Under Contract') {
+                        statusBadge = '<span class="property-status status-pending">Under Contract</span>';
+                    } else if (property.status === 'Sold') {
+                        statusBadge = '<span class="property-status status-sold">Sold</span>';
+                    }
+                    
+                    let featuresHTML = '';
+                    if (property.beds || property.baths) {
+                        featuresHTML = `
+                            <div class="property-features">
+                                ${property.beds ? `<span>🛏️ ${property.beds} Beds</span>` : ''}
+                                ${property.baths ? `<span>🚿 ${property.baths} Baths</span>` : ''}
+                            </div>
+                        `;
+                    } else if (property.type) {
+                        featuresHTML = `
+                            <div class="property-features">
+                                <span>📋 ${property.type}</span>
+                            </div>
+                        `;
+                    }
+                    
+                    card.innerHTML = `
+                        ${statusBadge}
+                        <img src="${property.image}" alt="${property.title}" class="property-image" loading="lazy">
+                        <div class="property-info">
+                            <div class="property-price">${property.price}</div>
+                            <h3 class="property-title">${property.title}</h3>
+                            <div class="property-location">📍 ${property.location}</div>
+                            ${featuresHTML}
+                        </div>
+                    `;
+                    card.onclick = () => openPropertyModal(property);
+                    grid.appendChild(card);
+                });
+            }
+            
+            // Scroll to properties section
+            const propertiesSection = document.getElementById('properties');
+            if (propertiesSection) {
+                propertiesSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+        
+        // Reset search and show all properties
+        function resetSearch() {
+            const form = document.getElementById('propertySearchForm');
+            if (form) form.reset();
+            loadProperties();
+        }
+
+        // Contact form submission
+        function initContactForm() {
+            const contactForm = document.getElementById('contactForm');
+            if (!contactForm) return;
+            
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form data
+                const formData = new FormData(this);
+                const data = Object.fromEntries(formData);
+                
+                console.log('Contact form submitted:', data);
+                
+                // In a real implementation, this would send the data to a server
+                alert('Thank you for your message! We will get back to you within 24 hours.');
+                
+                // Reset form
+                this.reset();
+            });
+        }
+
+        // Scroll animations
+        function initScrollAnimations() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const fadeIn = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            fadeElements.forEach(element => {
+                fadeIn.observe(element);
+            });
+        }
+
+        // Header scroll effect
+        function initHeaderScroll() {
+            const header = document.getElementById('header');
+            if (!header) return;
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 100) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+        }
+
+        // Smooth scroll for anchor links
+        function initSmoothScroll() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const href = this.getAttribute('href');
+                    
+                    // Skip if it's just "#" or if it's opening a modal
+                    if (href === '#' || this.onclick) {
+                        return;
+                    }
+                    
+                    e.preventDefault();
+                    
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        }
+
+        // Mobile menu toggle
+        function initMobileMenu() {
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            const navLinks = document.getElementById('navLinks');
+            
+            if (mobileMenuToggle) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    navLinks.classList.toggle('active');
+                    this.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+                });
+                
+                // Close menu when clicking on a link
+                const links = navLinks.querySelectorAll('a');
+                links.forEach(link => {
+                    link.addEventListener('click', function() {
+                        navLinks.classList.remove('active');
+                        mobileMenuToggle.textContent = '☰';
+                    });
+                });
+              }
+        }
+
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            loadProperties();
+            initContactForm();
+            initScrollAnimations();
+            initHeaderScroll();
+            initSmoothScroll();
+            initMobileMenu();
+        });
+    </script>
+
+    <!-- Floating Payment Button -->
+    <a href="pay.html" class="floating-payment-btn" title="Pay Rent">
+        💳 Payment
+    </a>
 </body>
 </html>

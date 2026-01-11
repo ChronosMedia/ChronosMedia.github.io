@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Partners | Harvest Realty LLC</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --burgundy: #8B2E2E;
+            --burgundy-dark: #6B1E1E;
+            --gold: #D4AF37;
+            --gold-dark: #B8941F;
+            --cream: #F5F1E8;
+            --charcoal: #2C2C2C;
+            --white: #FFFFFF;
+            --shadow: rgba(139, 46, 46, 0.15);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--cream);
+            color: var(--charcoal);
+            line-height: 1.6;
+        }
+        
+        /* Header - Homepage Style */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(245,241,232,0.95) 100%);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px var(--shadow);
+            transition: all 0.3s ease;
+        }
+        
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 3rem;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+        
+        .logo-container img {
+            height: 60px;
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo-container:hover img {
+            transform: scale(1.05);
+        }
+        
+        .logo-text h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            color: var(--burgundy);
+            margin-bottom: 0.2rem;
+        }
+        
+        .logo-text p {
+            font-size: 0.85rem;
+            color: var(--gold-dark);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--charcoal);
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--burgundy);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%);
+            color: var(--white);
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            margin-top: 80px;
+        }
+        
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+        
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+        
+        .partners-grid {
+            display: grid;
+            gap: 2rem;
+        }
+        
+        .partner-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px var(--shadow);
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            transition: transform 0.3s ease;
+        }
+        
+        .partner-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .partner-image {
+            width: 100%;
+            height: 100%;
+            min-height: 300px;
+            object-fit: cover;
+            background: var(--cream);
+        }
+        
+        .partner-image.contain {
+            object-fit: contain;
+            padding: 1rem;
+        }
+        
+        .partner-content {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .partner-badge {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--charcoal);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            width: fit-content;
+        }
+        
+        .partner-content h2 {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--burgundy);
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .partner-content h3 {
+            color: var(--charcoal);
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+        
+        .partner-content p {
+            margin-bottom: 1rem;
+            color: var(--charcoal);
+        }
+        
+        .partner-services {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        
+        .service-tag {
+            background: var(--cream);
+            color: var(--burgundy);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        .partner-contact {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--cream);
+        }
+        
+        .partner-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .partner-contact-item span {
+            font-size: 1.2rem;
+        }
+        
+        .partner-contact-item a {
+            color: var(--charcoal);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .partner-contact-item a:hover {
+            color: var(--burgundy);
+        }
+        
+        .btn-primary {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%);
+            color: var(--white);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            width: fit-content;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px var(--shadow);
+        }
+        
+        .btn-secondary {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--charcoal);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            margin-left: 0.5rem;
+            width: fit-content;
+        }
+        
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px var(--shadow);
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%);
+            color: var(--white);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+        
+        .cta-section h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .cta-section p {
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+        
+        .cta-section a {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--charcoal);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-section a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        footer {
+            background: var(--charcoal);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+        
+        footer a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+        
+        @media (max-width: 900px) {
+            .partner-card {
+                grid-template-columns: 1fr;
+            }
+            
+            .partner-image {
+                min-height: 250px;
+                max-height: 300px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .logo-container img {
+                height: 45px;
+            }
+            
+            .logo-text h1 {
+                font-size: 1.4rem;
+            }
+            
+            .logo-text p {
+                font-size: 0.7rem;
+            }
+            
+            .hero {
+                margin-top: 70px;
+                padding: 4rem 1.5rem 3rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .partner-content h2 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo-container">
+                <img src="photos/hrg-logo-email.png" alt="Harvest Realty LLC Logo">
+                <div class="logo-text">
+                    <h1>Harvest Realty LLC</h1>
+                    <p>PA & NJ Experts</p>
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#properties">Properties</a>
+                <a href="index.html#team">Our Team</a>
+                <a href="partners.html">Partners</a>
+                <a href="index.html#contact">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>🤝 Our Trusted Partners</h1>
+        <p>We've partnered with industry experts to provide you with comprehensive services for all your real estate needs. From financing to media services to catering, our partners are here to help.</p>
+    </section>
+
+    <main>
+        <div class="partners-grid">
+            
+            <!-- Johnson Zachariah - Lending Capital Group -->
+            <div class="partner-card">
+                <img src="photos/partner-lcg.jpg" alt="Johnson Zachariah - Lending Capital Group" class="partner-image contain">
+                <div class="partner-content">
+                    <span class="partner-badge">MORTGAGE PARTNER</span>
+                    <h2>Johnson Zachariah</h2>
+                    <h3>Lending Capital Group Inc.</h3>
+                    <p>Fast mortgage solutions with 7-day closings! Johnson specializes in home purchases and refinances across PA, NJ, and FL. Whether you're a first-time homebuyer or looking to refinance, he has the right product for you.</p>
+                    
+                    <div class="partner-services">
+                        <span class="service-tag">FHA Loans</span>
+                        <span class="service-tag">Conventional</span>
+                        <span class="service-tag">VA Loans</span>
+                        <span class="service-tag">USDA</span>
+                        <span class="service-tag">DSCR</span>
+                        <span class="service-tag">Foreign National</span>
+                        <span class="service-tag">Bank Statement</span>
+                    </div>
+                    
+                    <div class="partner-contact">
+                        <div class="partner-contact-item">
+                            <span>📞</span>
+                            <a href="tel:267-334-6885">267-334-6885</a>
+                        </div>
+                        <div class="partner-contact-item">
+                            <span>📧</span>
+                            <a href="mailto:jzachariah@lcgloans.com">jzachariah@lcgloans.com</a>
+                        </div>
+                        <div class="partner-contact-item">
+                            <span>🌐</span>
+                            <a href="https://lcgloans.com/jzachariah" target="_blank">lcgloans.com/jzachariah</a>
+                        </div>
+                        <div class="partner-contact-item">
+                            <span>🏢</span>
+                            <span>NMLS# 1231594 | Company NMLS# 1680087</span>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <a href="tel:267-334-6885" class="btn-primary">📞 Call Johnson</a>
+                        <a href="mailto:jzachariah@lcgloans.com" class="btn-secondary">📧 Email</a>
+                        <a href="https://harvestrealtyllc.mortgages" target="_blank" class="btn-secondary">🔗 Learn More</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Chronos Media Live LLC -->
+            <div class="partner-card">
+                <img src="photos/partner-chronos.png" alt="Chronos Media Live LLC" class="partner-image contain" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);">
+                <div class="partner-content">
+                    <span class="partner-badge">MEDIA PARTNER</span>
+                    <h2>Chronos Media Live LLC</h2>
+                    <h3>Professional Media & Technology Services</h3>
+                    <p>Full-service media production company specializing in livestreaming, audio production, photography, and web design. From property videos to website development, Chronos Media delivers professional results.</p>
+                    
+                    <div class="partner-services">
+                        <span class="service-tag">Livestreaming</span>
+                        <span class="service-tag">Audio Production</span>
+                        <span class="service-tag">Photography</span>
+                        <span class="service-tag">Web Design</span>
+                        <span class="service-tag">Video Production</span>
+                        <span class="service-tag">Graphic Design</span>
+                    </div>
+                    
+                    <div class="partner-contact">
+                        <div class="partner-contact-item">
+                            <span>📧</span>
+                            <a href="mailto:media@chronusmedia.to">media@chronusmedia.to</a>
+                        </div>
+                        <div class="partner-contact-item">
+                            <span>🌐</span>
+                            <a href="https://chronusmedia.to" target="_blank">chronusmedia.to</a>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <a href="mailto:media@chronusmedia.to" class="btn-primary">📧 Contact Chronos</a>
+                        <a href="https://harvestrealtyllc.live" target="_blank" class="btn-secondary">🔗 Learn More</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Kerala Kitchen Catering Inc -->
+            <div class="partner-card">
+                <img src="photos/partner-kerala.png" alt="Kerala Kitchen Catering Inc" class="partner-image contain" style="background: var(--white);">
+                <div class="partner-content">
+                    <span class="partner-badge">CATERING PARTNER</span>
+                    <h2>Kerala Kitchen Catering Inc</h2>
+                    <h3>Authentic Indian Cuisine & Catering</h3>
+                    <p>Delicious authentic Kerala and Indian cuisine for all your events! Perfect for open houses, closing celebrations, corporate events, and private parties. Experience the rich flavors of South Indian cooking.</p>
+                    
+                    <div class="partner-services">
+                        <span class="service-tag">Event Catering</span>
+                        <span class="service-tag">Corporate Events</span>
+                        <span class="service-tag">Private Parties</span>
+                        <span class="service-tag">Kerala Cuisine</span>
+                        <span class="service-tag">Biryani</span>
+                        <span class="service-tag">Indian Food</span>
+                    </div>
+                    
+                    <div class="partner-contact">
+                        <div class="partner-contact-item">
+                            <span>📞</span>
+                            <a href="tel:267-242-7857">(267) 242-7857</a>
+                        </div>
+                        <div class="partner-contact-item">
+                            <span>👤</span>
+                            <span>Roy Varghese</span>
+                        </div>
+                        <div class="partner-contact-item">
+                            <span>📍</span>
+                            <span>6413 Castor Ave, Philadelphia, PA 19149</span>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <a href="tel:267-242-7857" class="btn-primary">📞 Call for Catering</a>
+                        <a href="https://harvestrealty.catering" target="_blank" class="btn-secondary">🔗 Learn More</a>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        
+        <div class="cta-section">
+            <h2>Interested in Partnering with Us?</h2>
+            <p>We're always looking to connect with quality service providers who share our commitment to excellence. If you'd like to explore partnership opportunities, we'd love to hear from you.</p>
+            <a href="mailto:prasad@harvestrealty.llc?subject=Partnership Inquiry">Contact Us About Partnerships</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Harvest Realty LLC. All rights reserved.</p>
+        <p style="margin-top: 0.5rem;"><a href="index.html">Home</a> | <a href="index.html#team">Our Team</a> | <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Use</a></p>
+    </footer>
+</body>
+</html>
