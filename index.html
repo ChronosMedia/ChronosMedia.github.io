@@ -204,13 +204,25 @@
     /* Menu toggle for mobile */
     .menu-toggle{
       display:none;
-      background: rgba(234,240,255,.08);
-      border: 1px solid var(--line);
-      padding:10px;
-      border-radius:10px;
+      background: linear-gradient(135deg, rgba(33,181,255,.2), rgba(47,107,255,.15));
+      border: 2px solid rgba(33,181,255,.4);
+      padding:12px;
+      border-radius:12px;
       cursor:pointer;
       color: var(--text);
-      font-size: 20px;
+      font-size: 22px;
+      box-shadow: 0 4px 12px rgba(33,181,255,.2);
+      transition: all 0.2s ease;
+    }
+    
+    .menu-toggle:hover {
+      background: linear-gradient(135deg, rgba(33,181,255,.3), rgba(47,107,255,.25));
+      box-shadow: 0 6px 16px rgba(33,181,255,.3);
+    }
+    
+    [data-theme="light"] .menu-toggle {
+      background: linear-gradient(135deg, rgba(33,181,255,.15), rgba(47,107,255,.1));
+      border-color: rgba(33,181,255,.5);
     }
 
     @media (max-width: 968px){
@@ -806,7 +818,7 @@
             <div class="person">
               <div class="avatar">SJ</div>
               <div>
-                <h3>Stephen Johnson</h3>
+                <h3>Steve Johnson</h3>
                 <div class="role">Co-Founder</div>
                 <p class="bio">
                   Focused on smooth live productions, strong audio/visual quality, and consistent stream reliability.
@@ -819,7 +831,7 @@
             <div class="person">
               <div class="avatar">ZC</div>
               <div>
-                <h3>Zach Chandapillai</h3>
+                <h3>Zachary Chandapillai</h3>
                 <div class="role">Co-Founder</div>
                 <p class="bio">
                   Dedicated to creative execution, attention to detail, and ensuring every event is captured with excellence.

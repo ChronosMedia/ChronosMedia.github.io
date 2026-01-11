@@ -915,16 +915,42 @@
       updateLogo(savedTheme);
 
       if (themeToggle) {
-        themeToggle.addEventListener("click", () => {
-          const currentTheme = html.getAttribute("data-theme");
-          const newTheme = currentTheme === "dark" ? "light" : "dark";
-          
-          html.setAttribute("data-theme", newTheme);
-          localStorage.setItem("theme", newTheme);
-          updateThemeIcons(newTheme);
-          updateLogo(newTheme);
+        // Use both click and touchend for mobile compatibility
+        themeToggle.addEventListener("click", toggleTheme);
+        themeToggle.addEventListener("touchend", function(e) {
+          e.preventDefault();
+          toggleTheme();
         });
       }
 
+      function toggleTheme() {
+        const currentTheme = html.getAttribute("data-theme");
+        const newTheme = currentTheme === "dark" ? "light" : "dark";
+        
+        html.setAttribute("data-theme", newTheme);
+        localStorage.setItem("theme", newTheme);
+        updateThemeIcons(newTheme);
+        updateLogo(newTheme);
+      }
+
       function updateThemeIcons(theme) {
-      
+        if (sunIcon && moonIcon) {
+          if (theme === "dark") {
+            moonIcon.style.display = "block";
+            sunIcon.style.display = "none";
+          } else {
+            moonIcon.style.display = "none";
+            sunIcon.style.display = "block";
+          }
+        }
+      }
+
+      function updateLogo(theme) {
+        if (logoImg) {
+          logoImg.src = theme === "dark" ? "chronos-logo-dark.svg" : "chronos-logo-light.svg";
+        }
+      }
+    });
+    </script>
+</body>
+</html>
