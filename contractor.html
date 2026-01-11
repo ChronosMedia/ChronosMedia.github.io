@@ -17,6 +17,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- jsPDF Library for PDF generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
   <style>
     /* ===== Theme Variables ===== */
@@ -462,7 +465,7 @@
           </div>
 
           <div id="successMessage" class="success-message">
-            ✅ Information submitted successfully! Redirecting to onboarding...
+            ✅ Information submitted successfully! Your PDF has been generated. Redirecting to onboarding...
           </div>
         </form>
       </div>
@@ -526,7 +529,7 @@
     // Set today's date
     document.getElementById('effective_date').value = new Date().toISOString().split('T')[0];
     
-    // Form submission
+    // Form submission with PDF generation
     document.getElementById('contractorForm').addEventListener('submit', function(e) {
       e.preventDefault();
       
@@ -550,6 +553,110 @@
       };
       
       console.log('Contractor form submitted:', formData);
+      
+      // Generate PDF with contractor information
+      try {
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF();
+        
+        // Header
+        pdf.setFontSize(22);
+        pdf.setFont('helvetica', 'bold');
+        pdf.text('Chronos Media Live LLC', 105, 20, { align: 'center' });
+        
+        pdf.setFontSize(16);
+        pdf.setFont('helvetica', 'normal');
+        pdf.text('Independent Contractor Information', 105, 30, { align: 'center' });
+        
+        // Divider line
+        pdf.setLineWidth(0.5);
+        pdf.line(20, 38, 190, 38);
+        
+        // Company Info Section
+        pdf.setFontSize(12);
+        pdf.setFont('helvetica', 'bold');
+        pdf.text('COMPANY INFORMATION', 20, 50);
+        
+        pdf.setFont('helvetica', 'normal');
+        pdf.setFontSize(11);
+        pdf.text('Chronos Media Live LLC', 20, 58);
+        pdf.text('EIN: 41-3482391', 20, 65);
+        pdf.text('1058 Domino Lane, Warminster, PA 18974', 20, 72);
+        pdf.text('Represented by: Stephen Johnson', 20, 79);
+        
+        // Contractor Info Section
+        pdf.setFontSize(12);
+        pdf.setFont('helvetica', 'bold');
+        pdf.text('CONTRACTOR INFORMATION', 20, 95);
+        
+        pdf.setFont('helvetica', 'normal');
+        pdf.setFontSize(11);
+        
+        // Format date nicely
+        const dateObj = new Date(formData.effective_date + 'T00:00:00');
+        const formattedDate = dateObj.toLocaleDateString('en-US', { 
+          year: 'numeric', 
+          month: 'long', 
+          day: 'numeric' 
+        });
+        
+        pdf.text(`Effective Date: ${formattedDate}`, 20, 103);
+        pdf.text(`Full Name: ${formData.contractor_name}`, 20, 111);
+        pdf.text(`Address: ${formData.contractor_address}`, 20, 119);
+        pdf.text(`Email: ${formData.email}`, 20, 127);
+        pdf.text(`Phone: ${formData.phone}`, 20, 135);
+        
+        // Key Terms Section
+        pdf.setFontSize(12);
+        pdf.setFont('helvetica', 'bold');
+        pdf.text('KEY TERMS', 20, 151);
+        
+        pdf.setFont('helvetica', 'normal');
+        pdf.setFontSize(10);
+        
+        const terms = [
+          '• Hourly Rate: $20.00 per hour for approved services',
+          '• Daily Cap: Shall not exceed $100.00 per calendar day',
+          '• Payment Frequency: Monthly on or before the 30th day (for the prior month),',
+          '  subject to receipt of client payment',
+          '• Tax Treatment: Company will issue the applicable IRS tax form(s) required by law',
+          '• Confidentiality & IP: Client information is confidential; work product belongs',
+          '  to the Company unless otherwise agreed',
+          '• Independent Contractor: Contractor is responsible for all taxes, insurance,',
+          '  licenses, and permits'
+        ];
+        
+        let yPos = 159;
+        terms.forEach(term => {
+          pdf.text(term, 20, yPos);
+          yPos += 7;
+        });
+        
+        // Notice Section
+        pdf.setFillColor(240, 248, 255);
+        pdf.rect(20, yPos + 5, 170, 25, 'F');
+        pdf.setFontSize(10);
+        pdf.setFont('helvetica', 'bold');
+        pdf.text('IMPORTANT NOTICE', 25, yPos + 15);
+        pdf.setFont('helvetica', 'normal');
+        pdf.setFontSize(9);
+        const noticeText = 'This form confirms receipt of contractor information. The full Independent Contractor Agreement document must be signed separately and returned to complete onboarding.';
+        const splitNotice = pdf.splitTextToSize(noticeText, 160);
+        pdf.text(splitNotice, 25, yPos + 22);
+        
+        // Footer
+        pdf.setFontSize(9);
+        pdf.setTextColor(100, 100, 100);
+        pdf.text(`Generated: ${new Date().toLocaleString()}`, 20, 280);
+        pdf.text('Chronos Media Live LLC • chronosmedia.to', 105, 280, { align: 'center' });
+        
+        // Save PDF
+        const filename = `Chronos_Contractor_Info_${formData.contractor_name.replace(/\s+/g, '_')}_${formData.effective_date}.pdf`;
+        pdf.save(filename);
+        
+      } catch (error) {
+        console.error('Error generating PDF:', error);
+      }
       
       // Show success message
       successMsg.classList.add('show');

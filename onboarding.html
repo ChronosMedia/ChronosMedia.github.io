@@ -670,7 +670,10 @@
           </div>
 
           <div id="successMessage" class="success-message">
-            ✅ Form submitted successfully! Your PDF has been generated and is ready to email to <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="355850515c5475565d475a5b5a465850515c541b415a">[email&#160;protected]</a>
+            ✅ <b>Form submitted successfully!</b> Your PDF has been generated and is ready to email to <a href="mailto:media@chronosmedia.to" style="color: var(--accent);">media@chronosmedia.to</a>
+            <div style="margin-top: 16px; padding: 16px; background: rgba(255,193,7,.15); border: 1px solid rgba(255,193,7,.4); border-radius: 10px;">
+              <b>⚠️ Reminder:</b> If you are an independent contractor, don't forget to also complete and submit your Independent Contractor Agreement if you haven't already.
+            </div>
           </div>
 
           <div id="errorMessage" class="error-message">
@@ -787,27 +790,33 @@
     // Set today's date
     document.getElementById('date').value = new Date().toISOString().split('T')[0];
     
-    // Signature Pad - Fixed with proper coordinate scaling
+    // Signature Pad
     const canvas = document.getElementById('signaturePad');
     const ctx = canvas.getContext('2d');
     let drawing = false;
+    let lastX = 0;
+    let lastY = 0;
     
-    function clearSignature() {
-      const theme = html.getAttribute('data-theme');
-      ctx.fillStyle = theme === 'dark' ? 'rgba(255,255,255,.09)' : 'rgba(0,0,0,.06)';
+    // Initialize canvas with white background for PDF compatibility
+    function initCanvas() {
+      ctx.fillStyle = '#FFFFFF';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
     }
     
-    clearSignature();
+    function clearSignature() {
+      initCanvas();
+    }
     
-    function getScaledCoordinates(e, rect) {
-      // Scale coordinates to match canvas internal resolution
+    initCanvas();
+    
+    function getCoordinates(e) {
+      const rect = canvas.getBoundingClientRect();
       const scaleX = canvas.width / rect.width;
       const scaleY = canvas.height / rect.height;
       
       let clientX, clientY;
       
-      if (e.touches) {
+      if (e.touches && e.touches.length > 0) {
         clientX = e.touches[0].clientX;
         clientY = e.touches[0].clientY;
       } else {
@@ -822,27 +831,33 @@
     }
     
     function startDrawing(e) {
+      e.preventDefault();
       drawing = true;
-      const rect = canvas.getBoundingClientRect();
-      const coords = getScaledCoordinates(e, rect);
+      const coords = getCoordinates(e);
+      lastX = coords.x;
+      lastY = coords.y;
       ctx.beginPath();
-      ctx.moveTo(coords.x, coords.y);
+      ctx.moveTo(lastX, lastY);
     }
     
     function draw(e) {
       if (!drawing) return;
       e.preventDefault();
       
-      const rect = canvas.getBoundingClientRect();
-      const coords = getScaledCoordinates(e, rect);
+      const coords = getCoordinates(e);
       
-      // ALWAYS draw in black for PDF
       ctx.strokeStyle = '#000000';
       ctx.lineWidth = 2;
       ctx.lineCap = 'round';
       ctx.lineJoin = 'round';
+      
+      ctx.beginPath();
+      ctx.moveTo(lastX, lastY);
       ctx.lineTo(coords.x, coords.y);
       ctx.stroke();
+      
+      lastX = coords.x;
+      lastY = coords.y;
     }
     
     function stopDrawing(e) {
@@ -857,29 +872,18 @@
     canvas.addEventListener('mouseleave', stopDrawing);
     
     // Touch events
-    canvas.addEventListener('touchstart', function(e) {
+    canvas.addEventListener('touchstart', startDrawing, { passive: false });
+    canvas.addEventListener('touchmove', draw, { passive: false });
+    canvas.addEventListener('touchend', stopDrawing, { passive: false });
+    canvas.addEventListener('touchcancel', stopDrawing, { passive: false });
+    
+    // Clear button
+    document.getElementById('clearSignature').addEventListener('click', function(e) {
       e.preventDefault();
-      startDrawing(e);
-    });
-    canvas.addEventListener('touchmove', function(e) {
-      e.preventDefault();
-      draw(e);
-    });
-    canvas.addEventListener('touchend', function(e) {
-      e.preventDefault();
-      stopDrawing(e);
+      clearSignature();
     });
     
-    // Clear button - make sure it's properly connected
-    const clearBtn = document.getElementById('clearSignature');
-    if (clearBtn) {
-      clearBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        clearSignature();
-      });
-    }
-    
-    // Form submission - Simplified from working version
+    // Form submission
     document.getElementById('onboardingForm').addEventListener('submit', function(e) {
       e.preventDefault();
       
@@ -902,7 +906,7 @@
         const name = document.getElementById('fullName').value;
         const email = document.getElementById('email').value;
         const date = document.getElementById('date').value;
-        const signature = canvas.toDataURL();
+        const signature = canvas.toDataURL('image/png');
         
         // Track in Google Analytics
         if (typeof gtag !== 'undefined') {
@@ -916,17 +920,70 @@
         const { jsPDF } = window.jspdf;
         const pdf = new jsPDF();
         
-        pdf.setFontSize(20);
-        pdf.text('Chronos Media - Onboarding', 20, 20);
+        // Header
+        pdf.setFontSize(22);
+        pdf.setFont('helvetica', 'bold');
+        pdf.text('Chronos Media Live LLC', 105, 20, { align: 'center' });
         
+        pdf.setFontSize(16);
+        pdf.setFont('helvetica', 'normal');
+        pdf.text('Onboarding Acknowledgment Form', 105, 30, { align: 'center' });
+        
+        // Divider line
+        pdf.setLineWidth(0.5);
+        pdf.line(20, 38, 190, 38);
+        
+        // Form data
         pdf.setFontSize(12);
-        pdf.text(`Name: ${name}`, 20, 40);
-        pdf.text(`Roles: ${roles.join(', ')}`, 20, 50);
-        pdf.text(`Email: ${email}`, 20, 60);
-        pdf.text(`Date: ${date}`, 20, 70);
+        pdf.setFont('helvetica', 'bold');
+        pdf.text('CONTRACTOR INFORMATION', 20, 50);
         
-        pdf.text('Signature:', 20, 85);
-        pdf.addImage(signature, 'PNG', 20, 90, 100, 30);
+        pdf.setFont('helvetica', 'normal');
+        pdf.setFontSize(11);
+        
+        // Format date nicely
+        const dateObj = new Date(date + 'T00:00:00');
+        const formattedDate = dateObj.toLocaleDateString('en-US', { 
+          year: 'numeric', 
+          month: 'long', 
+          day: 'numeric' 
+        });
+        
+        pdf.text(`Full Name: ${name}`, 20, 60);
+        pdf.text(`Email: ${email}`, 20, 68);
+        pdf.text(`Date: ${formattedDate}`, 20, 76);
+        pdf.text(`Role(s): ${roles.join(', ')}`, 20, 84);
+        
+        // Acknowledgment text
+        pdf.setFontSize(12);
+        pdf.setFont('helvetica', 'bold');
+        pdf.text('ACKNOWLEDGMENT', 20, 100);
+        
+        pdf.setFont('helvetica', 'normal');
+        pdf.setFontSize(10);
+        const ackText = 'I acknowledge that I have received and reviewed the Chronos Media onboarding materials, including company policies, email setup instructions, and event protocols.';
+        const splitAck = pdf.splitTextToSize(ackText, 170);
+        pdf.text(splitAck, 20, 110);
+        
+        // Signature
+        pdf.setFontSize(12);
+        pdf.setFont('helvetica', 'bold');
+        pdf.text('SIGNATURE', 20, 135);
+        
+        pdf.addImage(signature, 'PNG', 20, 140, 80, 24);
+        
+        // Signature line
+        pdf.setLineWidth(0.3);
+        pdf.line(20, 168, 100, 168);
+        pdf.setFontSize(9);
+        pdf.setFont('helvetica', 'normal');
+        pdf.text('Signature', 20, 174);
+        
+        // Footer
+        pdf.setFontSize(9);
+        pdf.setTextColor(100, 100, 100);
+        pdf.text(`Generated: ${new Date().toLocaleString()}`, 20, 280);
+        pdf.text('Chronos Media Live LLC • chronosmedia.to', 105, 280, { align: 'center' });
         
         const filename = `Chronos_Onboarding_${name.replace(/\s+/g, '_')}_${date}.pdf`;
         pdf.save(filename);
@@ -934,6 +991,15 @@
         // Show success message
         successMsg.classList.add('show');
         
-        // Open email client
-        const subject = `Onboarding Form - ${name}`;
-        c
+        // Scroll to success message
+        successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        
+      } catch (error) {
+        console.error('Error generating PDF:', error);
+        errorMsg.textContent = '❌ Error generating PDF: ' + error.message + '. Please try again or contact support.';
+        errorMsg.classList.add('show');
+      }
+    });
+  </script>
+</body>
+</html>
