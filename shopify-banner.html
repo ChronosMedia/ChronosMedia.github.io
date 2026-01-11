@@ -1,204 +1,433 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chronos Media Banner</title>
+    <title>Chronos Media - Shopify Banner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    
     <style>
-        body {
-            margin: 0;
-            padding: 20px;
-            background: #1a1a1a;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
+        /* ===== Theme Variables (matching homepage) ===== */
+        :root[data-theme="dark"]{
+            --bg: #0B1220;
+            --bg2:#0E1A2D;
+            --panel: rgba(255,255,255,.06);
+            --panel2: rgba(255,255,255,.09);
+            --text: #EAF0FF;
+            --muted: rgba(234,240,255,.72);
+            --line: rgba(234,240,255,.14);
+            --glass: rgba(10,20,40,.6);
+            --glass2: rgba(10,20,40,.35);
+            --logo-bg: rgba(11,18,32,.8);
+            --logo-border: rgba(33,181,255,.25);
         }
+
+        :root[data-theme="light"]{
+            --bg: #FFFFFF;
+            --bg2:#F5F5F5;
+            --panel: rgba(0,0,0,.04);
+            --panel2: rgba(0,0,0,.06);
+            --text: #1B2838;
+            --muted: rgba(27,40,56,.75);
+            --line: rgba(0,0,0,.12);
+            --glass: rgba(255,255,255,.9);
+            --glass2: rgba(255,255,255,.7);
+            --logo-bg: rgba(255,255,255,.95);
+            --logo-border: rgba(33,181,255,.3);
+        }
+
+        :root{
+            --brandA:#21B5FF;
+            --brandB:#2F6BFF;
+            --brandC:#00D4FF;
+            --accent: var(--brandA);
+            --accent2: var(--brandB);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         
+        body {
+            font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .page-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: var(--muted);
+        }
+
+        /* ===== Banner Container ===== */
         #banner {
             width: 1200px;
             height: 628px;
-            background: linear-gradient(135deg, #0D1B2A 0%, #1B2838 50%, #0D1B2A 100%);
             position: relative;
             overflow: hidden;
+            border-radius: 20px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            /* Match homepage background */
+            background:
+                radial-gradient(900px 520px at 18% 12%, rgba(33,181,255,.18), transparent 58%),
+                radial-gradient(820px 520px at 78% 18%, rgba(47,107,255,.14), transparent 55%),
+                radial-gradient(1200px 700px at 50% 110%, rgba(0,212,255,.08), transparent 60%),
+                linear-gradient(180deg, var(--bg), var(--bg2));
         }
-        
-        /* Animated gradient background */
-        #banner::before {
-            content: '';
+
+        /* Glass header bar (like homepage nav) */
+        .banner-header {
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at 30% 40%, rgba(33, 181, 255, 0.15), transparent 50%),
-                        radial-gradient(circle at 70% 60%, rgba(47, 107, 255, 0.1), transparent 50%),
-                        radial-gradient(circle at 50% 50%, rgba(0, 212, 255, 0.08), transparent 60%);
-        }
-        
-        /* Logo container */
-        .logo-section {
-            position: absolute;
-            left: 80px;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 2;
-        }
-        
-        .logo-box {
-            width: 280px;
-            height: 280px;
-            background: rgba(13, 27, 42, 0.9);
-            border-radius: 40px;
-            border: 2px solid rgba(33, 181, 255, 0.3);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6),
-                        0 0 80px rgba(33, 181, 255, 0.15);
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 120px;
+            backdrop-filter: blur(16px);
+            background: var(--glass);
+            border-bottom: 1px solid var(--line);
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
+            padding: 0 60px;
         }
-        
-        /* Hourglass SVG */
-        .hourglass {
-            width: 180px;
-            height: 180px;
+
+        /* Logo container (matching homepage) */
+        .logo-container {
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 8px 24px rgba(0,0,0,.4);
+            border-radius: 16px;
+            overflow: hidden;
         }
-        
-        /* Text content */
-        .content {
+
+        [data-theme="light"] .logo-container {
+            background: white;
+        }
+
+        .logo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+
+        .brand-text .tagline {
+            font-size: 14px;
+            color: var(--muted);
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        /* Main content area */
+        .banner-content {
             position: absolute;
-            right: 80px;
-            top: 50%;
-            transform: translateY(-50%);
-            text-align: right;
-            z-index: 2;
+            top: 120px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 80px;
         }
-        
-        .brand-name {
-            font-family: 'Arial Black', sans-serif;
-            font-size: 82px;
+
+        .content-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            width: 100%;
+        }
+
+        /* Large logo on left */
+        .hero-logo {
+            width: 220px;
+            height: 220px;
+            flex-shrink: 0;
+            box-shadow: 0 16px 48px rgba(0,0,0,.5);
+            border-radius: 30px;
+            overflow: hidden;
+        }
+
+        [data-theme="light"] .hero-logo {
+            background: white;
+        }
+
+        .hero-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Text content on right */
+        .text-content {
+            flex: 1;
+            text-align: left;
+        }
+
+        .main-title {
+            font-size: 72px;
             font-weight: 900;
-            letter-spacing: 6px;
-            margin: 0;
-            background: linear-gradient(135deg, #EAF0FF, #21B5FF, #00D4FF);
+            line-height: 1;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #EAF0FF, #21B5FF);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-shadow: 0 4px 20px rgba(33, 181, 255, 0.3);
-            line-height: 1;
         }
-        
-        .brand-subtitle {
-            font-family: 'Arial', sans-serif;
-            font-size: 32px;
-            font-weight: 600;
-            letter-spacing: 8px;
-            color: #EAF0FF;
-            margin: 15px 0 30px 0;
-            opacity: 0.9;
+
+        .subtitle {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--accent);
+            margin-bottom: 20px;
+            letter-spacing: 2px;
         }
-        
-        .tagline {
-            font-family: 'Arial', sans-serif;
-            font-size: 26px;
+
+        .tagline-main {
+            font-size: 24px;
+            color: var(--muted);
+            margin-bottom: 30px;
             font-weight: 500;
-            color: rgba(234, 240, 255, 0.75);
-            margin: 0 0 25px 0;
-            letter-spacing: 1px;
         }
-        
-        .cta {
-            display: inline-block;
-            padding: 18px 45px;
-            background: linear-gradient(135deg, rgba(33, 181, 255, 0.25), rgba(47, 107, 255, 0.2));
-            border: 2px solid rgba(33, 181, 255, 0.4);
-            border-radius: 50px;
-            color: #EAF0FF;
-            font-size: 20px;
+
+        /* CTA Button (matching homepage style) */
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 18px 36px;
+            border-radius: 14px;
+            border: 1px solid rgba(33,181,255,.3);
+            background: linear-gradient(135deg, rgba(33,181,255,.25), rgba(47,107,255,.2));
+            color: var(--text);
             font-weight: 700;
+            font-size: 18px;
+            box-shadow: 0 8px 24px rgba(33,181,255,.25);
             text-decoration: none;
-            letter-spacing: 1px;
-            box-shadow: 0 10px 30px rgba(33, 181, 255, 0.3);
+        }
+
+        /* Services pills */
+        .services {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .pill {
+            padding: 10px 20px;
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            color: var(--muted);
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* Footer bar */
+        .banner-footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50px;
+            background: var(--glass);
+            border-top: 1px solid var(--line);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        .banner-footer a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* Theme toggle for preview */
+        .theme-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--logo-bg);
+            border: 2px solid var(--logo-border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 8px 24px rgba(0,0,0,.3);
             transition: all 0.3s ease;
         }
-        
-        /* Decorative elements */
-        .glow-orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.4;
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 32px rgba(33,181,255,.4);
         }
-        
-        .orb-1 {
-            width: 400px;
-            height: 400px;
-            background: #21B5FF;
-            top: -150px;
-            right: -100px;
+        .theme-toggle svg {
+            width: 28px;
+            height: 28px;
+            fill: var(--text);
         }
-        
-        .orb-2 {
-            width: 350px;
-            height: 350px;
-            background: #2F6BFF;
-            bottom: -150px;
-            left: 200px;
+
+        /* Instructions */
+        .instructions {
+            margin-top: 30px;
+            padding: 20px 30px;
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .instructions h3 {
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .instructions p {
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.6;
         }
     </style>
 </head>
 <body>
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <svg id="sunIcon" viewBox="0 0 24 24" style="display: none;">
+            <path d="M12 17.5C14.7614 17.5 17 15.2614 17 12.5C17 9.73858 14.7614 7.5 12 7.5C9.23858 7.5 7 9.73858 7 12.5C7 15.2614 9.23858 17.5 12 17.5Z"/>
+            <path d="M12 1.5V4.5M12 20.5V23.5M20.5 12H23.5M0.5 12H3.5M18 6L16 8M8 16L6 18M18 18L16 16M8 8L6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <svg id="moonIcon" viewBox="0 0 24 24">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+    </button>
+
+    <h1 class="page-title">Shopify Store Banner Preview</h1>
+
     <div id="banner">
-        <!-- Decorative glowing orbs -->
-        <div class="glow-orb orb-1"></div>
-        <div class="glow-orb orb-2"></div>
-        
-        <!-- Logo Section -->
-        <div class="logo-section">
-            <div class="logo-box">
-                <svg class="hourglass" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <linearGradient id="hourglassGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" style="stop-color:#21B5FF;stop-opacity:1" />
-                            <stop offset="50%" style="stop-color:#2F6BFF;stop-opacity:1" />
-                            <stop offset="100%" style="stop-color:#00D4FF;stop-opacity:1" />
-                        </linearGradient>
-                    </defs>
-                    
-                    <!-- Top triangle -->
-                    <path d="M 50 40 L 150 40 L 150 55 L 100 100 L 50 55 Z" 
-                          fill="none" 
-                          stroke="url(#hourglassGradient)" 
-                          stroke-width="12" 
-                          stroke-linejoin="miter"/>
-                    
-                    <!-- Bottom triangle -->
-                    <path d="M 50 160 L 150 160 L 150 145 L 100 100 L 50 145 Z" 
-                          fill="none" 
-                          stroke="url(#hourglassGradient)" 
-                          stroke-width="12" 
-                          stroke-linejoin="miter"/>
-                    
-                    <!-- Center circle -->
-                    <circle cx="100" cy="100" r="10" fill="url(#hourglassGradient)"/>
-                </svg>
+        <!-- Header bar with small logo -->
+        <div class="banner-header">
+            <div class="brand">
+                <div class="logo-container">
+                    <img id="headerLogo" src="chronos-logo-dark.svg" alt="Chronos Media"/>
+                </div>
+                <div class="brand-text">
+                    <span class="tagline">Capturing the Agapē Moments</span>
+                </div>
             </div>
         </div>
-        
-        <!-- Text Content -->
-        <div class="content">
-            <h1 class="brand-name">CHRONOS</h1>
-            <h2 class="brand-subtitle">MEDIA</h2>
-            <p class="tagline">Capturing the Agapē Moments</p>
-            <a href="#" class="cta">Professional Livestreaming</a>
+
+        <!-- Main content -->
+        <div class="banner-content">
+            <div class="content-wrapper">
+                <!-- Large logo -->
+                <div class="hero-logo">
+                    <img id="heroLogo" src="chronos-logo-dark.svg" alt="Chronos Media"/>
+                </div>
+
+                <!-- Text content -->
+                <div class="text-content">
+                    <h1 class="main-title">CHRONOS</h1>
+                    <h2 class="subtitle">MEDIA</h2>
+                    <p class="tagline-main">Professional Media Services</p>
+                    
+                    <a href="https://chronus-media.myshopify.com/" class="cta-btn">
+                        🛒 Shop Now
+                    </a>
+
+                    <div class="services">
+                        <span class="pill">📡 Live Streaming</span>
+                        <span class="pill">📸 Photography</span>
+                        <span class="pill">🎵 Audio Production</span>
+                        <span class="pill">⛪ Church Media</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="banner-footer">
+            <span>Visit us at <a href="https://chronus-media.myshopify.com/">chronus-media.myshopify.com</a> • © 2026 Chronos Media Live LLC</span>
         </div>
     </div>
-    
+
+    <div class="instructions">
+        <h3>📸 How to Use This Banner</h3>
+        <p>
+            Right-click on the banner and select "Save Image As" or use your browser's screenshot tool to capture it. 
+            The banner is sized at 1200×628px, optimized for Shopify and social media.
+        </p>
+    </div>
+
     <script>
-        // Optional: Add button to download as image
-        console.log('Banner ready! Right-click to save or use browser screenshot tools.');
+        // Theme Toggle
+        const html = document.documentElement;
+        const themeToggle = document.getElementById('themeToggle');
+        const sunIcon = document.getElementById('sunIcon');
+        const moonIcon = document.getElementById('moonIcon');
+        const headerLogo = document.getElementById('headerLogo');
+        const heroLogo = document.getElementById('heroLogo');
+        
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        html.setAttribute('data-theme', savedTheme);
+        updateThemeIcons(savedTheme);
+        updateLogos(savedTheme);
+        
+        themeToggle.addEventListener('click', () => {
+            const current = html.getAttribute('data-theme');
+            const newTheme = current === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcons(newTheme);
+            updateLogos(newTheme);
+        });
+        
+        function updateThemeIcons(theme) {
+            if (theme === 'dark') {
+                moonIcon.style.display = 'block';
+                sunIcon.style.display = 'none';
+            } else {
+                moonIcon.style.display = 'none';
+                sunIcon.style.display = 'block';
+            }
+        }
+
+        function updateLogos(theme) {
+            const logoSrc = theme === 'dark' ? 'chronos-logo-dark.svg' : 'chronos-logo-light.svg';
+            if (headerLogo) headerLogo.src = logoSrc;
+            if (heroLogo) heroLogo.src = logoSrc;
+        }
     </script>
 </body>
 </html>
