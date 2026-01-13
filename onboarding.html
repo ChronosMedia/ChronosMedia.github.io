@@ -1,6 +1,13 @@
 <!doctype html>
 <html lang="en" data-theme="dark">
 <head>
+  <!-- Auth Check - Redirect if not logged in -->
+  <script>
+    if (sessionStorage.getItem("portalLoggedIn") !== "true") {
+      window.location.href = "/portal";
+    }
+  </script>
+  
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-T2NNWKW3B4"></script>
   <script>
@@ -452,7 +459,7 @@
   <header>
     <div class="container">
       <div class="nav">
-        <a href="index.html" class="brand">
+        <a href="/" class="brand">
           <div class="logo-container">
             <img id="logoImg" src="chronos-logo-dark.svg" alt="Chronos Media"/>
           </div>
@@ -488,10 +495,10 @@
           <div class="pill">⛪ Church Teams</div>
         </div>
         <ul style="margin-top: 16px;">
-          <li><b>Live Streaming & Broadcast</b> — <a href="live.html" style="color: var(--accent);">chronosmedia.to/live</a></li>
-          <li><b>Photography</b> — <a href="photos.html" style="color: var(--accent);">chronosmedia.to/photos</a></li>
-          <li><b>Audio Production</b> — <a href="audio.html" style="color: var(--accent);">chronosmedia.to/audio</a></li>
-          <li><b>Church Teams</b> — <a href="churches.html" style="color: var(--accent);">chronosmedia.to/churches</a></li>
+          <li><b>Live Streaming & Broadcast</b> — <a href="/live" style="color: var(--accent);">chronosmedia.to/live</a></li>
+          <li><b>Photography</b> — <a href="/photos" style="color: var(--accent);">chronosmedia.to/photos</a></li>
+          <li><b>Audio Production</b> — <a href="/audio" style="color: var(--accent);">chronosmedia.to/audio</a></li>
+          <li><b>Church Teams</b> — <a href="/churches" style="color: var(--accent);">chronosmedia.to/churches</a></li>
         </ul>
       </div>
 

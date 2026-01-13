@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-T2NNWKW3B4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-T2NNWKW3B4');
+  </script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contractor Portal - Chronos Media</title>
+  <meta name="description" content="Chronos Media contractor portal login." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== Theme Variables ===== */
+    :root[data-theme="dark"]{
+      --bg: #0B1220;
+      --bg2:#0E1A2D;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.09);
+      --text: #EAF0FF;
+      --muted: rgba(234,240,255,.72);
+      --line: rgba(234,240,255,.14);
+      --glass: rgba(10,20,40,.6);
+      --glass2: rgba(10,20,40,.35);
+      --glass-border: rgba(255,255,255,.1);
+    }
+
+    :root[data-theme="light"]{
+      --bg: #FFFFFF;
+      --bg2:#F5F5F5;
+      --panel: rgba(0,0,0,.04);
+      --panel2: rgba(0,0,0,.06);
+      --text: #1B2838;
+      --muted: rgba(27,40,56,.75);
+      --line: rgba(0,0,0,.12);
+      --glass: rgba(255,255,255,.8);
+      --glass2: rgba(255,255,255,.6);
+      --glass-border: rgba(0,0,0,.1);
+    }
+
+    :root{
+      --brandA:#21B5FF;
+      --brandB:#2F6BFF;
+      --brandC:#00D4FF;
+      --accent: var(--brandA);
+      --shadow: 0 14px 44px rgba(0,0,0,.45);
+      --max: 500px;
+      --pad: 24px;
+    }
+
+    *{ box-sizing:border-box; margin:0; padding:0; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: 'Outfit', 'Space Grotesk', system-ui, -apple-system, sans-serif;
+      background:
+        radial-gradient(1200px 800px at 20% 10%, rgba(33,181,255,.12), transparent 60%),
+        radial-gradient(1000px 700px at 80% 90%, rgba(47,107,255,.08), transparent 55%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+      color:var(--text);
+      line-height:1.6;
+      -webkit-font-smoothing: antialiased;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    a{ color:inherit; text-decoration:none; }
+
+    /* ===== Theme Toggle ===== */
+    .theme-toggle {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      background: var(--glass);
+      backdrop-filter: blur(20px);
+      border: 2px solid var(--glass-border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 1000;
+      box-shadow: 0 8px 32px rgba(0,0,0,.3);
+      transition: all 0.3s ease;
+    }
+    .theme-toggle:hover {
+      transform: scale(1.1) rotate(15deg);
+      box-shadow: 0 12px 40px rgba(33,181,255,.4);
+    }
+    .theme-toggle svg {
+      width: 28px;
+      height: 28px;
+      fill: var(--text);
+      transition: transform 0.3s ease;
+    }
+
+    /* ===== Login Card ===== */
+    .login-container {
+      width: 100%;
+      max-width: var(--max);
+    }
+
+    .login-card {
+      background: var(--glass);
+      backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 50px 40px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.3);
+    }
+
+    .logo-section {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .logo-container {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 20px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,.3);
+      border: 1px solid var(--glass-border);
+    }
+
+    [data-theme="light"] .logo-container {
+      background: white;
+    }
+
+    .logo-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .logo-section h1 {
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 8px;
+      background: linear-gradient(135deg, var(--text), var(--brandA));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .logo-section p {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    /* ===== Form Styles ===== */
+    .form-group {
+      margin-bottom: 24px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 16px 20px;
+      background: var(--panel);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      font-size: 16px;
+      color: var(--text);
+      font-family: inherit;
+      transition: all 0.3s ease;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--brandA);
+      box-shadow: 0 0 0 3px rgba(33,181,255,.15);
+    }
+
+    .form-group input::placeholder {
+      color: var(--muted);
+    }
+
+    .btn {
+      width: 100%;
+      padding: 18px 32px;
+      background: linear-gradient(135deg, var(--brandA), var(--brandB));
+      border: none;
+      border-radius: 14px;
+      font-size: 16px;
+      font-weight: 700;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: inherit;
+      box-shadow: 0 8px 30px rgba(33,181,255,.3);
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(33,181,255,.4);
+    }
+
+    .btn:active {
+      transform: translateY(-1px);
+    }
+
+    .error-message {
+      background: rgba(255,46,46,.1);
+      border: 1px solid rgba(255,46,46,.3);
+      color: #FF6B6B;
+      padding: 14px 20px;
+      border-radius: 12px;
+      font-size: 14px;
+      margin-bottom: 24px;
+      display: none;
+      text-align: center;
+    }
+
+    .error-message.show {
+      display: block;
+      animation: shake 0.5s ease;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-8px); }
+      40%, 80% { transform: translateX(8px); }
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 30px;
+      color: var(--muted);
+      font-size: 14px;
+      transition: color 0.3s ease;
+    }
+
+    .back-link:hover {
+      color: var(--brandA);
+    }
+
+    /* ===== Portal Content (Hidden by default) ===== */
+    .portal-content {
+      display: none;
+    }
+
+    .portal-content.show {
+      display: block;
+    }
+
+    .portal-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .portal-header h1 {
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 8px;
+      background: linear-gradient(135deg, var(--text), var(--brandA));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .portal-header p {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .portal-links {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .portal-link {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 24px;
+      background: var(--panel);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .portal-link:hover {
+      background: var(--panel2);
+      border-color: rgba(33,181,255,.3);
+      transform: translateX(8px);
+    }
+
+    .portal-link-icon {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, var(--brandA), var(--brandB));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+
+    .portal-link-text h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .portal-link-text p {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .logout-btn {
+      margin-top: 30px;
+      width: 100%;
+      padding: 14px 24px;
+      background: var(--panel);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: inherit;
+    }
+
+    .logout-btn:hover {
+      background: rgba(255,46,46,.1);
+      border-color: rgba(255,46,46,.3);
+      color: #FF6B6B;
+    }
+  </style>
+</head>
+<body>
+  <!-- Theme Toggle Button -->
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+    <svg id="sunIcon" viewBox="0 0 24 24" style="display: none;">
+      <path d="M12 17.5C14.7614 17.5 17 15.2614 17 12.5C17 9.73858 14.7614 7.5 12 7.5C9.23858 7.5 7 9.73858 7 12.5C7 15.2614 9.23858 17.5 12 17.5Z"/>
+      <path d="M12 1.5V3.5M12 21.5V23.5M4.22 4.72L5.64 6.14M18.36 18.86L19.78 20.28M1.5 12.5H3.5M20.5 12.5H22.5M4.22 20.28L5.64 18.86M18.36 6.14L19.78 4.72" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    <svg id="moonIcon" viewBox="0 0 24 24">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+    </svg>
+  </button>
+
+  <div class="login-container">
+    <!-- Login Form -->
+    <div class="login-card" id="loginForm">
+      <div class="logo-section">
+        <div class="logo-container">
+          <img id="logoImg" src="chronos-logo-dark.svg" alt="Chronos Media"/>
+        </div>
+        <h1>Contractor Portal</h1>
+        <p>Enter your credentials to access contractor resources</p>
+      </div>
+
+      <div class="error-message" id="errorMessage">
+        Invalid username or password. Please try again.
+      </div>
+
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" placeholder="Enter your username" autocomplete="username">
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Enter your password" autocomplete="current-password">
+      </div>
+
+      <button class="btn" id="loginBtn">Sign In</button>
+
+      <a href="/" class="back-link">← Back to Homepage</a>
+    </div>
+
+    <!-- Portal Content (shown after login) -->
+    <div class="login-card portal-content" id="portalContent">
+      <div class="logo-section">
+        <div class="logo-container">
+          <img id="logoImg2" src="chronos-logo-dark.svg" alt="Chronos Media"/>
+        </div>
+      </div>
+
+      <div class="portal-header">
+        <h1>Welcome, Contractor</h1>
+        <p>Access your resources below</p>
+      </div>
+
+      <div class="portal-links">
+        <a href="/contractor" class="portal-link">
+          <div class="portal-link-icon">📝</div>
+          <div class="portal-link-text">
+            <h3>Contractor Agreement</h3>
+            <p>Review and submit contractor information</p>
+          </div>
+        </a>
+
+        <a href="/onboarding" class="portal-link">
+          <div class="portal-link-icon">✅</div>
+          <div class="portal-link-text">
+            <h3>Onboarding Form</h3>
+            <p>Complete your onboarding documentation</p>
+          </div>
+        </a>
+      </div>
+
+      <button class="logout-btn" id="logoutBtn">Sign Out</button>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Theme Toggle
+      const themeToggle = document.getElementById("themeToggle");
+      const html = document.documentElement;
+      const sunIcon = document.getElementById("sunIcon");
+      const moonIcon = document.getElementById("moonIcon");
+      const logoImg = document.getElementById("logoImg");
+      const logoImg2 = document.getElementById("logoImg2");
+
+      const savedTheme = localStorage.getItem("theme") || "dark";
+      html.setAttribute("data-theme", savedTheme);
+      updateThemeIcons(savedTheme);
+      updateLogo(savedTheme);
+
+      if (themeToggle) {
+        themeToggle.addEventListener("click", toggleTheme);
+        themeToggle.addEventListener("touchend", function(e) {
+          e.preventDefault();
+          toggleTheme();
+        });
+      }
+
+      function toggleTheme() {
+        const currentTheme = html.getAttribute("data-theme");
+        const newTheme = currentTheme === "dark" ? "light" : "dark";
+        
+        html.setAttribute("data-theme", newTheme);
+        localStorage.setItem("theme", newTheme);
+        updateThemeIcons(newTheme);
+        updateLogo(newTheme);
+      }
+
+      function updateThemeIcons(theme) {
+        if (sunIcon && moonIcon) {
+          if (theme === "dark") {
+            moonIcon.style.display = "block";
+            sunIcon.style.display = "none";
+          } else {
+            moonIcon.style.display = "none";
+            sunIcon.style.display = "block";
+          }
+        }
+      }
+
+      function updateLogo(theme) {
+        const src = theme === "dark" ? "chronos-logo-dark.svg" : "chronos-logo-light.svg";
+        if (logoImg) logoImg.src = src;
+        if (logoImg2) logoImg2.src = src;
+      }
+
+      // Login functionality
+      const loginForm = document.getElementById("loginForm");
+      const portalContent = document.getElementById("portalContent");
+      const loginBtn = document.getElementById("loginBtn");
+      const logoutBtn = document.getElementById("logoutBtn");
+      const usernameInput = document.getElementById("username");
+      const passwordInput = document.getElementById("password");
+      const errorMessage = document.getElementById("errorMessage");
+
+      // Check if already logged in
+      const isLoggedIn = sessionStorage.getItem("portalLoggedIn");
+      if (isLoggedIn === "true") {
+        showPortal();
+      }
+
+      // Login credentials (obfuscated)
+      // Uses base64 + reverse to make credentials less visible in source
+      function d(s) { return atob(s.split('').reverse().join('')); }
+      const validCredentials = {};
+      validCredentials[d('==gcvR3YhJHdu92Y')] = d('=YjMwIzcv52byh2Y'); // obfuscated
+      validCredentials[d('=4WatRWY')] = d('ulWbkF2cv52byh2Y'); // obfuscated
+
+      loginBtn.addEventListener("click", handleLogin);
+      
+      // Allow Enter key to submit
+      passwordInput.addEventListener("keypress", function(e) {
+        if (e.key === "Enter") {
+          handleLogin();
+        }
+      });
+
+      usernameInput.addEventListener("keypress", function(e) {
+        if (e.key === "Enter") {
+          passwordInput.focus();
+        }
+      });
+
+      function handleLogin() {
+        const username = usernameInput.value.trim().toLowerCase();
+        const password = passwordInput.value;
+
+        if (validCredentials[username] && validCredentials[username] === password) {
+          sessionStorage.setItem("portalLoggedIn", "true");
+          errorMessage.classList.remove("show");
+          showPortal();
+          gtag('event', 'login', {'event_category': 'Portal', 'event_label': 'Successful Login'});
+        } else {
+          errorMessage.classList.add("show");
+          passwordInput.value = "";
+          gtag('event', 'login_failed', {'event_category': 'Portal', 'event_label': 'Failed Login'});
+        }
+      }
+
+      function showPortal() {
+        loginForm.style.display = "none";
+        portalContent.classList.add("show");
+      }
+
+      function hidePortal() {
+        loginForm.style.display = "block";
+        portalContent.classList.remove("show");
+        usernameInput.value = "";
+        passwordInput.value = "";
+      }
+
+      logoutBtn.addEventListener("click", function() {
+        sessionStorage.removeItem("portalLoggedIn");
+        hidePortal();
+        gtag('event', 'logout', {'event_category': 'Portal', 'event_label': 'Logout'});
+      });
+    });
+  </script>
+</body>
+</html>
