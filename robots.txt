@@ -1,0 +1,12 @@
+# Robots.txt for Chronos Media
+# https://chronosmedia.to
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://chronosmedia.to/sitemap.xml
+
+# Disallow protected pages
+Disallow: /contractor
+Disallow: /onboarding
