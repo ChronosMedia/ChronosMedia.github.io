@@ -1,0 +1,803 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-T2NNWKW3B4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-T2NNWKW3B4');
+  </script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Our Services - Chronos Media</title>
+  <meta name="description" content="Professional media services including livestreaming, audio production, photography, church training, web design, and recording & archives." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== Theme Variables ===== */
+    :root[data-theme="dark"]{
+      --bg: #0B1220;
+      --bg2:#0E1A2D;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.09);
+      --text: #EAF0FF;
+      --muted: rgba(234,240,255,.72);
+      --line: rgba(234,240,255,.14);
+      --glass: rgba(10,20,40,.6);
+      --glass2: rgba(10,20,40,.35);
+      --glass-border: rgba(255,255,255,.1);
+    }
+
+    :root[data-theme="light"]{
+      --bg: #FFFFFF;
+      --bg2:#F5F5F5;
+      --panel: rgba(0,0,0,.04);
+      --panel2: rgba(0,0,0,.06);
+      --text: #1B2838;
+      --muted: rgba(27,40,56,.75);
+      --line: rgba(0,0,0,.12);
+      --glass: rgba(255,255,255,.8);
+      --glass2: rgba(255,255,255,.6);
+      --glass-border: rgba(0,0,0,.1);
+    }
+
+    :root{
+      --brandA:#21B5FF;
+      --brandB:#2F6BFF;
+      --brandC:#00D4FF;
+      --accent: var(--brandA);
+      --shadow: 0 14px 44px rgba(0,0,0,.45);
+      --max: 1400px;
+      --pad: 24px;
+    }
+
+    *{ box-sizing:border-box; margin:0; padding:0; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: 'Outfit', 'Space Grotesk', system-ui, -apple-system, sans-serif;
+      background:
+        radial-gradient(1200px 800px at 20% 10%, rgba(33,181,255,.12), transparent 60%),
+        radial-gradient(1000px 700px at 80% 90%, rgba(47,107,255,.08), transparent 55%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+      color:var(--text);
+      line-height:1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    
+    .container{
+      width: min(var(--max), calc(100% - (var(--pad) * 2)));
+      margin: 0 auto;
+    }
+
+    /* ===== Theme Toggle ===== */
+    .theme-toggle {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      background: var(--glass);
+      backdrop-filter: blur(20px);
+      border: 2px solid var(--glass-border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 1000;
+      box-shadow: 0 8px 32px rgba(0,0,0,.3);
+      transition: all 0.3s ease;
+    }
+    .theme-toggle:hover {
+      transform: scale(1.1) rotate(15deg);
+      box-shadow: 0 12px 40px rgba(33,181,255,.4);
+    }
+    .theme-toggle svg {
+      width: 28px;
+      height: 28px;
+      fill: var(--text);
+      transition: transform 0.3s ease;
+    }
+
+    /* ===== Header ===== */
+    header{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(24px) saturate(180%);
+      background: var(--glass);
+      border-bottom: 1px solid var(--glass-border);
+      box-shadow: 0 4px 30px rgba(0,0,0,.2);
+    }
+    
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 0;
+      position: relative;
+    }
+    
+    .back-link {
+      position: absolute;
+      left: 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: var(--panel);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 14px;
+      transition: all 0.3s ease;
+    }
+    
+    .back-link:hover {
+      background: var(--panel2);
+      color: var(--text);
+      transform: translateX(-4px);
+      border-color: rgba(33,181,255,.3);
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:20px;
+      transition: transform 0.2s ease;
+    }
+    .brand:hover{
+      transform: scale(1.02);
+    }
+    
+    .logo-container {
+      width: 100px;
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 8px 32px rgba(0,0,0,.3);
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid var(--glass-border);
+    }
+    
+    [data-theme="light"] .logo-container {
+      background: white;
+    }
+    
+    .logo-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .brand-text{ 
+      display:flex; 
+      flex-direction:column; 
+      line-height:1.2; 
+    }
+    .brand-text span{ 
+      font-size: 14px; 
+      color:var(--muted);
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+
+    /* ===== Main Content ===== */
+    main {
+      padding: 60px 0 100px;
+    }
+
+    /* ===== Hero Section ===== */
+    .hero {
+      text-align: center;
+      margin-bottom: 80px;
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-icon {
+      font-size: 64px;
+      margin-bottom: 20px;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .hero h1 {
+      font-size: 56px;
+      font-weight: 800;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, var(--text), var(--brandA));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.1;
+    }
+
+    .hero p {
+      font-size: 20px;
+      color: var(--muted);
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* ===== Services Grid ===== */
+    .services-section {
+      margin-bottom: 80px;
+    }
+
+    .section-title {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      text-align: center;
+      background: linear-gradient(135deg, var(--text), var(--brandA));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: var(--muted);
+      font-size: 18px;
+      margin-bottom: 50px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+    }
+
+    .service-card {
+      background: var(--glass);
+      backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 40px;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+      display: block;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--brandA), var(--brandB), var(--brandC));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 60px rgba(33,181,255,.2);
+      border-color: rgba(33,181,255,.3);
+    }
+
+    .service-card:hover::before {
+      opacity: 1;
+    }
+
+    .service-header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .service-icon {
+      font-size: 48px;
+      flex-shrink: 0;
+    }
+
+    .service-card h3 {
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--text);
+      margin: 0;
+    }
+
+    .service-card p {
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+
+    .service-features {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 24px;
+    }
+
+    .service-features li {
+      padding: 10px 0;
+      padding-left: 28px;
+      position: relative;
+      color: var(--muted);
+      font-size: 15px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .service-features li:last-child {
+      border-bottom: none;
+    }
+
+    .service-features li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--brandA);
+      font-weight: 700;
+    }
+
+    .learn-more {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--brandA);
+      font-weight: 700;
+      font-size: 15px;
+      transition: gap 0.3s ease;
+    }
+
+    .service-card:hover .learn-more {
+      gap: 12px;
+    }
+
+    /* ===== CTA Section ===== */
+    .cta-section {
+      text-align: center;
+      padding: 60px 40px;
+      background: linear-gradient(135deg, rgba(33,181,255,.1), rgba(47,107,255,.05));
+      border: 1px solid var(--glass-border);
+      border-radius: 30px;
+      margin-bottom: 60px;
+    }
+
+    .cta-title {
+      font-size: 36px;
+      font-weight: 800;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, var(--text), var(--brandA));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .cta-text {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 600px;
+      margin: 0 auto 30px;
+      line-height: 1.7;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 32px;
+      border-radius: 14px;
+      font-weight: 700;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--brandA), var(--brandB));
+      color: white;
+      box-shadow: 0 8px 30px rgba(33,181,255,.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(33,181,255,.4);
+    }
+
+    .btn-secondary {
+      background: var(--panel);
+      border: 1px solid var(--glass-border);
+      color: var(--text);
+    }
+
+    .btn-secondary:hover {
+      background: var(--panel2);
+      border-color: rgba(33,181,255,.3);
+      transform: translateY(-3px);
+    }
+
+    /* ===== Footer ===== */
+    footer {
+      text-align: center;
+      padding: 40px 0 32px;
+      border-top: 1px solid var(--glass-border);
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+
+    .social-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease;
+    }
+
+    .social-icon:hover {
+      transform: translateY(-4px);
+    }
+
+    .social-icon svg {
+      width: 24px;
+      height: 24px;
+      fill: white;
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 36px;
+      }
+      
+      .hero p {
+        font-size: 17px;
+      }
+      
+      .section-title {
+        font-size: 28px;
+      }
+      
+      .back-link {
+        position: relative;
+        margin-bottom: 20px;
+      }
+      
+      .header-content {
+        flex-direction: column;
+        gap: 20px;
+      }
+      
+      .logo-container {
+        width: 80px;
+        height: 80px;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .service-header {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Theme Toggle Button -->
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+    <svg id="sunIcon" viewBox="0 0 24 24" style="display: none;">
+      <path d="M12 17.5C14.7614 17.5 17 15.2614 17 12.5C17 9.73858 14.7614 7.5 12 7.5C9.23858 7.5 7 9.73858 7 12.5C7 15.2614 9.23858 17.5 12 17.5Z"/>
+      <path d="M12 1.5V3.5M12 21.5V23.5M4.22 4.72L5.64 6.14M18.36 18.86L19.78 20.28M1.5 12.5H3.5M20.5 12.5H22.5M4.22 20.28L5.64 18.86M18.36 6.14L19.78 4.72" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    <svg id="moonIcon" viewBox="0 0 24 24">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+    </svg>
+  </button>
+
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <a href="/" class="back-link">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+          Back to Home
+        </a>
+        
+        <a href="/" class="brand">
+          <div class="logo-container">
+            <img id="logoImg" src="chronos-logo-dark.svg" alt="Chronos Media"/>
+          </div>
+          <div class="brand-text">
+            <span>Capturing the Agapē Moments</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <!-- Hero Section -->
+      <div class="hero">
+        <div class="hero-icon">🎯</div>
+        <h1>Our Services</h1>
+        <p>
+          End-to-end media production services designed for churches, businesses, and community events. 
+          We bring clarity and excellence to every project.
+        </p>
+      </div>
+
+      <!-- Services Section -->
+      <div class="services-section">
+        <div class="services-grid">
+          
+          <!-- Live Streaming -->
+          <a href="/live" class="service-card">
+            <div class="service-header">
+              <div class="service-icon">📡</div>
+              <h3>Live Streaming</h3>
+            </div>
+            <p>Professional YouTube livestreaming with reliable quality. We handle the technical details so you can focus on your event.</p>
+            <ul class="service-features">
+              <li>Multi-camera production</li>
+              <li>Real-time stream monitoring</li>
+              <li>Encoder setup & optimization</li>
+              <li>Backup recording included</li>
+            </ul>
+            <span class="learn-more">Learn more →</span>
+          </a>
+
+          <!-- Audio Production -->
+          <a href="/audio" class="service-card">
+            <div class="service-header">
+              <div class="service-icon">🎚️</div>
+              <h3>Audio Production</h3>
+            </div>
+            <p>Crystal-clear sound mixing, equipment setup, and professional audio solutions for any venue or event.</p>
+            <ul class="service-features">
+              <li>Live sound mixing</li>
+              <li>Equipment recommendations</li>
+              <li>System installation</li>
+              <li>Acoustic consulting</li>
+            </ul>
+            <span class="learn-more">Learn more →</span>
+          </a>
+
+          <!-- Photography -->
+          <a href="/photos" class="service-card">
+            <div class="service-header">
+              <div class="service-icon">📸</div>
+              <h3>Photography</h3>
+            </div>
+            <p>Professional event photography capturing your special moments with artistic excellence and attention to detail.</p>
+            <ul class="service-features">
+              <li>Event & portrait photography</li>
+              <li>Professional editing</li>
+              <li>Quick turnaround</li>
+              <li>Digital delivery</li>
+            </ul>
+            <span class="learn-more">Learn more →</span>
+          </a>
+
+          <!-- Church Training -->
+          <a href="/churches" class="service-card">
+            <div class="service-header">
+              <div class="service-icon">⛪</div>
+              <h3>Church Training</h3>
+            </div>
+            <p>Comprehensive training programs to equip your team with media production skills and best practices.</p>
+            <ul class="service-features">
+              <li>Hands-on workshops</li>
+              <li>Volunteer training</li>
+              <li>Best practices guides</li>
+              <li>Ongoing support</li>
+            </ul>
+            <span class="learn-more">Learn more →</span>
+          </a>
+
+          <!-- Web Design -->
+          <a href="/webdesign" class="service-card">
+            <div class="service-header">
+              <div class="service-icon">🌐</div>
+              <h3>Web Design</h3>
+            </div>
+            <p>Beautiful, functional websites for churches and businesses. Custom solutions built to grow with you.</p>
+            <ul class="service-features">
+              <li>Custom design & development</li>
+              <li>Mobile responsive</li>
+              <li>SEO optimized</li>
+              <li>Easy content management</li>
+            </ul>
+            <span class="learn-more">Learn more →</span>
+          </a>
+
+          <!-- Recording & Archives -->
+          <a href="/archives" class="service-card">
+            <div class="service-header">
+              <div class="service-icon">💾</div>
+              <h3>Recording & Archives</h3>
+            </div>
+            <p>Local backup recording and cloud archiving for every service and event. Never lose a moment.</p>
+            <ul class="service-features">
+              <li>HD & 4K recording</li>
+              <li>Secure cloud storage</li>
+              <li>Organized archives</li>
+              <li>Easy access & sharing</li>
+            </ul>
+            <span class="learn-more">Learn more →</span>
+          </a>
+
+        </div>
+      </div>
+
+      <!-- CTA Section -->
+      <div class="cta-section">
+        <h2 class="cta-title">Ready to Get Started?</h2>
+        <p class="cta-text">
+          Contact us today for a free consultation. We'll discuss your needs and create a custom solution for your organization.
+        </p>
+        <div class="cta-buttons">
+          <a href="mailto:info@chronosmedia.to?subject=Services%20Inquiry&body=Hello%20Chronos%20Media%2C%0A%0AI%27m%20interested%20in%20learning%20more%20about%20your%20services.%0A%0AServices%20I%27m%20interested%20in%3A%0A-%20%0A%0APlease%20let%20me%20know%20your%20availability%20for%20a%20consultation.%0A%0AThank%20you!" class="btn btn-primary">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+            Request Consultation
+          </a>
+          <a href="tel:2675350921" class="btn btn-secondary">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+            Call: (267) 535-0921
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <!-- Social Media Icons -->
+      <div style="text-align: center; margin-bottom: 30px;">
+        <h3 style="color: var(--text); font-size: 20px; font-weight: 700; margin-bottom: 20px;">Connect With Us</h3>
+        <div class="social-icons">
+          <!-- Facebook -->
+          <a href="https://www.facebook.com/ChronosMediaLive" target="_blank" rel="noopener noreferrer" class="social-icon" style="background: #1877F2; box-shadow: 0 6px 20px rgba(0,0,0,.25);">
+            <svg viewBox="0 0 24 24">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </a>
+
+          <!-- YouTube -->
+          <a href="https://www.youtube.com/@ChronosMediaLive" target="_blank" rel="noopener noreferrer" class="social-icon" style="background: #FF0000; box-shadow: 0 6px 20px rgba(0,0,0,.25);">
+            <svg viewBox="0 0 24 24">
+              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+          </a>
+
+          <!-- Instagram -->
+          <a href="https://www.instagram.com/chronosmedialive/" target="_blank" rel="noopener noreferrer" class="social-icon" style="background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); box-shadow: 0 6px 20px rgba(0,0,0,.25);">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </a>
+
+          <!-- WhatsApp -->
+          <a href="https://api.whatsapp.com/send?phone=12675350921" target="_blank" rel="noopener noreferrer" class="social-icon" style="background: #25D366; box-shadow: 0 6px 20px rgba(0,0,0,.25);">
+            <svg viewBox="0 0 24 24">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+      
+      <div style="border-top: 1px solid var(--glass-border); padding-top: 20px;">
+        © 2026 Chronos Media Live LLC • Capturing the Agapē Moments
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Theme Toggle
+      const themeToggle = document.getElementById("themeToggle");
+      const html = document.documentElement;
+      const sunIcon = document.getElementById("sunIcon");
+      const moonIcon = document.getElementById("moonIcon");
+      const logoImg = document.getElementById("logoImg");
+
+      const savedTheme = localStorage.getItem("theme") || "dark";
+      html.setAttribute("data-theme", savedTheme);
+      updateThemeIcons(savedTheme);
+      updateLogo(savedTheme);
+
+      if (themeToggle) {
+        themeToggle.addEventListener("click", toggleTheme);
+        themeToggle.addEventListener("touchend", function(e) {
+          e.preventDefault();
+          toggleTheme();
+        });
+      }
+
+      function toggleTheme() {
+        const currentTheme = html.getAttribute("data-theme");
+        const newTheme = currentTheme === "dark" ? "light" : "dark";
+        
+        html.setAttribute("data-theme", newTheme);
+        localStorage.setItem("theme", newTheme);
+        updateThemeIcons(newTheme);
+        updateLogo(newTheme);
+      }
+
+      function updateThemeIcons(theme) {
+        if (sunIcon && moonIcon) {
+          if (theme === "dark") {
+            moonIcon.style.display = "block";
+            sunIcon.style.display = "none";
+          } else {
+            moonIcon.style.display = "none";
+            sunIcon.style.display = "block";
+          }
+        }
+      }
+
+      function updateLogo(theme) {
+        if (logoImg) {
+          logoImg.src = theme === "dark" ? "chronos-logo-dark.svg" : "chronos-logo-light.svg";
+        }
+      }
+    });
+  </script>
+</body>
+</html>
