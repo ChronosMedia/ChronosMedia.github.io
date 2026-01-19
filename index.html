@@ -29,6 +29,19 @@
 
   <style>
     /* ===== Theme Variables ===== */
+    :root{
+      --brandA:#21B5FF;
+      --brandB:#2F6BFF;
+      --brandC:#00D4FF;
+      --accent: var(--brandA);
+      --accent2: var(--brandB);
+      --danger:#FF2E2E;
+      --shadow: 0 14px 44px rgba(0,0,0,.45);
+      --radius: 20px;
+      --max: 1200px;
+      --pad: 24px;
+    }
+
     :root[data-theme="dark"]{
       --bg: #0B1220;
       --bg2:#0E1A2D;
@@ -59,19 +72,6 @@
       --brandB: #1E4D8C;
       --brandC: #0096C7;
       --accent: #0077B6;
-    }
-
-    :root{
-      --brandA:#21B5FF;
-      --brandB:#2F6BFF;
-      --brandC:#00D4FF;
-      --accent: var(--brandA);
-      --accent2: var(--brandB);
-      --danger:#FF2E2E;
-      --shadow: 0 14px 44px rgba(0,0,0,.45);
-      --radius: 20px;
-      --max: 1200px;
-      --pad: 24px;
     }
 
     *{ box-sizing:border-box; }
@@ -382,7 +382,13 @@
       font-weight: 900;
       margin:0 0 16px;
       letter-spacing: -0.5px;
-      background: linear-gradient(135deg, #EAF0FF, #21B5FF);
+      background: linear-gradient(135deg, var(--text), var(--brandA));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    [data-theme="light"] .section-title{
+      background: linear-gradient(135deg, #1B2838, #0077B6);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
