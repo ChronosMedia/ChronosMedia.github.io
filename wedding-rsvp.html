@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RSVP &mdash; Stephen &amp; Feba</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,450;0,9..144,600;1,9..144,450&family=Newsreader:ital,wght@0,400;0,500;1,400&family=Space+Mono:wght@400;700&family=Petit+Formal+Script&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<style>
+  :root{
+    --ink:#20265C;
+    --paper:#F6F2FC;
+    --paper-2:#EAE1F7;
+    --rose:#8670C9;
+    --wine:#4B3A96;
+    --gold:#C9A961;
+    --blue:#1B1F45;
+    --line: rgba(32,38,92,0.2);
+    --good:#3d6b4a;
+    --max: 560px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    min-height:100vh;
+    background:
+      radial-gradient(ellipse 140% 90% at 50% 0%, rgba(134,112,201,0.08), transparent 55%),
+      radial-gradient(ellipse 120% 80% at 50% 100%, rgba(27,31,69,0.06), transparent 60%),
+      linear-gradient(180deg, #FAF7FD 0%, #F5F0FB 40%, #EFE8F9 100%);
+    color:var(--ink);
+    font-family:'Newsreader', serif;
+    font-size:17px;
+    line-height:1.6;
+  }
+  .wrap{max-width:var(--max); margin:0 auto; padding:52px 24px 70px;}
+  ::selection{background:var(--rose); color:var(--paper);}
+
+  .top{text-align:center; margin-bottom:34px;}
+  .monogram{width:64px; height:64px; margin:0 auto 14px; display:block;}
+  .names{
+    font-size:clamp(34px, 8vw, 46px);
+    font-style:italic;
+    margin:0 0 6px;
+  }
+  .names .amp{font-family:'Petit Formal Script', cursive; color:var(--gold); font-style:normal; font-size:0.7em; margin:0 8px;}
+  .event-line{
+    font-family:'Space Mono', monospace; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink);
+  }
+  .event-sub{font-family:'Space Mono', monospace; font-size:11px; color:#6a6255; margin-top:4px;}
+
+  .panel{
+    border:1px solid var(--ink);
+    padding:36px 30px;
+    background:var(--paper-2);
+    position:relative;
+    outline:1px solid rgba(201,169,97,0.3);
+    outline-offset:8px;
+    box-shadow:0 26px 50px -24px rgba(32,38,92,0.35);
+    margin-top:30px;
+  }
+  .panel::before{
+    content:"";
+    position:absolute; inset:7px;
+    border:1px solid var(--gold);
+    pointer-events:none;
+  }
+  .panel-intro{text-align:center; font-style:italic; color:#3a3a34; margin:0 0 22px;}
+
+  /* search */
+  .search-field{position:relative;}
+  .search-field input{
+    width:100%;
+    font-family:'Newsreader', serif; font-size:17px;
+    padding:13px 16px;
+    border:1px solid var(--ink);
+    background:var(--paper);
+    color:var(--ink);
+  }
+  .search-hint{
+    font-family:'Space Mono', monospace; font-size:11px; letter-spacing:0.06em;
+    color:#7a7264; margin-top:8px; text-align:center;
+  }
+
+  .results{margin-top:18px; display:flex; flex-direction:column; gap:10px;}
+  .result-card{
+    border:1px solid var(--line);
+    background:var(--paper);
+    padding:14px 16px;
+    cursor:pointer;
+    text-align:left;
+    width:100%;
+    font-family:'Newsreader', serif;
+    color:var(--ink);
+    transition:border-color .15s, background .15s;
+  }
+  .result-card:hover, .result-card:focus-visible{border-color:var(--gold); background:var(--paper-2);}
+  .result-card .rc-title{font-family:'Fraunces',serif; font-size:18px;}
+  .result-card .rc-sub{font-family:'Space Mono',monospace; font-size:11px; color:#7a7264; margin-top:4px;}
+  .result-card.answered .rc-sub{color:var(--good);}
+
+  .no-results{
+    text-align:center; font-style:italic; color:#7a7264; margin-top:18px; padding:10px 0;
+  }
+
+  /* invite detail */
+  .invite-back{
+    display:inline-flex; align-items:center; gap:6px;
+    font-family:'Space Mono', monospace; font-size:11px; letter-spacing:0.06em; text-transform:uppercase;
+    color:var(--wine); background:none; border:none; cursor:pointer; padding:0; margin-bottom:18px;
+  }
+  .invite-back:hover{color:var(--ink);}
+  .invite-household{font-family:'Fraunces',serif; font-style:italic; font-size:24px; text-align:center; margin:0 0 6px; color:var(--wine);}
+  .invite-note{text-align:center; font-style:italic; color:#6a6255; font-size:14px; margin:0 0 24px;}
+
+  .name-list{display:flex; flex-direction:column; gap:10px; margin-bottom:8px;}
+  .name-row{
+    display:flex; align-items:center; gap:12px;
+  }
+  .name-row .rsvp-field{flex:1; margin-bottom:0;}
+  .name-row .name-idx{
+    width:26px; font-family:'Space Mono',monospace; font-size:12px; color:var(--gold); flex-shrink:0; text-align:center;
+  }
+  .party-count-field{
+    border:1px solid var(--line);
+    background:var(--paper);
+    padding:14px 16px;
+    margin-bottom:20px;
+    text-align:center;
+  }
+  .party-count-field label{
+    display:block; font-family:'Space Mono',monospace; font-size:11px;
+    letter-spacing:0.08em; text-transform:uppercase; color:var(--wine); margin-bottom:8px;
+  }
+  .party-count-field .allotted{color:var(--gold);}
+  .party-count-stepper{
+    display:flex; align-items:center; justify-content:center; gap:16px;
+  }
+  .party-count-stepper button{
+    width:36px; height:36px;
+    font-family:'Fraunces',serif; font-size:20px;
+    border:1px solid var(--ink); background:var(--paper); color:var(--ink);
+    cursor:pointer;
+  }
+  .party-count-stepper button:hover{background:var(--wine); color:var(--paper); border-color:var(--wine);}
+  .party-count-stepper button:disabled{opacity:0.35; cursor:default; background:var(--paper); color:var(--ink);}
+  .party-count-num{font-family:'Fraunces',serif; font-size:28px; color:var(--wine); min-width:40px;}
+  .names-heading{
+    font-family:'Space Mono',monospace; font-size:11px; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--wine); margin:0 0 12px;
+  }
+
+  .rsvp-field{margin-bottom:18px;}
+  .rsvp-field label{
+    display:block; font-family:'Space Mono',monospace; font-size:11px;
+    letter-spacing:0.08em; text-transform:uppercase; color:var(--wine); margin-bottom:6px;
+  }
+  .rsvp-field input[type="text"],
+  .rsvp-field input[type="email"],
+  .rsvp-field textarea{
+    width:100%;
+    font-family:'Newsreader', serif; font-size:16px;
+    padding:12px 14px;
+    border:1px solid var(--ink);
+    background:var(--paper);
+    color:var(--ink);
+  }
+  .rsvp-row{display:flex; gap:14px;}
+  .rsvp-row .rsvp-field{flex:1;}
+  .rsvp-toggle{display:flex; gap:10px;}
+  .rsvp-toggle input{position:absolute; opacity:0; pointer-events:none;}
+  .rsvp-toggle label{
+    flex:1; text-align:center; cursor:pointer;
+    font-family:'Space Mono',monospace; font-size:12px; letter-spacing:0.06em; text-transform:none;
+    padding:12px 10px;
+    border:1px solid var(--ink);
+    background:var(--paper);
+    color:var(--ink);
+    transition:background .15s, color .15s;
+  }
+  .rsvp-toggle input:checked + label{background:var(--wine); color:var(--paper); border-color:var(--wine);}
+
+  .rsvp-error{font-family:'Space Mono',monospace; font-size:12px; color:var(--wine); display:none; margin-bottom:14px;}
+  .rsvp-error.show{display:block;}
+
+  .rsvp-submit{
+    width:100%;
+    font-family:'Space Mono',monospace; font-size:12px; letter-spacing:0.14em; text-transform:uppercase;
+    padding:15px 24px;
+    background:linear-gradient(180deg, var(--wine), #3A1650);
+    color:var(--paper);
+    border:1px solid var(--gold);
+    cursor:pointer;
+  }
+  .rsvp-submit:hover{background:var(--paper); color:var(--wine);}
+  .rsvp-submit:disabled{opacity:0.6; cursor:default;}
+
+  /* confirm state */
+  .confirm-state{text-align:center; padding:10px 0;}
+  .confirm-check{width:60px; height:60px; margin:0 auto 18px; display:block;}
+  .confirm-check circle{stroke:var(--gold); stroke-width:1.5; fill:none; stroke-dasharray:170; stroke-dashoffset:170; animation:cCircle .6s ease forwards;}
+  .confirm-check path{stroke:var(--wine); stroke-width:3; fill:none; stroke-linecap:round; stroke-linejoin:round; stroke-dasharray:40; stroke-dashoffset:40; animation:cCheck .4s ease forwards .55s;}
+  @keyframes cCircle{ to{ stroke-dashoffset:0; } }
+  @keyframes cCheck{ to{ stroke-dashoffset:0; } }
+  .confirm-title{font-family:'Fraunces',serif; font-style:italic; font-size:28px; color:var(--wine); opacity:0; transform:translateY(10px); animation:cTitle .6s ease forwards .8s;}
+  @keyframes cTitle{ to{opacity:1; transform:translateY(0);} }
+  .confirm-body{font-style:italic; color:#3a3a34; margin-top:10px;}
+  .confirm-edit{
+    margin-top:20px;
+    font-family:'Space Mono',monospace; font-size:11px; letter-spacing:0.06em; text-transform:uppercase;
+    color:#8a7f6e; background:none; border:none; cursor:pointer; text-decoration:underline; text-underline-offset:3px;
+  }
+
+  .state-msg{text-align:center; font-style:italic; color:#6a6255; padding:20px 0;}
+
+  footer{text-align:center; margin-top:36px; font-family:'Space Mono',monospace; font-size:11px; color:#8a7f6e;}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="top">
+    <svg class="monogram" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="40" cy="40" r="30" stroke="var(--gold)" stroke-width="1"/>
+      <circle cx="40" cy="40" r="34" stroke="var(--gold)" stroke-width="0.6" opacity="0.5"/>
+      <text x="40" y="49" text-anchor="middle" font-family="Fraunces, serif" font-style="italic" font-size="24" fill="var(--ink)">S&amp;F</text>
+    </svg>
+    <h1 class="names">Stephen<span class="amp">&amp;</span>Feba</h1>
+    <div class="event-line">Saturday, November 7, 2026</div>
+    <div class="event-sub">Westmount Country Club &middot; Woodland Park, NJ</div>
+  </div>
+
+  <div class="panel" id="panel">
+
+    <!-- SEARCH VIEW -->
+    <div id="searchView">
+      <p class="panel-intro">Find your invitation to RSVP.</p>
+      <div class="search-field">
+        <input type="text" id="searchInput" placeholder="Start typing your name&hellip;" autocomplete="off">
+      </div>
+      <div class="search-hint">Search by your first or last name</div>
+      <div class="results" id="results"></div>
+    </div>
+
+    <!-- INVITE / RSVP VIEW -->
+    <div id="inviteView" hidden>
+      <button type="button" class="invite-back" id="backBtn">&larr; Back to search</button>
+      <div class="invite-household" id="inviteHousehold"></div>
+      <p class="invite-note" id="inviteNote">Let us know who from your party will be joining us.</p>
+
+      <form id="rsvpForm" novalidate>
+        <div class="party-count-field">
+          <label>How many of your <span class="allotted" id="allottedNum">0</span> reserved seats are coming?</label>
+          <div class="party-count-stepper">
+            <button type="button" id="countMinus" aria-label="Fewer guests">&minus;</button>
+            <span class="party-count-num" id="countDisplay">0</span>
+            <button type="button" id="countPlus" aria-label="More guests">&plus;</button>
+          </div>
+        </div>
+
+        <p class="names-heading" id="namesHeading">Who's coming?</p>
+        <div class="name-list" id="nameList"></div>
+
+        <div class="rsvp-row">
+          <div class="rsvp-field">
+            <label for="rsvpEmail">Email address</label>
+            <input type="email" id="rsvpEmail" name="email" required>
+          </div>
+          <div class="rsvp-field">
+            <label for="rsvpPhone">Phone number</label>
+            <input type="text" inputmode="tel" id="rsvpPhone" name="phone" placeholder="(555) 555-5555" required>
+          </div>
+        </div>
+
+        <div class="rsvp-field" id="hotelField">
+          <label>Will you need a hotel?</label>
+          <div class="rsvp-toggle">
+            <input type="radio" id="hotelYes" name="hotel" value="yes">
+            <label for="hotelYes">Yes</label>
+            <input type="radio" id="hotelNo" name="hotel" value="no">
+            <label for="hotelNo">No</label>
+          </div>
+        </div>
+
+        <div class="rsvp-field">
+          <label for="rsvpNotes">Allergies or notes</label>
+          <textarea id="rsvpNotes" name="notes" placeholder="Food allergies, dietary restrictions, or anything else we should know"></textarea>
+        </div>
+
+        <span class="rsvp-error" id="rsvpError">Please add an email and phone number.</span>
+        <button type="submit" class="rsvp-submit" id="submitBtn">Confirm RSVP</button>
+      </form>
+
+      <div class="confirm-state" id="confirmState" hidden>
+        <svg class="confirm-check" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="32" cy="32" r="27"/>
+          <path d="M20 33 L28 41 L45 23"/>
+        </svg>
+        <div class="confirm-title">Thank You!</div>
+        <p class="confirm-body" id="confirmBody">Excited to see you there!</p>
+        <button type="button" class="confirm-edit" id="editBtn">Edit my response</button>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>Can't find your name? Reach out to Stephen or Feba directly.</footer>
+</div>
+
+<script>
+(function(){
+  // ---- Supabase config ----
+  var SUPABASE_URL = 'https://fdcswbuhflwncxusfmra.supabase.co';
+  var SUPABASE_ANON_KEY = 'sb_publishable_ZE1OzAv_zst4ekTfhCZK2g_JHrN5Cw4';
+  var supabaseClient = null;
+  if (window.supabase) {
+    try { supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY); }
+    catch(e){ console.error('Supabase init failed', e); }
+  }
+
+  var searchView = document.getElementById('searchView');
+  var inviteView = document.getElementById('inviteView');
+  var searchInput = document.getElementById('searchInput');
+  var resultsEl = document.getElementById('results');
+  var backBtn = document.getElementById('backBtn');
+  var inviteHousehold = document.getElementById('inviteHousehold');
+  var inviteNote = document.getElementById('inviteNote');
+  var nameList = document.getElementById('nameList');
+  var namesHeading = document.getElementById('namesHeading');
+  var allottedNum = document.getElementById('allottedNum');
+  var countDisplay = document.getElementById('countDisplay');
+  var countMinus = document.getElementById('countMinus');
+  var countPlus = document.getElementById('countPlus');
+  var form = document.getElementById('rsvpForm');
+  var errorEl = document.getElementById('rsvpError');
+  var confirmState = document.getElementById('confirmState');
+  var confirmBody = document.getElementById('confirmBody');
+  var editBtn = document.getElementById('editBtn');
+  var hotelField = document.getElementById('hotelField');
+
+  var allGuests = [];
+  var currentGuest = null;
+  var partyCount = 0;
+
+  function escapeHtml(s){
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+
+  async function loadGuests(){
+    if (!supabaseClient) {
+      resultsEl.innerHTML = '<p class="state-msg">This page is not connected yet &mdash; please check back soon.</p>';
+      return;
+    }
+    try {
+      var res = await supabaseClient.from('guests').select('*');
+      if (res.error) throw res.error;
+      allGuests = res.data || [];
+    } catch(err){
+      console.error('Load guests failed', err);
+      resultsEl.innerHTML = '<p class="state-msg">We could not load the guest list right now. Please try again shortly.</p>';
+    }
+  }
+
+  function matches(guest, query){
+    query = query.toLowerCase();
+    return (guest.household || '').toLowerCase().indexOf(query) !== -1;
+  }
+
+  function renderResults(query){
+    if (!query || query.trim().length < 2) {
+      resultsEl.innerHTML = '';
+      return;
+    }
+    var found = allGuests.filter(function(g){ return matches(g, query.trim()); });
+    if (found.length === 0) {
+      resultsEl.innerHTML = '<p class="no-results">No invitation found under that name. Try a different spelling, or reach out to Stephen or Feba directly.</p>';
+      return;
+    }
+    resultsEl.innerHTML = found.slice(0, 8).map(function(g, i){
+      var allotted = g.allowed_count || 0;
+      var subtitle = 'Up to ' + allotted + (allotted === 1 ? ' guest' : ' guests');
+      var answeredTag = g.responded ? '<span class="rc-sub">Response received &mdash; tap to view or edit</span>' : '<span class="rc-sub">' + escapeHtml(subtitle) + '</span>';
+      return '<button type="button" class="result-card' + (g.responded ? ' answered' : '') + '" data-idx="' + i + '">' +
+        '<div class="rc-title">' + escapeHtml(g.household) + '</div>' +
+        answeredTag +
+      '</button>';
+    }).join('');
+
+    Array.prototype.forEach.call(resultsEl.querySelectorAll('.result-card'), function(btn, idx){
+      btn.addEventListener('click', function(){ openInvite(found[idx]); });
+    });
+  }
+
+  function renderNameInputs(count, existingNames){
+    var rows = [];
+    for (var i = 0; i < count; i++) {
+      var val = existingNames && existingNames[i] ? escapeHtml(existingNames[i]) : '';
+      rows.push(
+        '<div class="name-row">' +
+          '<span class="name-idx">' + (i + 1) + '.</span>' +
+          '<div class="rsvp-field">' +
+            '<input type="text" class="guest-name-input" data-idx="' + i + '" placeholder="Full name" value="' + val + '">' +
+          '</div>' +
+        '</div>'
+      );
+    }
+    nameList.innerHTML = rows.join('');
+    namesHeading.hidden = count === 0;
+  }
+
+  function setPartyCount(n, existingNames){
+    var allotted = currentGuest ? (currentGuest.allowed_count || 0) : 0;
+    n = Math.max(0, Math.min(n, allotted));
+    partyCount = n;
+    countDisplay.textContent = n;
+    countMinus.disabled = n <= 0;
+    countPlus.disabled = n >= allotted;
+
+    // preserve whatever names are already typed when the count changes
+    var currentNames = Array.prototype.map.call(nameList.querySelectorAll('.guest-name-input'), function(inp){ return inp.value; });
+    var namesToUse = existingNames || currentNames;
+    renderNameInputs(n, namesToUse);
+  }
+
+  countMinus.addEventListener('click', function(){ setPartyCount(partyCount - 1); });
+  countPlus.addEventListener('click', function(){ setPartyCount(partyCount + 1); });
+
+  function openInvite(guest){
+    currentGuest = guest;
+    searchView.hidden = true;
+    inviteView.hidden = false;
+    confirmState.hidden = true;
+    form.hidden = false;
+
+    inviteHousehold.textContent = guest.household;
+    var already = !!guest.responded;
+    inviteNote.textContent = already
+      ? "You've already responded — feel free to update it below."
+      : "Let us know how many of your party will be joining us.";
+
+    var allotted = guest.allowed_count || 0;
+    allottedNum.textContent = allotted;
+
+    var startCount = already && typeof guest.attending_count === 'number' ? guest.attending_count : allotted;
+    setPartyCount(startCount, guest.attending_names || []);
+
+    if (guest.hotel_allowed === false) {
+      hotelField.hidden = true;
+    } else {
+      hotelField.hidden = false;
+    }
+
+    form.email.value = guest.email || '';
+    form.phone.value = guest.phone || '';
+    form.notes.value = guest.notes || '';
+    var hotelInput = form.querySelector('input[name="hotel"][value="' + (guest.hotel_needed || '') + '"]');
+    Array.prototype.forEach.call(form.querySelectorAll('input[name="hotel"]'), function(r){ r.checked = false; });
+    if (hotelInput) hotelInput.checked = true;
+
+    errorEl.classList.remove('show');
+  }
+
+  backBtn.addEventListener('click', function(){
+    inviteView.hidden = true;
+    searchView.hidden = false;
+    currentGuest = null;
+  });
+
+  editBtn.addEventListener('click', function(){
+    confirmState.hidden = true;
+    form.hidden = false;
+  });
+
+  searchInput.addEventListener('input', function(){
+    renderResults(searchInput.value);
+  });
+
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    errorEl.classList.remove('show');
+
+    var email = form.email.value.trim();
+    var phone = form.phone.value.trim();
+    if (!email || !phone) {
+      errorEl.textContent = 'Please add an email and phone number.';
+      errorEl.classList.add('show');
+      return;
+    }
+
+    var enteredNames = Array.prototype.map.call(nameList.querySelectorAll('.guest-name-input'), function(inp){ return inp.value.trim(); });
+    if (partyCount > 0 && enteredNames.some(function(n){ return !n; })) {
+      errorEl.textContent = 'Please enter a name for each guest coming, or lower the count.';
+      errorEl.classList.add('show');
+      return;
+    }
+
+    var hotelEl = form.querySelector('input[name="hotel"]:checked');
+    var hotel = hotelEl ? hotelEl.value : null;
+    var notes = form.notes.value.trim();
+
+    var submitBtn = document.getElementById('submitBtn');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+
+    var saved = false;
+    try {
+      if (supabaseClient && currentGuest) {
+        var res = await supabaseClient.from('guests').update({
+          attending_count: partyCount,
+          attending_names: enteredNames,
+          responded: true,
+          email: email,
+          phone: phone,
+          hotel_needed: hotel,
+          notes: notes,
+          responded_at: new Date().toISOString()
+        }).eq('id', currentGuest.id);
+        saved = !res.error;
+        if (res.error) console.error('Supabase update error', res.error);
+        if (saved) {
+          currentGuest.attending_count = partyCount;
+          currentGuest.attending_names = enteredNames;
+          currentGuest.responded = true;
+          currentGuest.email = email;
+          currentGuest.phone = phone;
+          currentGuest.hotel_needed = hotel;
+          currentGuest.notes = notes;
+        }
+      }
+    } catch(err){
+      console.error('RSVP save failed', err);
+    }
+
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Confirm RSVP';
+
+    if (saved) {
+      form.hidden = true;
+      confirmState.hidden = false;
+      if (partyCount === 0) {
+        confirmBody.textContent = "We've noted that your party won't be able to make it. We'll miss you!";
+      } else {
+        confirmBody.textContent = "Excited to see you there!";
+      }
+    } else {
+      errorEl.textContent = "We couldn't save your response. Please try again in a moment.";
+      errorEl.classList.add('show');
+    }
+  });
+
+  loadGuests();
+})();
+</script>
+
+</body>
+</html>
